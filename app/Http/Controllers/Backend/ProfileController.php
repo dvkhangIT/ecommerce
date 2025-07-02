@@ -37,6 +37,7 @@ class ProfileController extends Controller
     $user->name = $request->name;
     $user->email = $request->email;
     $user->save();
+    flasher('Profile Update Successfully', 'success');
     return redirect()->back();
   }
   public function updatePassword(Request $request)
@@ -48,6 +49,7 @@ class ProfileController extends Controller
     $request->user()->update([
       'password' => bcrypt($request->password)
     ]);
+    flasher('Profile Password Update Successfully', 'success');
     return redirect()->back();
   }
 }

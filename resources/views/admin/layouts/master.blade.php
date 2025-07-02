@@ -31,6 +31,8 @@
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3">
     </script>
+    <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
+    <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
 
@@ -103,6 +105,13 @@
     <!-- Template JS File -->
     <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    <script>
+      @if ($errors->any())
+        @foreach ($errors->all() as $error)
+          flasher.error("{{ $error }}");
+        @endforeach
+      @endif
+    </script>
   </body>
 
 </html>
