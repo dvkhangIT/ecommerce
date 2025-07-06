@@ -8,7 +8,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
-    <title>Sazao || e-Commerce HTML Template</title>
+    <title>One Shop || e-Commerce HTML Template</title>
     <link rel="icon" type="image/png"
       href="{{ asset('frontend/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
@@ -33,81 +33,43 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
-
-    <link rel="stylesheet"
-      href="{{ asset('vendor/flasher/flasher.min.css') }}">
-    <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
   </head>
 
   <body>
 
-    <!--============================
-        HEADER START
-    ==============================-->
-    @include('frontend.layouts.header')
-    <!--============================
-        HEADER END
-    ==============================-->
 
-    @include('frontend.layouts.menu')
+    <!--=============================
+    DASHBOARD MENU START
+  ==============================-->
+    <div class="wsus__dashboard_menu">
+      <div class="wsusd__dashboard_user">
+        <img src="images/dashboard_user.jpg" alt="img" class="img-fluid">
+        <p>anik roy</p>
+      </div>
+    </div>
+    <!--=============================
+    DASHBOARD MENU END
+  ==============================-->
 
-    <!--============================
-        MAIN MENU START
-    ==============================-->
 
-    <!--==========================
-        POP UP START
-    ===========================-->
-    <!-- <section id="wsus__pop_up">
-        <div class="wsus__pop_up_center">
-            <div class="wsus__pop_up_text">
-                <span id="cross"><i class="fas fa-times"></i></span>
-                <h5>get up to <span>75% off</span></h5>
-                <h2>Sign up to E-SHOP</h2>
-                <p>Subscribe to the <b>E-SHOP</b> market newsletter to receive updates on special offers.</p>
-                <form>
-                    <input type="email" placeholder="Your Email" class="news_input">
-                    <button type="submit" class="common_btn">go</button>
-                    <div class="wsus__pop_up_check_box">
-                    </div>
-                </form>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
-                    <label class="form-check-label" for="flexCheckDefault11">
-                        Don't show this popup again
-                    </label>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!--==========================
-        POP UP END
-    ===========================-->
-    <!--==========================
-      MAIN CONTENT
-    ===========================-->
+    <!--=============================
+    DASHBOARD START
+  ==============================-->
     @yield('content')
-    <!--==========================
-    END MAIN CONTENT
-    ===========================-->
-    <!--============================
-        FOOTER PART START
-    ==============================-->
-    @include('frontend.layouts.footer')
-    <!--============================
-        FOOTER PART END
-    ==============================-->
+    <!--=============================
+    DASHBOARD START
+  ==============================-->
 
 
     <!--============================
-        SCROLL BUTTON START
+      SCROLL BUTTON START
     ==============================-->
     <div class="wsus__scroll_btn">
       <i class="fas fa-chevron-up"></i>
     </div>
     <!--============================
-        SCROLL BUTTON  END
-    ==============================-->
+    SCROLL BUTTON  END
+  ==============================-->
 
 
     <!--jquery library js-->
@@ -147,14 +109,6 @@
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
-    <script>
-      @if ($errors->any())
-        @foreach ($errors->all() as $error)
-          flasher.error("{{ $error }}");
-        @endforeach
-      @endif
-    </script>
   </body>
 
 </html>
