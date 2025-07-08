@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
+    <link rel="stylesheet"
+      href="{{ asset('vendor/flasher/flasher.min.css') }}">
+    <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
   </head>
 
   <body>
@@ -109,6 +112,13 @@
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script>
+      @if ($errors->any())
+        @foreach ($errors->all() as $error)
+          flasher.error("{{ $error }}");
+        @endforeach
+      @endif
+    </script>
   </body>
 
 </html>

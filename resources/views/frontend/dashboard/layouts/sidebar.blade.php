@@ -26,7 +26,7 @@
         Wishlist</a>
     </li>
     <li>
-      <a href="dsahboard_profile.html"><i class="far fa-user"></i> My
+      <a href="{{ route('user.profile') }}"><i class="far fa-user"></i> My
         Profile</a>
     </li>
     <li>
