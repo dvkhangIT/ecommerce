@@ -23,7 +23,6 @@
       href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet"
       href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet"
