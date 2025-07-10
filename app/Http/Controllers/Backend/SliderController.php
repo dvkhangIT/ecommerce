@@ -33,7 +33,7 @@ class SliderController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      // 'banner' => 'required|max:2000',
+      'banner' => 'required|max:2000',
       'type' => 'string|max:200',
       'title' => 'string|max:200',
       'starts_price' => 'max:200',
@@ -68,7 +68,8 @@ class SliderController extends Controller
    */
   public function edit(string $id)
   {
-    //
+    $slider = Slider::findOrFail($id);
+    return view('admin.slider.edit', compact('slider'));
   }
 
   /**
@@ -76,7 +77,27 @@ class SliderController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $request->validate([
+      'banner' => 'nullable|max:2000',
+      'type' => 'string|max:200',
+      'title' => 'string|max:200',
+      'starts_price' => 'max:200',
+      'btn_url' => 'url',
+      'serial' => 'required|integer',
+      'status' => 'required'
+    ]);
+    $slider = Slider::findOrFail($id);
+    $imagePath = $this->updateImage($request, 'banner', 'uploads', $request->banner);
+    $slider->banner = $imagePath;
+    $slider->type = $request->type;
+    $slider->title = $request->title;
+    $slider->starting_price = $request->starting_price;
+    $slider->btn_url = $request->btn_url;
+    $slider->serial = $request->serial;
+    $slider->status = $request->status;
+    $slider->save();
+    flasher('Updated Successffuly!', 'success');
+    return redirect()->route('admin.slider.index');
   }
 
   /**
