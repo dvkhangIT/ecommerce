@@ -12,13 +12,14 @@
               <h4>All Category</h4>
             </div>
             <div class="card-body">
-              <form action="" method="POST">
+              <form action="{{ route('admin.category.store') }}" method="POST">
+                @csrf
                 <div class="form-group">
                   <label>Icon</label>
                   <div>
                     <button class="btn btn-primary"
                       data-selected-class="btn-danger"
-                      data-unselected-class="btn-info" role="iconpicker"></button>
+                      data-unselected-class="btn-info" role="iconpicker" name="icon"></button>
                   </div>
                 </div>
                 <div class="form-group">
