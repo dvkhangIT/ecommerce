@@ -79,4 +79,8 @@ class SubCategoryController extends Controller
   {
     //
   }
+  public function changeStatus()
+  {
+    //
+  }
 }
