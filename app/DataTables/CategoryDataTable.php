@@ -31,10 +31,17 @@ class CategoryDataTable extends DataTable
         return '<i style="font-size:40px" class = "' . $query->icon . '"></i>';
       })
       ->addColumn('status', function ($query) {
-        $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                        <span class="custom-switch-indicator"></span>
-                      </label>';
+        if ($query->status == 1) {
+          $button = '<label class="custom-switch mt-2">
+          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+          <span class="custom-switch-indicator"></span>
+          </label>';
+        } else {
+          $button = '<label class="custom-switch mt-2">
+          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+          <span class="custom-switch-indicator"></span>
+          </label>';
+        }
         return $button;
       })
       ->rawColumns(['icon', 'action', 'status'])
