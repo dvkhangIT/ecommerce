@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>All Category</h4>
+              <h4>Create Category</h4>
             </div>
             <div class="card-body">
               <form action="{{ route('admin.category.store') }}" method="POST">
@@ -19,7 +19,8 @@
                   <div>
                     <button class="btn btn-primary"
                       data-selected-class="btn-danger"
-                      data-unselected-class="btn-info" role="iconpicker" name="icon"></button>
+                      data-unselected-class="btn-info" role="iconpicker"
+                      name="icon"></button>
                   </div>
                 </div>
                 <div class="form-group">
