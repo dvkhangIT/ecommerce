@@ -33,7 +33,7 @@ class CategoryController extends Controller
   {
     $request->validate([
       'icon' => 'required|not_in:empty',
-      'name' => 'required|max:200,unique:categories,name',
+      'name' => 'required|max:200|unique:categories,name',
       'status' => 'required'
     ]);
     $category = new Category();
@@ -70,7 +70,7 @@ class CategoryController extends Controller
   {
     $request->validate([
       'icon' => 'required|not_in:empty',
-      'name' => 'required|max:200,unique:categories,name,' . $id,
+      'name' => 'required|max:200|unique:categories,name,' . $id,
       'status' => 'required'
     ]);
     $category = Category::findOrfail($id);
