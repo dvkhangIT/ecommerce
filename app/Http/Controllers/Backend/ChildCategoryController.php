@@ -99,10 +99,6 @@ class ChildCategoryController extends Controller
     flasher('Updated Successfully', 'success');
     return redirect()->route('admin.child-category.index');
   }
-  public function changeStatus(Request $request)
-  {
-    dd($request->all());
-  }
   /**
    * Remove the specified resource from storage.
    */
@@ -111,5 +107,12 @@ class ChildCategoryController extends Controller
     $childCategory = ChildCategory::findOrFail($id);
     $childCategory->delete();
     return response(['status' => 'success', 'Deleted Successfully!']);
+  }
+  public function changeStatus(Request $request)
+  {
+    $childCategory = ChildCategory::findOrfail($request->id);
+    $childCategory->status = $request->status == 'true' ? 1 : 0;
+    $childCategory->save();
+    return response(['message' => 'Status has been updated!']);
   }
 }
