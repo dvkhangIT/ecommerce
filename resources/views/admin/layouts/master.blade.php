@@ -156,6 +156,7 @@
                       text: data.message,
                       icon: "success",
                     });
+                    window.location.reload();
                   } else if (data.status == 'error') {
                     Swal.fire({
                       title: "Cant Delete!",
@@ -163,7 +164,6 @@
                       icon: "error",
                     });
                   }
-                  window.location.reload();
                 },
                 error: function(xhr, status, error) {
                   console.log(error);
