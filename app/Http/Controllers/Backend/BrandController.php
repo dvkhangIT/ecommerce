@@ -4,12 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\DataTables\BrandDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
-
+use Str;
 use function Termwind\render;
 
 class BrandController extends Controller
 {
+  use ImageUploadTrait;
   /**
    * Display a listing of the resource.
    */
@@ -23,7 +26,7 @@ class BrandController extends Controller
    */
   public function create()
   {
-    //
+    return view('admin.brand.create');
   }
 
   /**
@@ -31,7 +34,22 @@ class BrandController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate([
+      "name" => "required|max:200",
+      "is_featured" => "required",
+      "status" => "required",
+      "logo" => 'required|image|max:200'
+    ]);
+    $logoPath = $this->uploadImage($request, 'logo', 'uploads');
+    $brand = new Brand();
+    $brand->logo = $logoPath;
+    $brand->name = $request->name;
+    $brand->slug = Str::slug($request->name);
+    $brand->is_featured = $request->is_featured;
+    $brand->status = $request->status;
+    $brand->save();
+    flasher('Created Successffuly!', 'success');
+    return redirect()->route('admin.brand.index');
   }
 
   /**
