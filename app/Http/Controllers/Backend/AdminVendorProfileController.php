@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vendor;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminVendorProfileController extends Controller
 {
+  use ImageUploadTrait;
   /**
    * Display a listing of the resource.
    */
   public function index()
   {
-    return view('admin.vendor-profile.index');
+    $profile = Vendor::where('user_id', Auth::user()->id)->first();
+    return view('admin.vendor-profile.index', compact('profile'));
   }
 
   /**
@@ -28,16 +33,30 @@ class AdminVendorProfileController extends Controller
    */
   public function store(Request $request)
   {
-    dd($request->all());
     $request->validate([
-      "phone" => ['required'],
-      "email" => ['required'],
+      'banner' => ['nullable', 'image', 'max:3000'],
+      "phone" => ['required', 'max:50'],
+      "email" => ['required', 'email', 'max:200'],
       "address" => ['required'],
-      "description" => ['required'],
-      "fb_link" => ['required'],
-      "tw_link" => ['required'],
-      "insta_link" => ['required'],
+      "description" => ['required',],
+      "fb_link" => ['nullable', 'url'],
+      "tw_link" => ['nullable', 'url'],
+      "insta_link" => ['nullable', 'url'],
     ]);
+    $vendor = Vendor::where('user_id', Auth::user()->id)->first();
+    // $pathBanner = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
+    $pathBanner = $this->updateImage($request, 'banner', 'uploads',  $vendor->banner);
+    $vendor->banner = empty(!$pathBanner) ? $pathBanner : $vendor->banner;
+    $vendor->phone = $request->phone;
+    $vendor->email = $request->email;
+    $vendor->address = $request->address;
+    $vendor->description = $request->description;
+    $vendor->fb_link = $request->fb_link;
+    $vendor->tw_link = $request->tw_link;
+    $vendor->insta_link = $request->insta_link;
+    $vendor->save();
+    flasher('Updated Successffuly!', 'success');
+    return redirect()->back();
   }
 
   /**
