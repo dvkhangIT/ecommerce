@@ -68,6 +68,10 @@
               <a class="nav-link"
                 href="{{ route('admin.brand.index') }}">Brands</a>
             </li>
+            <li class=" {{ setActive(['admin.products.index']) }}">
+              <a class="nav-link"
+                href="{{ route('admin.products.index') }}">Products</a>
+            </li>
           </ul>
         </li>
         {{-- <li><a class="nav-link" href="layout-default.html">Default
