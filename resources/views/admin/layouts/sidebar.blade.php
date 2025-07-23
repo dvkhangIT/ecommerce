@@ -59,7 +59,8 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown {{ setActive(['admin.brand.*']) }}">
+        <li
+          class="dropdown {{ setActive(['admin.brand.*', 'admin.products.*']) }}">
           <a href="#" class="nav-link has-dropdown"
             data-toggle="dropdown"><i class="fas fa-columns"></i>
             <span>Manage Product</span></a>

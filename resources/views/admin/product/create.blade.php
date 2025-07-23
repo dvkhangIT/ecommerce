@@ -57,6 +57,114 @@
                     </div>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputState">Brand</label>
+                  <select id="inputState" class="form-control" name="brand">
+                    <option value="0">Select</option>
+                    @foreach ($brands as $brand)
+                      <option value="{{ $brand->id }}">{{ $brand->name }}
+                      </option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>SKU</label>
+                  <input type="text" class="form-control" name="sku"
+                    value="{{ old('sku') }}">
+                </div>
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="text" class="form-control" name="price"
+                    value="{{ old('price') }}">
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Offer Start Date</label>
+                      <input type="text" class="form-control datepicker"
+                        name="offer_price" value="{{ old('offer_start_date') }}">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Offer End Date</label>
+                      <input type="text" class="form-control datepicker"
+                        name="offer_price" value="{{ old('offer_end_date') }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Stock Quantity</label>
+                  <input type="text" class="form-control" name="qty"
+                    value="{{ old('qty') }}">
+                </div>
+                <div class="form-group">
+                  <label>Video Link</label>
+                  <input type="text" class="form-control" name="video_link"
+                    value="{{ old('video_link') }}">
+                </div>
+                <div class="form-group">
+                  <label for="">Short Description</label>
+                  <textarea class="form-control summernote" name="short_description"
+                    id=""></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="">Long Description</label>
+                  <textarea class="form-control summernote" name="long_description"
+                    id=""></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="inputState">Is Top</label>
+                      <select id="inputState" class="form-control" name="is_top">
+                        <option value="1">Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="inputState">Is Best</label>
+                      <select id="inputState" class="form-control"
+                        name="is_best">
+                        <option value="1">Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="inputState">Is Featured</label>
+                      <select id="inputState" class="form-control"
+                        name="is_featured">
+                        <option value="1">Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Seo Title</label>
+                  <input type="text" class="form-control" name="seo_title"
+                    value="{{ old('seo_title') }}">
+                </div>
+                <div class="form-group">
+                  <label>Seo Description</label>
+                  <input type="text" class="form-control"
+                    name="seo_description"
+                    value="{{ old('seo_description') }}">
+                </div>
+                <div class="form-group">
+                  <label for="inputState">Status</label>
+                  <select id="inputState" class="form-control" name="status">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Create</button>
               </form>
             </div>
