@@ -114,11 +114,23 @@
                   <textarea class="form-control summernote" name="long_description"
                     id=""></textarea>
                 </div>
+                <div class="form-group">
+                  <label for="inputState">Product Type</label>
+                  <select id="inputState" class="form-control"
+                    name="product_type">
+                    <option value="1">Select</option>
+                    <option value="new_arrival">New Arrival</option>
+                    <option value="featured_product">Featured</option>
+                    <option value="top_product">Top Product</option>
+                    <option value="best_product">Best Product</option>
+                  </select>
+                </div>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="inputState">Is Top</label>
-                      <select id="inputState" class="form-control" name="is_top">
+                      <select id="inputState" class="form-control"
+                        name="is_top">
                         <option value="1">Select</option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
