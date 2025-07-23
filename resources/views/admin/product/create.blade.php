@@ -16,7 +16,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                  <label>Banner</label>
+                  <label>Image</label>
                   <input type="file" class="form-control" name="image">
                 </div>
                 <div class="form-group">
@@ -124,41 +124,6 @@
                     <option value="top_product">Top Product</option>
                     <option value="best_product">Best Product</option>
                   </select>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="inputState">Is Top</label>
-                      <select id="inputState" class="form-control"
-                        name="is_top">
-                        <option value="1">Select</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="inputState">Is Best</label>
-                      <select id="inputState" class="form-control"
-                        name="is_best">
-                        <option value="1">Select</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="inputState">Is Featured</label>
-                      <select id="inputState" class="form-control"
-                        name="is_featured">
-                        <option value="1">Select</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
                 <div class="form-group">
                   <label>Seo Title</label>
