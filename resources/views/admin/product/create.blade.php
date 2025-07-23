@@ -12,12 +12,12 @@
               <h4>Create Product</h4>
             </div>
             <div class="card-body">
-              <form method="POST" action="{{ route('admin.slider.store') }}"
+              <form method="POST" action="{{ route('admin.products.store') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label>Banner</label>
-                  <input type="file" class="form-control" name="banner">
+                  <input type="file" class="form-control" name="image">
                 </div>
                 <div class="form-group">
                   <label>Name</label>
@@ -82,14 +82,15 @@
                     <div class="form-group">
                       <label>Offer Start Date</label>
                       <input type="text" class="form-control datepicker"
-                        name="offer_price" value="{{ old('offer_start_date') }}">
+                        name="offer_start_date"
+                        value="{{ old('offer_start_date') }}">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Offer End Date</label>
                       <input type="text" class="form-control datepicker"
-                        name="offer_price" value="{{ old('offer_end_date') }}">
+                        name="offer_end_date" value="{{ old('offer_end_date') }}">
                     </div>
                   </div>
                 </div>
