@@ -22,7 +22,27 @@ class ProductVariantDataTable extends DataTable
   public function dataTable(QueryBuilder $query): EloquentDataTable
   {
     return (new EloquentDataTable($query))
-      ->addColumn('action', 'productvariant.action')
+      ->addColumn('action', function ($query) {
+        $variantItem = '<a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-info mr-1"><i class="far fa-edit"></i> Variant Item</a>';
+        $editBtn = '<a href="' . route('admin.products-variant.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+        $deleteBtn = '<a href="' . route('admin.products-variant.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+        return $variantItem . $editBtn . $deleteBtn;
+      })
+      ->addColumn('status', function ($query) {
+        if ($query->status == 1) {
+          $button = '<label class="custom-switch mt-2">
+          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+          <span class="custom-switch-indicator"></span>
+          </label>';
+        } else {
+          $button = '<label class="custom-switch mt-2">
+          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+          <span class="custom-switch-indicator"></span>
+          </label>';
+        }
+        return $button;
+      })
+      ->rawColumns(['status', 'action'])
       ->setRowId('id');
   }
 
@@ -62,12 +82,13 @@ class ProductVariantDataTable extends DataTable
   public function getColumns(): array
   {
     return [
-      Column::make('id')->type('string'),
+      Column::make('id')->type('string')->width(80),
       Column::make('name'),
+      Column::make('status'),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
-        ->width(200)
+        ->width(400)
         ->addClass('text-center'),
     ];
   }
