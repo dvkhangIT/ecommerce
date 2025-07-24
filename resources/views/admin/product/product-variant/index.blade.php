@@ -12,9 +12,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>All Product Variants</h4>
+              <h4>Product: {{ $product->name }}</h4>
               <div class="card-header-action">
-                <a href="{{ route('admin.products.create') }}"
+                <a href="{{ route('admin.products-variant.create', ['product' => $product->id]) }}"
                   class="btn btn-primary"><i class="fas fa-plus"></i> Create</a>
               </div>
             </div>
