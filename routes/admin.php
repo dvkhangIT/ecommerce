@@ -27,8 +27,8 @@ Route::resource('category', CategoryController::class);
 Route::resource('sub-category', SubCategoryController::class);
 Route::put('subcategory/change-status', [SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
 // Child Category Route
-Route::resource('child-category', ChildCategoryController::class);
 Route::put('child-category', [ChildCategoryController::class, 'changeStatus'])->name('child-category.change-status');
+Route::resource('child-category', ChildCategoryController::class);
 Route::get('get-subcategory', [ChildCategoryController::class, 'getSubCategory'])->name('get-subcategory');
 // Brand route
 Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->name('brand.change-status');
@@ -42,4 +42,5 @@ Route::get('product/get-childcategories', [ProductController::class, 'getChildCa
 // Product gallery route
 Route::resource('products-image-gallery', ProductImageGalleryController::class);
 //Produt variant
+Route::put('products-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
 Route::resource('products-variant', ProductVariantController::class);

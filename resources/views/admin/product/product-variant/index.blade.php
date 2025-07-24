@@ -29,4 +29,26 @@
 @endsection
 @push('scripts')
   {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+  <script>
+    $(document).ready(function() {
+      $('body').on('click', '.change-status', function() {
+        let status = $(this).is(':checked');
+        let id = $(this).data('id');
+        $.ajax({
+          method: "PUT",
+          url: "{{ route('admin.products-variant.change-status') }}",
+          data: {
+            status: status,
+            id: id
+          },
+          success: function(data) {
+            flasher.success(data.message);
+          },
+          error: function(xhr, status, errors) {
+            console.log(errors);
+          }
+        });
+      })
+    });
+  </script>
 @endpush
