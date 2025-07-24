@@ -12,9 +12,11 @@
               <h4>Update Product</h4>
             </div>
             <div class="card-body">
-              <form method="POST" action="{{ route('admin.products.store') }}"
+              <form method="POST"
+                action="{{ route('admin.products.update', $product->id) }}"
                 enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                   <label>Preview</label>
                   <img style="display: block" width="200px"
@@ -35,7 +37,7 @@
                       <label for="inputState">Category</label>
                       <select id="inputState" class="form-control main-category"
                         name="category">
-                        <option value="0">Select</option>
+                        <option value="">Select</option>
                         @foreach ($categories as $category)
                           <option
                             {{ $category->id == $product->category_id ? 'selected' : '' }}
@@ -50,7 +52,7 @@
                       <label for="inputState">Sub Category</label>
                       <select id="inputState" class="form-control sub-category"
                         name="sub_category">
-                        <option value="0">Select</option>
+                        <option value="">Select</option>
                         @foreach ($subCategories as $subCategory)
                           <option
                             {{ $subCategory->id == $product->sub_category_id ? 'selected' : '' }}
@@ -65,6 +67,7 @@
                       <label for="inputState">Child Category</label>
                       <select id="inputState" class="form-control child-category"
                         name="child_category">
+                        <option value="">Select</option>
                         @foreach ($childCategories as $childCategory)
                           <option
                             {{ $childCategory->id == $product->child_category_id ? 'selected' : '' }}
@@ -168,13 +171,13 @@
                 <div class="form-group">
                   <label for="inputState">Status</label>
                   <select id="inputState" class="form-control" name="status">
-                    <option {{ $product->status == 1 ? 'slected' : '' }}
+                    <option {{ $product->status == 1 ? 'selected' : '' }}
                       value="1">Active</option>
-                    <option {{ $product->status == 0 ? 'slected' : '' }}
+                    <option {{ $product->status == 0 ? 'selected' : '' }}
                       value="0">Inactive</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
               </form>
             </div>
           </div>
