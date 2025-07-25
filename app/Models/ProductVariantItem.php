@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductVariantItem extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  public function productVariant()
+  {
+    return $this->belongsTo(ProductVariant::class,);
+  }
 }
