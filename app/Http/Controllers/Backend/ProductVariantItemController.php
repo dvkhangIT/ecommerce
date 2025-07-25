@@ -17,7 +17,7 @@ class ProductVariantItemController extends Controller
     $variant = ProductVariant::findOrFail($variantId);
     return $dataTables->render('admin.product.product-variant-item.index', compact('product', 'variant'));
   }
-  public function create(string $variantId, string $productId)
+  public function create(string $productId, string $variantId)
   {
     $variant = ProductVariant::findOrFail($variantId);
     $product = Product::findOrFail($productId);
