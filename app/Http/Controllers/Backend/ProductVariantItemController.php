@@ -45,4 +45,29 @@ class ProductVariantItemController extends Controller
       'variantId' => $request->variant_id
     ]);
   }
+  public function edit(string $variantItemId)
+  {
+    $variantItem = ProductVariantItem::findOrFail($variantItemId);
+    return view('admin.product.product-variant-item.edit', compact('variantItem'));
+  }
+  public function update(Request $request, string $variantItemId)
+  {
+    $request->validate([
+      "name" => "required|max:200",
+      "price" => "integer|required",
+      "is_default" => "required",
+      "status" => "required",
+    ]);
+    $variantItem = ProductVariantItem::findOrFail($variantItemId);
+    $variantItem->name = $request->name;
+    $variantItem->price = $request->price;
+    $variantItem->status = $request->status;
+    $variantItem->is_default = $request->is_default;
+    $variantItem->save();
+    flasher('Updated successfully!', 'success');
+    return redirect()->route('admin.products-variant-item.index', [
+      'productId' => $variantItem->productVariant->product_id,
+      'variantId' => $variantItem->product_variant_id
+    ]);
+  }
 }
