@@ -37,7 +37,7 @@
         let id = $(this).data('id');
         $.ajax({
           method: "PUT",
-          url: "{{ route('admin.products-variant.change-status') }}",
+          url: "{{ route('admin.products-variant-item.change-status') }}",
           data: {
             status: status,
             id: id
@@ -49,7 +49,7 @@
             console.log(errors);
           }
         });
-      }) d
+      })
     });
   </script>
 @endpush

@@ -70,4 +70,22 @@ class ProductVariantItemController extends Controller
       'variantId' => $variantItem->product_variant_id
     ]);
   }
+  public function destroy(string $variantItemId)
+  {
+    $variantItem = ProductVariantItem::findOrFail($variantItemId);
+    $variantItem->delete();
+    return response()->json(
+      [
+        'status' => 'success',
+        ',message' => 'Deleted Successfully!'
+      ]
+    );
+  }
+  public function changeStatus(Request $request)
+  {
+    $variantItem = ProductVariantItem::findOrfail($request->id);
+    $variantItem->status = $request->status == 'true' ? 1 : 0;
+    $variantItem->save();
+    return response(['message' => 'Status has been updated!']);
+  }
 }
