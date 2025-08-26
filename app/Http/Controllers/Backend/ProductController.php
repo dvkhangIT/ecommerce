@@ -173,6 +173,13 @@ class ProductController extends Controller
     $product->delete();
     return response()->json(['status' => 'success', 'message' => 'Deleted Successfully!']);
   }
+  public function changeStatus(Request $request)
+  {
+    $product = Product::findOrfail($request->id);
+    $product->status = $request->status == 'true' ? 1 : 0;
+    $product->save();
+    return response(['message' => 'Status has been updated!']);
+  }
   public function getSubCategories(Request $request)
   {
     $subCategories = SubCategory::where('category_id', $request->id)->get();
