@@ -36,6 +36,7 @@ class AdminVendorProfileController extends Controller
     $request->validate([
       'banner' => ['nullable', 'image', 'max:3000'],
       "phone" => ['required', 'max:50'],
+      "shop_name" => ['required', 'max:200'],
       "email" => ['required', 'email', 'max:200'],
       "address" => ['required'],
       "description" => ['required',],
@@ -47,6 +48,7 @@ class AdminVendorProfileController extends Controller
     // $pathBanner = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
     $pathBanner = $this->updateImage($request, 'banner', 'uploads',  $vendor->banner);
     $vendor->banner = empty(!$pathBanner) ? $pathBanner : $vendor->banner;
+    $vendor->shop_name = $request->shop_name;
     $vendor->phone = $request->phone;
     $vendor->email = $request->email;
     $vendor->address = $request->address;
