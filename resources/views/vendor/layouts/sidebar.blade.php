@@ -12,6 +12,10 @@
           class="fas fa-tachometer"></i>Dashboard</a>
     </li>
     <li>
+      <a class="" href="{{ route('vendor.products.index') }}"><i
+          class="fas fa-tachometer"></i>Products</a>
+    </li>
+    <li>
       <a href="{{ route('vendor.shop-profile.index') }}"><i
           class="fas fa-list-ul"></i> Shop
         Profile</a>
