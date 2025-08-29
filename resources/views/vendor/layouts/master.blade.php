@@ -32,6 +32,8 @@
     <link rel="stylesheet"
       href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet"
+      href="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet"
       href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
@@ -113,6 +115,10 @@
     <script
       src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}">
     </script>
+    <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
+    <script
+      src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}">
+    </script>
     <script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
@@ -122,6 +128,12 @@
     <script>
       $('.summernote').summernote({
         height: 150
+      });
+      $('.datepicker').daterangepicker({
+        locale: {
+          format: 'YYYY-MM-DD'
+        },
+        singleDatePicker: true,
       });
     </script>
   </body>
