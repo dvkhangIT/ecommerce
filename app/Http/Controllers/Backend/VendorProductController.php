@@ -97,6 +97,10 @@ class VendorProductController extends Controller
   {
     $categories = Category::all();
     $product = Product::findOrFail($id);
+    // Check if it's the owner of the product
+    if ($product->vendor_id !== Auth::user()->vendor->id) {
+      abort(404);
+    }
     $brands = Brand::all();
     $subCategories = SubCategory::where('category_id', $product->category_id)->get();
     $childCategories = ChildCategory::where('sub_category_id', $product->sub_category_id)->get();
@@ -121,6 +125,10 @@ class VendorProductController extends Controller
       'status' => 'required',
     ]);
     $product = Product::findOrfail($id);
+    // Check if it's the owner of the product
+    if ($product->vendor_id !== Auth::user()->vendor->id) {
+      abort(404);
+    }
     $imagePath = $this->updateImage($request, 'image', 'uploads', $product->thumb_image);
     $product->thumb_image = empty(!$imagePath) ? $imagePath : $product->thumb_image;
     $product->name = $request->name;
