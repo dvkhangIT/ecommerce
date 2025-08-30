@@ -9450,3 +9450,10 @@ a:not([href]):not([class]):hover {
     text-align: right;
     margin-bottom: 10px;
 }
+#status__product_vendor {
+  height: 20px;
+  width: 50px;
+}
+.delete-item {
+    margin-left: 4px;
+}
