@@ -4,6 +4,7 @@
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProductImageGalleryController;
+use App\Http\Controllers\Backend\VendorProductVariantController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VerdorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,7 @@ Route::get('product/get-childcategories', [VendorProductController::class, 'getC
 
 // Product gallery route
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
+
+//Product variant route
+// Route::put('products-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
+Route::resource('products-variant', VendorProductVariantController::class);
