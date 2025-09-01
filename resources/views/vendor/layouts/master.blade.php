@@ -8,6 +8,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <title>One Shop || e-Commerce HTML Template</title>
     <link rel="icon" type="image/png"
       href="{{ asset('frontend/images/favicon.png') }}">
@@ -22,7 +23,8 @@
     <link rel="stylesheet"
       href="{{ asset('frontend/css/add_row_custon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/mobile_menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
+    <link rel="stylesheet"
+      href="{{ asset('frontend/css/jquery.exzoom.css') }}">
     <link rel="stylesheet"
       href="{{ asset('frontend/css/multiple-image-video.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/ranger_style.css') }}">
@@ -120,6 +122,7 @@
       src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}">
     </script>
     <script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <!--main/custom js-->
@@ -134,6 +137,54 @@
           format: 'YYYY-MM-DD'
         },
         singleDatePicker: true,
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $('body').on('click', '.delete-item', function(event) {
+          event.preventDefault();
+          let deleteUrl = $(this).attr('href');
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                type: "DELETE",
+                url: deleteUrl,
+                success: function(data) {
+                  if (data.status == 'success') {
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: data.message,
+                      icon: "success",
+                    });
+                    window.location.reload();
+                  } else if (data.status == 'error') {
+                    Swal.fire({
+                      title: "Cant Delete!",
+                      text: data.message,
+                      icon: "error",
+                    });
+                  }
+                },
+                error: function(xhr, status, error) {
+                  console.log(error);
+                }
+              });
+            }
+          });
+        })
       });
     </script>
   </body>
