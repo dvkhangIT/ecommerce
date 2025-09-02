@@ -7,6 +7,7 @@
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> Product Variant</h3>
+            <h6>Product: {{ $product->name }}</h6>
             <div class="create_button">
               <a href="{{ route('vendor.products-variant.create', ['product' => $product->id]) }}"
                 class="btn btn-primary"><i class="fas fa-plus"></i>
