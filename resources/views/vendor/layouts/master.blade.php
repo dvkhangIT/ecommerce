@@ -127,6 +127,13 @@
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script>
+      @if ($errors->any())
+        @foreach ($errors->all() as $error)
+          flasher.error("{{ $error }}");
+        @endforeach
+      @endif
+    </script>
     @stack('scripts')
     <script>
       $('.summernote').summernote({
