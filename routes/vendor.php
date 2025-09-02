@@ -25,5 +25,5 @@ Route::get('product/get-childcategories', [VendorProductController::class, 'getC
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
 
 //Product variant route
-// Route::put('products-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
+Route::put('products-variant/change-status', [VendorProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
 Route::resource('products-variant', VendorProductVariantController::class);

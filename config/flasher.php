@@ -6,7 +6,7 @@
  */
 
 return array(
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Default PHPFlasher library
     |---------------------------------------------------------------------------
@@ -29,9 +29,9 @@ return array(
     | "sweetalert" : composer require php-flasher/flasher-sweetalert-laravel
     | "pnotify"    : composer require php-flasher/flasher-pnotify-laravel
     */
-    'default' => 'flasher',
+  'default' => 'flasher',
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Main PHPFlasher javascript file
     |---------------------------------------------------------------------------
@@ -49,12 +49,12 @@ return array(
     | You can then specify the local path to the javascript file in the 'local'
     | field of this option.
     */
-    'root_script' => array(
-        'cdn' => 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.js',
-        'local' => '/vendor/flasher/flasher.min.js',
-    ),
+  'root_script' => array(
+    'cdn' => 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.js',
+    'local' => '/vendor/flasher/flasher.min.js',
+  ),
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | PHPFlasher Stylesheet
     |---------------------------------------------------------------------------
@@ -69,12 +69,12 @@ return array(
     | assets in your application's public folder. Then specify the local path to
     | the stylesheet file in the 'local' field of this option.
     */
-    'styles' => array(
-        'cdn' => 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.css',
-        'local' => '/vendor/flasher/flasher.min.css',
-    ),
+  'styles' => array(
+    'cdn' => 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.css',
+    'local' => '/vendor/flasher/flasher.min.css',
+  ),
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Whether to use CDN for PHPFlasher assets or not
     |---------------------------------------------------------------------------
@@ -89,9 +89,9 @@ return array(
     |
     | This will copy the necessary assets to your application's public folder.
     */
-    'use_cdn' => true,
+  'use_cdn' => true,
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Translate PHPFlasher messages
     |---------------------------------------------------------------------------
@@ -105,9 +105,9 @@ return array(
     | set this option to 'false'. In this case, PHPFlasher will use the messages
     | as-is, without attempting to translate them.
     */
-    'auto_translate' => true,
+  'auto_translate' => true,
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Inject PHPFlasher in Response
     |---------------------------------------------------------------------------
@@ -122,10 +122,10 @@ return array(
     | into the response, you can set this option to 'false'. In this case, you will
     | need to manually include the necessary files in your application's layout.
     */
-    'auto_render' => true,
+  'auto_render' => true,
 
-    'flash_bag' => array(
-        /*
+  'flash_bag' => array(
+    /*
         |-----------------------------------------------------------------------
         | Enable flash bag
         |-----------------------------------------------------------------------
@@ -139,9 +139,9 @@ return array(
         | mapping specified in the 'mapping' option. When this option is set
         | to 'false', PHPFlasher will ignore flash messages in the session.
         */
-        'enabled' => true,
+    'enabled' => true,
 
-        /*
+    /*
         |-----------------------------------------------------------------------
         | Flash bag type mapping
         |-----------------------------------------------------------------------
@@ -155,15 +155,15 @@ return array(
         | the following entry to the mapping:
         |     'error' => ['danger'],
         */
-        'mapping' => array(
-            'success' => array('success'),
-            'error' => array('error', 'danger'),
-            'warning' => array('warning', 'alarm'),
-            'info' => array('info', 'notice', 'alert'),
-        ),
+    'mapping' => array(
+      'success' => array('success'),
+      'error' => array('error', 'danger'),
+      'warning' => array('warning', 'alarm'),
+      'info' => array('info', 'notice', 'alert'),
     ),
+  ),
 
-    /*
+  /*
     |---------------------------------------------------------------------------
     | Global Filter Criteria
     |---------------------------------------------------------------------------
@@ -187,7 +187,8 @@ return array(
     |     'limit' => 5,
     |     'types' => ['error'],
     */
-    'filter_criteria' => array(
-        'limit' => 5, // Limit the number of notifications to display
-    ),
+  'filter_criteria' => array(
+    'limit' => 5, // Limit the number of notifications to display
+  ),
+
 );
