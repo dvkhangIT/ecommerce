@@ -5,6 +5,9 @@
       @include('vendor.layouts.sidebar')
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
+          <a class="btn btn-warning mb-4"
+            href="{{ route('vendor.products.index') }}"><i
+              class="fas fa-arrow-left"></i> Back</a>
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> Product Variant</h3>
             <h6>Product: {{ $product->name }}</h6>

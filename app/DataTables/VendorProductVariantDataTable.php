@@ -23,7 +23,25 @@ class VendorProductVariantDataTable extends DataTable
   public function dataTable(QueryBuilder $query): EloquentDataTable
   {
     return (new EloquentDataTable($query))
-      ->addColumn('action', 'vendorproductvariant.action')
+      ->addColumn('action', function ($query) {
+        $variantItem = '<a href="' . route('admin.products-variant-item.index', ['productId' => request()->product, 'variantId' => $query->id]) . '" class="btn btn-info mr-1 text-white"><i class="far fa-edit"></i> Variant Item</a>';
+        $editBtn = '<a href="' . route('admin.products-variant.edit', $query->id) . '" class="btn btn-primary ms-1"><i class="far fa-edit"></i></a>';
+        $deleteBtn = '<a href="' . route('admin.products-variant.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+        return $variantItem . $editBtn . $deleteBtn;
+      })
+      ->addColumn('status', function ($query) {
+        if ($query->status == 1) {
+          $button = '<div class="form-check form-switch">
+          <input checked class="form-check-input change-status" type="checkbox" id="status__product_vendor" data-id="' . $query->id . '">
+        </div>';
+        } else {
+          $button = '<div class="form-check form-switch">
+          <input class="form-check-input change-status" type="checkbox" id="status__product_vendor" data-id="' . $query->id . '">
+        </div>';
+        }
+        return $button;
+      })
+      ->rawColumns(['status', 'action'])
       ->setRowId('id');
   }
 
@@ -32,7 +50,7 @@ class VendorProductVariantDataTable extends DataTable
    */
   public function query(ProductVariant $model): QueryBuilder
   {
-    return $model->newQuery();
+    return $model->where('product_id', request()->product)->newQuery();
   }
 
   /**
@@ -45,7 +63,7 @@ class VendorProductVariantDataTable extends DataTable
       ->columns($this->getColumns())
       ->minifiedAjax()
       //->dom('Bfrtip')
-      ->orderBy(1)
+      ->orderBy(0)
       ->selectStyleSingle()
       ->buttons([
         Button::make('excel'),
@@ -63,15 +81,14 @@ class VendorProductVariantDataTable extends DataTable
   public function getColumns(): array
   {
     return [
+      Column::make('id')->type('string')->width(80),
+      Column::make('name'),
+      Column::make('status'),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
-        ->width(60)
+        ->width(400)
         ->addClass('text-center'),
-      Column::make('id'),
-      Column::make('add your columns'),
-      Column::make('created_at'),
-      Column::make('updated_at'),
     ];
   }
 
