@@ -40,7 +40,7 @@ class VendorProductVariantItemController extends Controller
     $variantItem->is_default = $request->is_default;
     $variantItem->save();
     flasher('Created successfully!', 'success');
-    return redirect()->route('admin.products-variant-item.index', [
+    return redirect()->route('vendor.products-variant-item.index', [
       'productId' => $request->product_id,
       'variantId' => $request->variant_id
     ]);

@@ -12,7 +12,7 @@
             <h3><i class="far fa-user" aria-hidden="true"></i> Product Variant</h3>
             <h6>Variant: {{ $variant->name }}</h6>
             <div class="create_button">
-              <a href="{{ route('vendor.products-variant.create', ['product' => $product->id]) }}"
+              <a href="{{ route('vendor.products-variant-item.create', ['productId' => $product->id, 'variantId' => $variant->id]) }}"
                 class="btn btn-primary"><i class="fas fa-plus"></i>
                 Create Variant Item</a>
             </div>
