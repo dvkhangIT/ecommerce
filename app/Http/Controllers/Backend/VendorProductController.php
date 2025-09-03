@@ -165,6 +165,9 @@ class VendorProductController extends Controller
   public function destroy(string $id)
   {
     $product = Product::findOrFail($id);
+    if ($product->vendor_id !== Auth::user()->vendor->id) {
+      abort(404);
+    }
     /** Delete the main product image */
     $this->deleteImage($product->thumb_image);
     /** Delete product gallery image */
