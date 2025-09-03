@@ -52,6 +52,13 @@ class VendorProductDataTable extends DataTable
       ->addColumn('thumb_image', function ($query) {
         return $imag = "<img width='70px' src='" . asset($query->thumb_image) . "'>";
       })
+      ->addColumn('approved', function ($query) {
+        if ($query->is_approved == 1) {
+          return '<i class="badge bg-success">Appreved</i>';
+        } else {
+          return '<i class="badge bg-warning">Pending</i>';
+        }
+      })
       ->addColumn('type', function ($query) {
         switch ($query->product_type) {
           case 'new_arrival':
@@ -71,7 +78,7 @@ class VendorProductDataTable extends DataTable
             break;
         }
       })
-      ->rawColumns(['action', 'thumb_image', 'status', 'type'])
+      ->rawColumns(['action', 'thumb_image', 'status', 'type', 'approved'])
       ->setRowId('id');
   }
 
@@ -115,6 +122,7 @@ class VendorProductDataTable extends DataTable
       Column::make('thumb_image')->width(150),
       Column::make('name'),
       Column::make('price')->type('string'),
+      Column::make('approved'),
       Column::make('type')->type(100),
       Column::make('status'),
       Column::computed('action')

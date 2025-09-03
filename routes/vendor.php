@@ -21,6 +21,7 @@ Route::resource('shop-profile', VerdorShopProfileController::class);
 Route::resource('products', VendorProductController::class);
 Route::get('product/get-subcategories', [VendorProductController::class, 'getSubCategories'])->name('product.get-subcategories');
 Route::get('product/get-childcategories', [VendorProductController::class, 'getChildCategories'])->name('product.get-childcategories');
+Route::put('product/change-status', [VendorProductController::class, 'changeStatus'])->name('products.change-status');
 
 // Product gallery route
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);

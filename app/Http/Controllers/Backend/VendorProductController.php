@@ -192,4 +192,11 @@ class VendorProductController extends Controller
     $childCategories = ChildCategory::where('sub_category_id', $request->id)->get();
     return $childCategories;
   }
+  public function changeStatus(Request $request)
+  {
+    $product = Product::findOrfail($request->id);
+    $product->status = $request->status == 'true' ? 1 : 0;
+    $product->save();
+    return response(['message' => 'Status has been updated!']);
+  }
 }
