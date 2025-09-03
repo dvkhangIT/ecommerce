@@ -37,7 +37,7 @@ class VendorProductVariantItemDataTable extends DataTable
         return $button;
       })
       ->addColumn('action', function ($query) {
-        $editBtn = '<a href="' . route('admin.products-variant-item.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+        $editBtn = '<a href="' . route('vendor.products-variant-item.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
         $deleteBtn = '<a href="' . route('admin.products-variant-item.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
         return $editBtn . $deleteBtn;
       })
