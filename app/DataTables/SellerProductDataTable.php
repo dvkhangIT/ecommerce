@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Product;
+use App\Models\SellerProduct;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +14,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class SellerProductDataTable extends DataTable
 {
   /**
    * Build the DataTable class.
@@ -82,7 +83,7 @@ class ProductDataTable extends DataTable
    */
   public function query(Product $model): QueryBuilder
   {
-    return $model->where('vendor_id', Auth::user()->id)->newQuery();
+    return $model->where('vendor_id', '!=', Auth::user()->vendor->id)->newQuery();
   }
 
   /**
@@ -91,11 +92,11 @@ class ProductDataTable extends DataTable
   public function html(): HtmlBuilder
   {
     return $this->builder()
-      ->setTableId('product-table')
+      ->setTableId('sellerproduct-table')
       ->columns($this->getColumns())
       ->minifiedAjax()
       //->dom('Bfrtip')
-      ->orderBy(1)
+      ->orderBy(0)
       ->selectStyleSingle()
       ->buttons([
         Button::make('excel'),
@@ -132,6 +133,6 @@ class ProductDataTable extends DataTable
    */
   protected function filename(): string
   {
-    return 'Product_' . date('YmdHis');
+    return 'SellerProduct_' . date('YmdHis');
   }
 }

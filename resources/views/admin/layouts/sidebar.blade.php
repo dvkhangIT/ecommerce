@@ -60,7 +60,7 @@
           </ul>
         </li>
         <li
-          class="dropdown {{ setActive(['admin.brand.*', 'admin.products.*']) }}">
+          class="dropdown {{ setActive(['admin.brand.*', 'admin.products.*', 'admin.seller-products']) }}">
           <a href="#" class="nav-link has-dropdown"
             data-toggle="dropdown"><i class="fas fa-columns"></i>
             <span>Manage Product</span></a>
@@ -73,17 +73,12 @@
               <a class="nav-link"
                 href="{{ route('admin.products.index') }}">Products</a>
             </li>
+            <li class=" {{ setActive(['admin.seller-products']) }}">
+              <a class="nav-link"
+                href="{{ route('admin.seller-products') }}">Seller Products</a>
+            </li>
           </ul>
         </li>
-        {{-- <li><a class="nav-link" href="layout-default.html">Default
-                Layout</a></li>
-            <li><a class="nav-link" href="layout-transparent.html">Transparent
-                Sidebar</a>
-            </li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Top
-                Navigation</a></li> --}}
-        {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i>
-            <span>Blank Page</span></a></li> --}}
       </ul>
     </aside>
   </div>
