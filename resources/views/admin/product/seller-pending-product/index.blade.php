@@ -26,6 +26,7 @@
   {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
   <script>
     $(document).ready(function() {
+      // change status product
       $('body').on('click', '.change-status', function() {
         let status = $(this).is(':checked');
         let id = $(this).data('id');
@@ -38,6 +39,27 @@
           },
           success: function(data) {
             flasher.success(data.message);
+          },
+          error: function(xhr, status, errors) {
+            console.log(errors);
+          }
+        });
+      })
+      // change approve product
+      $('body').on('change', '.is_approve', function() {
+        let value = $(this).val();
+        let id = $(this).data('id');
+        $.ajax({
+          type: "post",
+          url: "{{ route('admin.change-approve-status') }}",
+          data: {
+            _method: 'put',
+            value,
+            id,
+          },
+          success: function(data) {
+            flasher.success(data.message);
+            window.location.reload();
           },
           error: function(xhr, status, errors) {
             console.log(errors);

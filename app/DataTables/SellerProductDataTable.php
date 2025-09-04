@@ -52,6 +52,12 @@ class SellerProductDataTable extends DataTable
         }
         return $button;
       })
+      ->addColumn('approve', function ($query) {
+        return '<select data-id="' . $query->id . '" class ="form-control is_approve">
+        <option value="0">Pending</option>
+        <option selected value="1">Approved</option>
+        </>select>';
+      })
       ->addColumn('thumb_image', function ($query) {
         return $imag = "<img width='70px' src='" . asset($query->thumb_image) . "'>";
       })
@@ -77,7 +83,7 @@ class SellerProductDataTable extends DataTable
       ->addColumn('vendor', function ($query) {
         return $query->vendor->shop_name;
       })
-      ->rawColumns(['action', 'thumb_image', 'status', 'type'])
+      ->rawColumns(['action', 'thumb_image', 'status', 'type', 'approve'])
       ->setRowId('id');
   }
 
@@ -86,7 +92,10 @@ class SellerProductDataTable extends DataTable
    */
   public function query(Product $model): QueryBuilder
   {
-    return $model->where('vendor_id', '!=', Auth::user()->vendor->id)->newQuery();
+    return $model
+      ->where('vendor_id', '!=', Auth::user()->vendor->id)
+      ->where('is_approved', 1)
+      ->newQuery();
   }
 
   /**
@@ -124,6 +133,7 @@ class SellerProductDataTable extends DataTable
       Column::make('price')->type('string'),
       Column::make('type')->type(100),
       Column::make('status'),
+      Column::make('approve'),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)

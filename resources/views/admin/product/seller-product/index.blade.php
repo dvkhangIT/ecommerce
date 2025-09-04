@@ -44,6 +44,27 @@
           }
         });
       })
+      // change approve product
+      $('body').on('change', '.is_approve', function() {
+        let value = $(this).val();
+        let id = $(this).data('id');
+        $.ajax({
+          type: "post",
+          url: "{{ route('admin.change-approve-status') }}",
+          data: {
+            _method: 'put',
+            value,
+            id,
+          },
+          success: function(data) {
+            flasher.success(data.message);
+            window.location.reload();
+          },
+          error: function(xhr, status, errors) {
+            console.log(errors);
+          }
+        });
+      })
     });
   </script>
 @endpush
