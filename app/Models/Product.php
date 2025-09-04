@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  public function vendor()
+  {
+    return $this->belongsTo(Vendor::class);
+  }
 }

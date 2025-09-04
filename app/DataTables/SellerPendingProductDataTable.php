@@ -3,9 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Product;
-use App\Models\SellerProduct;
+use App\Models\SellerPendingProduct;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -14,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SellerProductDataTable extends DataTable
+class SellerPendingProductDataTable extends DataTable
 {
   /**
    * Build the DataTable class.
@@ -52,6 +51,12 @@ class SellerProductDataTable extends DataTable
         }
         return $button;
       })
+      ->addColumn('approve', function ($query) {
+        return '<select class ="form-control is_approve">
+        <option value="0">Pending</option>
+        <option value="1">Approved</option>
+        </>select>';
+      })
       ->addColumn('thumb_image', function ($query) {
         return $imag = "<img width='70px' src='" . asset($query->thumb_image) . "'>";
       })
@@ -77,7 +82,7 @@ class SellerProductDataTable extends DataTable
       ->addColumn('vendor', function ($query) {
         return $query->vendor->shop_name;
       })
-      ->rawColumns(['action', 'thumb_image', 'status', 'type'])
+      ->rawColumns(['action', 'thumb_image', 'status', 'type', 'approve'])
       ->setRowId('id');
   }
 
@@ -86,7 +91,7 @@ class SellerProductDataTable extends DataTable
    */
   public function query(Product $model): QueryBuilder
   {
-    return $model->where('vendor_id', '!=', Auth::user()->vendor->id)->newQuery();
+    return $model->where('is_approved', 0)->newQuery();
   }
 
   /**
@@ -95,11 +100,11 @@ class SellerProductDataTable extends DataTable
   public function html(): HtmlBuilder
   {
     return $this->builder()
-      ->setTableId('sellerproduct-table')
+      ->setTableId('sellerpendingproduct-table')
       ->columns($this->getColumns())
       ->minifiedAjax()
       //->dom('Bfrtip')
-      ->orderBy(0)
+      ->orderBy(1)
       ->selectStyleSingle()
       ->buttons([
         Button::make('excel'),
@@ -124,6 +129,7 @@ class SellerProductDataTable extends DataTable
       Column::make('price')->type('string'),
       Column::make('type')->type(100),
       Column::make('status'),
+      Column::make('approve')->width(150),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
@@ -137,6 +143,6 @@ class SellerProductDataTable extends DataTable
    */
   protected function filename(): string
   {
-    return 'SellerProduct_' . date('YmdHis');
+    return 'SellerPendingProduct_' . date('YmdHis');
   }
 }
