@@ -106,7 +106,26 @@
         let id = $(this).data('id');
         $.ajax({
           type: "PUT",
-          url: "{{ route('admin.products.change-status') }}",
+          url: "{{ route('admin.flash-sale-status') }}",
+          data: {
+            status: status,
+            id: id
+          },
+          success: function(data) {
+            flasher.success(data.message);
+          },
+          error: function(xhr, status, errors) {
+            console.log(errors);
+          }
+        });
+      })
+      // change at home status
+      $('body').on('click', '.change-at-home-status', function() {
+        let status = $(this).is(':checked');
+        let id = $(this).data('id');
+        $.ajax({
+          type: "PUT",
+          url: "{{ route('admin.flash-sale.show-at-home.change-status') }}",
           data: {
             status: status,
             id: id
