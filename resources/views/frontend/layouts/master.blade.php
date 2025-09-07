@@ -156,5 +156,6 @@
       @endif
     </script>
   </body>
+  @stack('scripts')
 
 </html>

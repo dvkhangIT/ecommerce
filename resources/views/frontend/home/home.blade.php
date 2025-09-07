@@ -160,7 +160,7 @@
   @include('frontend.home.sections.banner-slider')
   {{-- BANNER PART 2 END --}}
   {{-- FLASH SELL START --}}
-  @include('frontend.home.sections.flash-sell')
+  @include('frontend.home.sections.flash-sale')
   {{-- FLASH SELL END --}}
   {{-- MONTHLY TOP PRODUCT START --}}
   @include('frontend.home.sections.top-category-product')
