@@ -7,11 +7,6 @@
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> Products</h3>
-            <div class="create_button">
-              <a href="{{ route('vendor.products.create') }}"
-                class="btn btn-primary"><i class="fas fa-plus"></i>
-                Create Product</a>
-            </div>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                 <form method="POST" action="{{ route('vendor.products.store') }}"
@@ -79,6 +74,11 @@
                     <label>Price</label>
                     <input type="text" class="form-control" name="price"
                       value="{{ old('price') }}">
+                  </div>
+                  <div class="form-group wsus__input">
+                    <label>Offer Price</label>
+                    <input type="text" class="form-control" name="offer_price"
+                      value="{{ old('offer_price') }}">
                   </div>
                   <div class="row">
                     <div class="col-md-6">

@@ -101,6 +101,11 @@
                   <input type="text" class="form-control" name="price"
                     value="{{ $product->price }}">
                 </div>
+                <div class="form-group">
+                  <label>Offer Price</label>
+                  <input type="text" class="form-control" name="offer_price"
+                    value="{{ $product->offer_price }}">
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">

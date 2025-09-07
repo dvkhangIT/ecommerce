@@ -8618,7 +8618,7 @@ header .wsus__call_text a:hover {
 /* product start */
 .wsus__new,
 .wsus__minus {
-    width: 50px;
+    /* width: 50px; */
     border-radius: 30px;
     opacity: 0.3;
     transition: all linear 0.3s;
@@ -9451,8 +9451,8 @@ a:not([href]):not([class]):hover {
     margin-bottom: 10px;
 }
 #status__product_vendor {
-  height: 20px;
-  width: 50px;
+    height: 20px;
+    width: 50px;
 }
 .delete-item {
     margin-left: 4px;
