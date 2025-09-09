@@ -20,178 +20,82 @@
     <div class="container">
       <div class="wsus__details_bg">
         <div class="row">
-          <div class="col-xl-4 col-md-5 col-lg-5" style="position: relative;">
-            <div id="sticky_pro_zoom" class=""
-              style="will-change: transform; transform: translateZ(0px);">
+          <div class="col-xl-4 col-md-5 col-lg-5">
+            <div id="sticky_pro_zoom">
               <div class="exzoom hidden" id="exzoom">
-                <div class="exzoom_img_box"
-                  style="width: 402.663px; height: 402.663px;">
-                  <a class="venobox wsus__pro_det_video vbox-item"
-                    data-autoplay="true" data-vbtype="video"
-                    href="https://youtu.be/7m16dFI1AF8">
-                    <i class="fas fa-play" aria-hidden="true"></i>
-                  </a>
-
-                  <div class="exzoom_img_ul_outer"
-                    style="width: 402.663px; height: 402.663px;">
-                    <ul class="exzoom_img_ul"
-                      style="width: 3221.3px; left: -693.136px;">
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom1.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom2.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom3.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom4.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom1.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom2.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom1.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                      <li style="width: 402.663px;"><img
-                          class="zoom ing-fluid w-100" src="images/zoom2.jpg"
-                          alt="product"
-                          style="margin-top: 0px; width: 402.663px;"></li>
-                    </ul>
-                  </div>
-                  <div class="exzoom_zoom_outer"
-                    style="width: 402.663px; height: 402.663px; top: 0px; left: 0px; position: relative;">
-                    <span class="exzoom_zoom"
-                      style="width: 201.332px; height: 201.332px; display: none; left: 0px; top: 0px;"></span>
-                  </div>
-                  <p class="exzoom_preview"
-                    style="width: 402.663px; height: 402.663px; left: 407.663px; display: none;">
-                    <img class="exzoom_preview_img" src="images/zoom3.jpg"
-                      style="width: 805.326px; height: 805.326px; left: 0px; top: 0px;">
-                  </p>
+                <div class="exzoom_img_box">
+                  @if ($product->video_link)
+                    <a class="venobox wsus__pro_det_video" data-autoplay="true"
+                      data-vbtype="video" href="{{ $product->video_link }}">
+                      <i class="fas fa-play"></i>
+                    </a>
+                  @endif
+                  <ul class='exzoom_img_ul'>
+                    <li><img class="zoom ing-fluid w-100"
+                        src="{{ asset($product->thumb_image) }}" alt="product">
+                    </li>
+                    @foreach ($product->productImageGalleries as $productImage)
+                      <li><img class="zoom ing-fluid w-100"
+                          src="{{ asset($productImage->image) }}" alt="product">
+                      </li>
+                    @endforeach
+                  </ul>
                 </div>
-                <div class="exzoom_nav" style="height: 62px; width: 372.663px;">
-                  <p class="exzoom_nav_inner" style="width: 552px; left: 0px;">
-                    <span class=""
-                      style="margin-left: 7px; width: 60px; height: 60px;"><img
-                        src="images/zoom1.jpg" width="60"
-                        height="60"></span><span class=""
-                      style="margin-left: 7px; width: 60px; height: 60px;"><img
-                        src="images/zoom2.jpg" width="60"
-                        height="60"></span><span class="current"
-                      style="margin-left: 7px; width: 60px; height: 60px;"><img
-                        src="images/zoom3.jpg" width="60"
-                        height="60"></span><span
-                      style="margin-left: 7px; width: 60px; height: 60px;"
-                      class=""><img src="images/zoom4.jpg" width="60"
-                        height="60"></span><span
-                      style="margin-left: 7px; width: 60px; height: 60px;"
-                      class=""><img src="images/zoom1.jpg" width="60"
-                        height="60"></span><span
-                      style="margin-left: 7px; width: 60px; height: 60px;"
-                      class=""><img src="images/zoom2.jpg" width="60"
-                        height="60"></span><span
-                      style="margin-left: 7px; width: 60px; height: 60px;"
-                      class=""><img src="images/zoom1.jpg" width="60"
-                        height="60"></span><span
-                      style="margin-left: 7px; width: 60px; height: 60px;"
-                      class=""><img src="images/zoom2.jpg" width="60"
-                        height="60"></span></p>
-                </div>
+                <div class="exzoom_nav"></div>
                 <p class="exzoom_btn">
                   <a href="javascript:void(0);" class="exzoom_prev_btn"> <i
-                      class="far fa-chevron-left" aria-hidden="true"></i> </a>
+                      class="far fa-chevron-left"></i> </a>
                   <a href="javascript:void(0);" class="exzoom_next_btn"> <i
-                      class="far fa-chevron-right" aria-hidden="true"></i> </a>
+                      class="far fa-chevron-right"></i> </a>
                 </p>
               </div>
-            </div>
-            <div id="sticky_pro_zoom" class="jquery-stickit-spacer"
-              style="height: 474.663px; visibility: hidden !important; display: none !important;">
             </div>
           </div>
           <div class="col-xl-5 col-md-7 col-lg-7">
             <div class="wsus__pro_details_text">
-              <a class="title" href="#">Electronics Black Wrist Watch</a>
+              <a class="title" href="javascript:;">{{ $product->name }}</a>
               <p class="wsus__stock_area"><span class="in_stock">in stock</span>
                 (167 item)</p>
-              <h4>$50.00 <del>$60.00</del></h4>
+              @if (checkDiscount($product))
+                <h4>${{ $product->offer_price }} <del>${{ $product->price }}</del>
+                </h4>
+              @else
+                <h4>${{ $product->price }} </h4>
+              @endif
               <p class="review">
-                <i class="fas fa-star" aria-hidden="true"></i>
-                <i class="fas fa-star" aria-hidden="true"></i>
-                <i class="fas fa-star" aria-hidden="true"></i>
-                <i class="fas fa-star" aria-hidden="true"></i>
-                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
                 <span>20 review</span>
               </p>
-              <!-- <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-                                  neque
-                                  sint obcaecati asperiores dolor cumque. ad voluptate dolores reprehenderit hic adipisci
-                                  Similique eaque illum.</p> -->
-
               <div class="wsus_pro_hot_deals">
                 <h5>offer ending time : </h5>
-                <div class="simply-countdown simply-countdown-one">
-                  <div class="simply-section simply-days-section">
-                    <div><span class="simply-amount">89</span><span
-                        class="simply-word">days</span></div>
-                  </div>
-                  <div class="simply-section simply-hours-section">
-                    <div><span class="simply-amount">3</span><span
-                        class="simply-word">hours</span></div>
-                  </div>
-                  <div class="simply-section simply-minutes-section">
-                    <div><span class="simply-amount">13</span><span
-                        class="simply-word">minutes</span></div>
-                  </div>
-                  <div class="simply-section simply-seconds-section">
-                    <div><span class="simply-amount">22</span><span
-                        class="simply-word">seconds</span></div>
-                  </div>
+                <div class="simply-countdown simply-countdown-one"></div>
+              </div>
+              <div class="wsus__selectbox">
+                <div class="row">
+                  @foreach ($product->variants as $variant)
+                    <div class="col-xl-6 col-sm-6">
+                      <h5 class="mb-2">{{ $variant->name }}:</h5>
+                      <select class="select_2" name="state">
+                        @foreach ($variant->productVariantItems as $variantItem)
+                          <option
+                            {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                            {{ $variantItem->name }} (${{ $variantItem->price }})
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+                  @endforeach
                 </div>
-              </div>
-              <div class="wsus_pro_det_color">
-                <h5>color :</h5>
-                <ul>
-                  <li><a class="blue" href="#"><i class="far fa-check"
-                        aria-hidden="true"></i></a></li>
-                  <li><a class="orange" href="#"><i class="far fa-check"
-                        aria-hidden="true"></i></a></li>
-                  <li><a class="yellow" href="#"><i class="far fa-check"
-                        aria-hidden="true"></i></a></li>
-                  <li><a class="black" href="#"><i class="far fa-check"
-                        aria-hidden="true"></i></a></li>
-                  <li><a class="red" href="#"><i class="far fa-check"
-                        aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-              <div class="wsus_pro__det_size">
-                <h5>size :</h5>
-                <ul>
-                  <li><a href="#">S</a></li>
-                  <li><a href="#">M</a></li>
-                  <li><a href="#">L</a></li>
-                  <li><a href="#">XL</a></li>
-                </ul>
               </div>
               <div class="wsus__quentity">
                 <h5>quentity :</h5>
                 <form class="select_number">
-                  <span class="spinner"><span class="sub">-</span><input
-                      class="number_area" type="text" min="1"
-                      max="100" value="1"><span
-                      class="add">+</span></span>
+                  <input class="number_area" type="text" min="1"
+                    max="100" value="1" />
                 </form>
                 <h3>$50.00</h3>
               </div>
@@ -199,73 +103,31 @@
                 <div class="row">
                   <div class="col-xl-6 col-sm-6">
                     <h5 class="mb-2">select:</h5>
-                    <select class="select_2 select2-hidden-accessible"
-                      name="state" data-select2-id="select2-data-7-r7is"
-                      tabindex="-1" aria-hidden="true">
-                      <option data-select2-id="select2-data-9-nmcw">default
-                        select</option>
+                    <select class="select_2" name="state">
+                      <option>default select</option>
                       <option>select 1</option>
                       <option>select 2</option>
                       <option>select 3</option>
                       <option>select 4</option>
-                    </select><span
-                      class="select2 select2-container select2-container--default"
-                      dir="ltr" data-select2-id="select2-data-8-9foc"
-                      style="width: 130.4px;"><span class="selection"><span
-                          class="select2-selection select2-selection--single"
-                          role="combobox" aria-haspopup="true"
-                          aria-expanded="false" tabindex="0"
-                          aria-disabled="false"
-                          aria-labelledby="select2-state-tx-container"
-                          aria-controls="select2-state-tx-container"><span
-                            class="select2-selection__rendered"
-                            id="select2-state-tx-container" role="textbox"
-                            aria-readonly="true" title="default select">default
-                            select</span><span class="select2-selection__arrow"
-                            role="presentation"><b
-                              role="presentation"></b></span></span></span><span
-                        class="dropdown-wrapper"
-                        aria-hidden="true"></span></span>
+                    </select>
                   </div>
                   <div class="col-xl-6 col-sm-6">
                     <h5 class="mb-2">select:</h5>
-                    <select class="select_2 select2-hidden-accessible"
-                      name="state" data-select2-id="select2-data-10-ea5m"
-                      tabindex="-1" aria-hidden="true">
-                      <option data-select2-id="select2-data-12-hnrs">default
-                        select</option>
+                    <select class="select_2" name="state">
+                      <option>default select</option>
                       <option>select 1</option>
                       <option>select 2</option>
                       <option>select 3</option>
                       <option>select 4</option>
-                    </select><span
-                      class="select2 select2-container select2-container--default"
-                      dir="ltr" data-select2-id="select2-data-11-ng42"
-                      style="width: 130.4px;"><span class="selection"><span
-                          class="select2-selection select2-selection--single"
-                          role="combobox" aria-haspopup="true"
-                          aria-expanded="false" tabindex="0"
-                          aria-disabled="false"
-                          aria-labelledby="select2-state-oa-container"
-                          aria-controls="select2-state-oa-container"><span
-                            class="select2-selection__rendered"
-                            id="select2-state-oa-container" role="textbox"
-                            aria-readonly="true" title="default select">default
-                            select</span><span class="select2-selection__arrow"
-                            role="presentation"><b
-                              role="presentation"></b></span></span></span><span
-                        class="dropdown-wrapper"
-                        aria-hidden="true"></span></span>
+                    </select>
                   </div>
                 </div>
               </div>
               <ul class="wsus__button_area">
                 <li><a class="add_cart" href="#">add to cart</a></li>
                 <li><a class="buy_now" href="#">buy now</a></li>
-                <li><a href="#"><i class="fal fa-heart"
-                      aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="far fa-random"
-                      aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                <li><a href="#"><i class="far fa-random"></i></a></li>
               </ul>
               <p class="brand_model"><span>model :</span> 12345670</p>
               <p class="brand_model"><span>brand :</span> The Northland</p>
@@ -273,47 +135,40 @@
                 <h5>share :</h5>
                 <ul class="d-flex">
                   <li><a class="facebook" href="#"><i
-                        class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                  </li>
+                        class="fab fa-facebook-f"></i></a></li>
                   <li><a class="twitter" href="#"><i
-                        class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                        class="fab fa-twitter"></i></a></li>
                   <li><a class="whatsapp" href="#"><i
-                        class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        class="fab fa-whatsapp"></i></a></li>
                   <li><a class="instagram" href="#"><i
-                        class="fab fa-instagram" aria-hidden="true"></i></a>
-                  </li>
+                        class="fab fa-instagram"></i></a></li>
                 </ul>
               </div>
               <a class="wsus__pro_report" href="#" data-bs-toggle="modal"
                 data-bs-target="#exampleModal"><i
-                  class="fal fa-comment-alt-smile" aria-hidden="true"></i>
-                Report incorrect
+                  class="fal fa-comment-alt-smile"></i> Report incorrect
                 product information.</a>
             </div>
           </div>
-          <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0"
-            style="position: relative;">
-            <div class="wsus_pro_det_sidebar" id="sticky_sidebar"
-              style="will-change: transform; transform: translateZ(0px);">
+          <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
+            <div class="wsus_pro_det_sidebar" id="sticky_sidebar">
               <ul>
                 <li>
-                  <span><i class="fal fa-truck" aria-hidden="true"></i></span>
+                  <span><i class="fal fa-truck"></i></span>
                   <div class="text">
                     <h4>Return Available</h4>
                     <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                   </div>
                 </li>
                 <li>
-                  <span><i class="far fa-shield-check"
-                      aria-hidden="true"></i></span>
+                  <span><i class="far fa-shield-check"></i></span>
                   <div class="text">
                     <h4>Secure Payment</h4>
                     <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                   </div>
                 </li>
                 <li>
-                  <span><i class="fal fa-envelope-open-dollar"
-                      aria-hidden="true"></i></span>
+                  <span><i class="fal fa-envelope-open-dollar"></i></span>
                   <div class="text">
                     <h4>Warranty Available</h4>
                     <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
@@ -331,10 +186,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div id="sticky_sidebar"
-              class="wsus_pro_det_sidebar jquery-stickit-spacer"
-              style="height: 463.2px; visibility: hidden !important; display: none !important;">
             </div>
           </div>
         </div>
@@ -488,7 +339,7 @@
                     <div class="row">
                       <div class="col-xl-4 col-md-4">
                         <div class="description_single">
-                          <h6><span>1</span> Free Shipping &amp; Return</h6>
+                          <h6><span>1</span> Free Shipping & Return</h6>
                           <p>We offer free shipping for products on orders above
                             50$ and
                             offer
@@ -559,11 +410,11 @@
                         <div class="wsus__pro_det_vendor_text">
                           <h4>jhon deo</h4>
                           <p class="rating">
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                             <span>(41 review)</span>
                           </p>
                           <p><span>Store Name:</span> OAIO Store</p>
@@ -636,8 +487,8 @@
                                   alt="user" class="img-fluid w-100">
                               </div>
                               <div class="wsus__comment_text reply">
-                                <h6>Shopnil mahadi <span>4 <i class="fas fa-star"
-                                      aria-hidden="true"></i></span></h6>
+                                <h6>Shopnil mahadi <span>4 <i
+                                      class="fas fa-star"></i></span></h6>
                                 <span>09 Jul 2021</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur
                                   adipisicing
@@ -669,8 +520,7 @@
                                         <form>
                                           <div
                                             class="wsus__riv_edit_single text_area">
-                                            <i class="far fa-edit"
-                                              aria-hidden="true"></i>
+                                            <i class="far fa-edit"></i>
                                             <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                           </div>
                                           <button type="submit"
@@ -688,8 +538,8 @@
                                   alt="user" class="img-fluid w-100">
                               </div>
                               <div class="wsus__comment_text reply">
-                                <h6>Smith jhon <span>5 <i class="fas fa-star"
-                                      aria-hidden="true"></i></span>
+                                <h6>Smith jhon <span>5 <i
+                                      class="fas fa-star"></i></span>
                                 </h6>
                                 <span>09 Jul 2021</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur
@@ -711,8 +561,7 @@
                                         <form>
                                           <div
                                             class="wsus__riv_edit_single text_area">
-                                            <i class="far fa-edit"
-                                              aria-hidden="true"></i>
+                                            <i class="far fa-edit"></i>
                                             <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                           </div>
                                           <button type="submit"
@@ -730,8 +579,7 @@
                                   <li class="page-item">
                                     <a class="page-link" href="#"
                                       aria-label="Previous">
-                                      <i class="fas fa-chevron-left"
-                                        aria-hidden="true"></i>
+                                      <i class="fas fa-chevron-left"></i>
                                     </a>
                                   </li>
                                   <li class="page-item"><a
@@ -747,8 +595,7 @@
                                   <li class="page-item">
                                     <a class="page-link" href="#"
                                       aria-label="Next">
-                                      <i class="fas fa-chevron-right"
-                                        aria-hidden="true"></i>
+                                      <i class="fas fa-chevron-right"></i>
                                     </a>
                                   </li>
                                 </ul>
@@ -756,20 +603,18 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0"
-                          style="position: relative;">
+                        <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
                           <div class="wsus__post_comment rev_mar"
-                            id="sticky_sidebar3"
-                            style="will-change: transform; transform: translateZ(0px);">
+                            id="sticky_sidebar3">
                             <h4>write a Review</h4>
                             <form action="#">
                               <p class="rating">
                                 <span>select your rating : </span>
-                                <i class="fas fa-star" aria-hidden="true"></i>
-                                <i class="fas fa-star" aria-hidden="true"></i>
-                                <i class="fas fa-star" aria-hidden="true"></i>
-                                <i class="fas fa-star" aria-hidden="true"></i>
-                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                               </p>
                               <div class="row">
                                 <div class="col-xl-12">
@@ -794,18 +639,13 @@
                                 <div class="gallery">
                                   <a class="cam"
                                     href="javascript:void(0)"><span><i
-                                        class="fas fa-image"
-                                        aria-hidden="true"></i></span>
+                                        class="fas fa-image"></i></span>
                                   </a>
                                 </div>
                               </div>
                               <button class="common_btn" type="submit">submit
                                 review</button>
                             </form>
-                          </div>
-                          <div id="sticky_sidebar3"
-                            class="wsus__post_comment rev_mar jquery-stickit-spacer"
-                            style="visibility: hidden !important; display: none !important;">
                           </div>
                         </div>
                       </div>
@@ -843,8 +683,7 @@
                                       <form>
                                         <div
                                           class="wsus__riv_edit_single text_area">
-                                          <i class="far fa-edit"
-                                            aria-hidden="true"></i>
+                                          <i class="far fa-edit"></i>
                                           <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                         </div>
                                         <button type="submit"
@@ -880,8 +719,7 @@
                                       <form>
                                         <div
                                           class="wsus__riv_edit_single text_area">
-                                          <i class="far fa-edit"
-                                            aria-hidden="true"></i>
+                                          <i class="far fa-edit"></i>
                                           <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                         </div>
                                         <button type="submit"
@@ -917,8 +755,7 @@
                                       <form>
                                         <div
                                           class="wsus__riv_edit_single text_area">
-                                          <i class="far fa-edit"
-                                            aria-hidden="true"></i>
+                                          <i class="far fa-edit"></i>
                                           <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                         </div>
                                         <button type="submit"
@@ -936,8 +773,7 @@
                                 <li class="page-item">
                                   <a class="page-link" href="#"
                                     aria-label="Previous">
-                                    <i class="fas fa-chevron-left"
-                                      aria-hidden="true"></i>
+                                    <i class="fas fa-chevron-left"></i>
                                   </a>
                                 </li>
                                 <li class="page-item"><a
@@ -955,8 +791,7 @@
                                 <li class="page-item">
                                   <a class="page-link" href="#"
                                     aria-label="Next">
-                                    <i class="fas fa-chevron-right"
-                                      aria-hidden="true"></i>
+                                    <i class="fas fa-chevron-right"></i>
                                   </a>
                                 </li>
                               </ul>
@@ -964,10 +799,8 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-xl-5 col-lg-6 mt-4 mt-lg-0"
-                        style="position: relative;">
-                        <div class="wsus__post_comment" id="sticky_sidebar2"
-                          style="will-change: transform; transform: translateZ(0px);">
+                      <div class="col-xl-5 col-lg-6 mt-4 mt-lg-0">
+                        <div class="wsus__post_comment" id="sticky_sidebar2">
                           <h4>post a comment</h4>
                           <form action="#">
                             <div class="row">
@@ -990,10 +823,6 @@
                             <button class="common_btn" type="submit">post
                               comment</button>
                           </form>
-                        </div>
-                        <div id="sticky_sidebar2"
-                          class="wsus__post_comment jquery-stickit-spacer"
-                          style="visibility: hidden !important; display: none !important;">
                         </div>
                       </div>
                     </div>
@@ -1160,6 +989,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
