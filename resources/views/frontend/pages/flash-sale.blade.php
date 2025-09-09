@@ -6,10 +6,10 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h4>offer detaila</h4>
+            <h4>flash sale</h4>
             <ul>
-              <li><a href="#">daily deals</a></li>
-              <li><a href="#">offer details</a></li>
+              <li><a href="{{ url('/') }}">home</a></li>
+              <li><a href="javascript:;">flash sale</a></li>
             </ul>
           </div>
         </div>
@@ -71,7 +71,7 @@
                   class="wsus__new">{{ productType($product->product_type) }}</span>
                 @if (checkDiscount($product))
                   <span
-                    class="wsus__minus">{{ calculateDiscountPercent($product->price, $product->offer_price) }}%
+                    class="wsus__minus">-{{ calculateDiscountPercent($product->price, $product->offer_price) }}%
                   </span>
                 @endif
                 <a class="wsus__pro_link" href="product_details.html">

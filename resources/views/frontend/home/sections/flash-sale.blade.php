@@ -24,7 +24,7 @@
                 class="wsus__new">{{ productType($product->product_type) }}</span>
               @if (checkDiscount($product))
                 <span
-                  class="wsus__minus">{{ calculateDiscountPercent($product->price, $product->offer_price) }}%
+                  class="wsus__minus">-{{ calculateDiscountPercent($product->price, $product->offer_price) }}%
                 </span>
               @endif
               <a class="wsus__pro_link" href="product_details.html">
