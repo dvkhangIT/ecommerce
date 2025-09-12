@@ -84,3 +84,4 @@ Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destroy'])->name(
 
 /** Setting Route */
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+Route::put('general-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('general-setting-update');
