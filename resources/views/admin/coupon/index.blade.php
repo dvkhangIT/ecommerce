@@ -11,7 +11,7 @@
             <div class="card-header">
               <h4>All Coupons</h4>
               <div class="card-header-action">
-                <a href="{{ route('admin.products.create') }}"
+                <a href="{{ route('admin.coupons.create') }}"
                   class="btn btn-primary"><i class="fas fa-plus"></i> Create</a>
               </div>
             </div>
