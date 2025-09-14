@@ -24,8 +24,8 @@ class CouponDataTable extends DataTable
   {
     return (new EloquentDataTable($query))
       ->addColumn('action', function ($query) {
-        $editBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
-        $deleteBtn = '<a href="' . route('admin.products.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+        $editBtn = '<a href="' . route('admin.coupons.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+        $deleteBtn = '<a href="' . route('admin.coupons.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
         return $editBtn . $deleteBtn;
       })
       ->addColumn('status', function ($query) {
