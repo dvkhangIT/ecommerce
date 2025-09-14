@@ -57,10 +57,11 @@
               <p class="wsus__stock_area"><span class="in_stock">in stock</span>
                 (167 item)</p>
               @if (checkDiscount($product))
-                <h4>${{ $product->offer_price }} <del>${{ $product->price }}</del>
+                <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
+                  <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                 </h4>
               @else
-                <h4>${{ $product->price }} </h4>
+                <h4>{{ $settings->currency_icon }}{{ $product->price }} </h4>
               @endif
               <p class="review">
                 <i class="fas fa-star"></i>
@@ -82,7 +83,8 @@
                         @foreach ($variant->productVariantItems as $variantItem)
                           <option
                             {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                            {{ $variantItem->name }} (${{ $variantItem->price }})
+                            {{ $variantItem->name }}
+                            ({{ $settings->currency_icon }}{{ $variantItem->price }})
                           </option>
                         @endforeach
                       </select>

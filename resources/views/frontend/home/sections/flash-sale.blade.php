@@ -56,10 +56,11 @@
                   <span>(133 review)</span>
                 </p>
                 <a class="wsus__pro_name"
-                  href="#">{{ $product->name }}</a>
+                  href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
                 @if (checkDiscount($product))
-                  <p class="wsus__price">${{ $product->offer_price }}
-                    <del>${{ $product->price }}</del>
+                  <p class="wsus__price">
+                    {{ $settings->currency_icon }}{{ $product->offer_price }}
+                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                   </p>
                 @else
                   <p class="wsus__price">${{ $product->price }}</p>
@@ -79,7 +80,6 @@
           year: {{ date('Y', strtotime($flashSaleDate->end_date)) }},
           month: {{ date('m', strtotime($flashSaleDate->end_date)) }},
           day: {{ date('d', strtotime($flashSaleDate->end_date)) }},
-          enableUtc: true
         });
       });
     </script>
