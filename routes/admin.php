@@ -83,6 +83,7 @@ Route::put('flash-sale-status', [FlashSaleController::class, 'changeStatus'])->n
 Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destroy'])->name('flash-sale.destroy');
 
 // Coupon route
+Route::put('coupon/change-status', [CouponController::class, 'changeStatus'])->name('coupon.change-status');
 Route::resource('coupons', CouponController::class);
 
 /** Setting Route */
