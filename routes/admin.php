@@ -17,7 +17,7 @@ use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\ShippingRuleController;
+use App\Http\Controllers\Backend\ShippingRuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
