@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\ShippingRuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -85,6 +86,10 @@ Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destroy'])->name(
 // Coupon route
 Route::put('coupon/change-status', [CouponController::class, 'changeStatus'])->name('coupon.change-status');
 Route::resource('coupons', CouponController::class);
+
+// Shipping rule route
+Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->name('shipping-rule.change-status');
+Route::resource('shipping-rule', ShippingRuleController::class);
 
 /** Setting Route */
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
