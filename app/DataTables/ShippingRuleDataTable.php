@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\GeneralSetting;
 use App\Models\ShippingRule;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,6 +15,11 @@ use Yajra\DataTables\Services\DataTable;
 
 class ShippingRuleDataTable extends DataTable
 {
+  protected $currencyIcon = '';
+  public function __construct()
+  {
+    $this->currencyIcon = GeneralSetting::first()->currency_icon;
+  }
   /**
    * Build the DataTable class.
    *
@@ -23,7 +29,7 @@ class ShippingRuleDataTable extends DataTable
   {
     return (new EloquentDataTable($query))
       ->addColumn('action', function ($query) {
-        $editBtn = '<a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+        $editBtn = '<a href="' . route('admin.shipping-rule.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
         $deleteBtn = '<a href="' . route('admin.category.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
         return $editBtn . $deleteBtn;
       })
@@ -50,10 +56,13 @@ class ShippingRuleDataTable extends DataTable
       })
       ->addColumn('min_cost', function ($query) {
         if ($query->type === 'min_cost') {
-          return $query->min_cost;
+          return  $this->currencyIcon . $query->min_cost;
         } else {
-          return '-';
+          return  $this->currencyIcon . '0';
         }
+      })
+      ->addColumn('cost', function ($query) {
+        return $this->currencyIcon . $query->cost;
       })
       ->rawColumns(['action', 'status', 'type'])
       ->setRowId('id');
