@@ -27,4 +27,26 @@
 @endsection
 @push('scripts')
   {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+  <script>
+    $(document).ready(function() {
+      $('body').on('change', '.change-status', function() {
+        let isCheck = $(this).is(':checked');
+        let id = $(this).data('id');
+        $.ajax({
+          url: "{{ route('admin.shipping-rule.change-status') }}",
+          type: 'put',
+          data: {
+            status: isCheck,
+            id: id,
+          },
+          success: function(data) {
+            flasher.success(data.message);
+          },
+          error: function(xhr, status, errors) {
+            console.log(errors);
+          },
+        });
+      })
+    });
+  </script>
 @endpush
