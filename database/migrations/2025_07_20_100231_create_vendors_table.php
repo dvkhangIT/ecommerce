@@ -6,31 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-  /**
-   * Run the migrations.
-   */
-  public function up(): void
-  {
-    Schema::create('vendors', function (Blueprint $table) {
-      $table->id();
-      $table->text('banner');
-      $table->string('phone');
-      $table->string('email');
-      $table->string('address');
-      $table->text('description');
-      $table->string('fb_link')->nullable();
-      $table->string('tw_link')->nullable();
-      $table->string('insta_link')->nullable();
-      $table->integer('user_id');
-      $table->timestamps();
-    });
-  }
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('vendors', function (Blueprint $table) {
+            $table->id();
+            $table->text('banner');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
+            $table->text('description');
+            $table->string('fb_link')->nullable();
+            $table->string('tw_link')->nullable();
+            $table->string('insta_link')->nullable();
+            $table->integer('user_id');
+            $table->timestamps();
+        });
+    }
 
-  /**
-   * Reverse the migrations.
-   */
-  public function down(): void
-  {
-    Schema::dropIfExists('vendors');
-  }
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('vendors');
+    }
 };

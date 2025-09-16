@@ -10,86 +10,89 @@ use Illuminate\Support\Facades\Auth;
 
 class VerdorShopProfileController extends Controller
 {
-  use ImageUploadTrait;
-  /**
-   * Display a listing of the resource.
-   */
-  public function index()
-  {
-    $profile = Vendor::where('user_id', Auth::user()->id)->first();
-    return view('vendor.shop-profile.index', compact('profile'));
-  }
+    use ImageUploadTrait;
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $profile = Vendor::where('user_id', Auth::user()->id)->first();
 
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    $request->validate([
-      'banner' => ['nullable', 'image', 'max:3000'],
-      "phone" => ['required', 'max:50'],
-      "shop_name" => ['required', 'max:200'],
-      "email" => ['required', 'email', 'max:200'],
-      "address" => ['required'],
-      "description" => ['required',],
-      "fb_link" => ['nullable', 'url'],
-      "tw_link" => ['nullable', 'url'],
-      "insta_link" => ['nullable', 'url'],
-    ]);
-    $vendor = Vendor::where('user_id', Auth::user()->id)->first();
-    // $pathBanner = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
-    $pathBanner = $this->updateImage($request, 'banner', 'uploads',  $vendor->banner);
-    $vendor->banner = empty(!$pathBanner) ? $pathBanner : $vendor->banner;
-    $vendor->shop_name = $request->shop_name;
-    $vendor->phone = $request->phone;
-    $vendor->email = $request->email;
-    $vendor->address = $request->address;
-    $vendor->description = $request->description;
-    $vendor->fb_link = $request->fb_link;
-    $vendor->tw_link = $request->tw_link;
-    $vendor->insta_link = $request->insta_link;
-    $vendor->save();
-    flasher('Updated Successffuly!', 'success');
-    return redirect()->back();
-  }
+        return view('vendor.shop-profile.index', compact('profile'));
+    }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-    //
-  }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'banner' => ['nullable', 'image', 'max:3000'],
+            'phone' => ['required', 'max:50'],
+            'shop_name' => ['required', 'max:200'],
+            'email' => ['required', 'email', 'max:200'],
+            'address' => ['required'],
+            'description' => ['required'],
+            'fb_link' => ['nullable', 'url'],
+            'tw_link' => ['nullable', 'url'],
+            'insta_link' => ['nullable', 'url'],
+        ]);
+        $vendor = Vendor::where('user_id', Auth::user()->id)->first();
+        // $pathBanner = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
+        $pathBanner = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
+        $vendor->banner = empty(! $pathBanner) ? $pathBanner : $vendor->banner;
+        $vendor->shop_name = $request->shop_name;
+        $vendor->phone = $request->phone;
+        $vendor->email = $request->email;
+        $vendor->address = $request->address;
+        $vendor->description = $request->description;
+        $vendor->fb_link = $request->fb_link;
+        $vendor->tw_link = $request->tw_link;
+        $vendor->insta_link = $request->insta_link;
+        $vendor->save();
+        flasher('Updated Successffuly!', 'success');
 
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, string $id)
-  {
-    //
-  }
+        return redirect()->back();
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-    //
-  }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

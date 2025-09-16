@@ -1,4 +1,5 @@
 <?php
+
 // Vendor route
 
 use App\Http\Controllers\Backend\VendorController;
@@ -26,11 +27,11 @@ Route::put('product/change-status', [VendorProductController::class, 'changeStat
 // Product gallery route
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
 
-//Product variant route
+// Product variant route
 Route::put('products-variant/change-status', [VendorProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
 Route::resource('products-variant', VendorProductVariantController::class);
 
-//Product variant item route
+// Product variant item route
 Route::get('products-variant-item/{productId}/{variantId}', [VendorProductVariantItemController::class, 'index'])->name('products-variant-item.index');
 Route::get('products-variant-item/create/{productId}/{variantId}', [VendorProductVariantItemController::class, 'create'])->name('products-variant-item.create');
 Route::post('products-variant-item', [VendorProductVariantItemController::class, 'store'])->name('products-variant-item.store');
