@@ -30,7 +30,8 @@
         Profile</a>
     </li>
     <li>
-      <a href="dsahboard_address.html"><i class="fal fa-gift-card"></i>
+      <a href="{{ route('user.address.index') }}"><i
+          class="fal fa-gift-card"></i>
         Addresses</a>
     </li>
     <li>
