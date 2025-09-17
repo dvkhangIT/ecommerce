@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('title')
+  {{ $settings->site_name }} || Product Details
+@endsection
 @section('content')
   <section id="wsus__breadcrumb">
     <div class="wsus_breadcrumb_overlay">
