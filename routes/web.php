@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -29,13 +30,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
 
 // Product detail route
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+
+// Add to cart routes
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
 Route::group([
     'middleware' => ['auth', 'verified'],
