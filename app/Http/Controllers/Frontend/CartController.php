@@ -40,8 +40,6 @@ class CartController extends Controller
         $cartData['options']['variants_total'] = $variantTotalAmount;
         $cartData['options']['image'] = $product->thumb_image;
         $cartData['options']['slug'] = $product->slug;
-
-        dd($cartData);
         Cart::add($cartData);
         return response([
             'status' => 'success',
@@ -50,6 +48,7 @@ class CartController extends Controller
     }
     public function cartDetails()
     {
-        return view('frontend.pages.cart-detail');
+        $cartItems = Cart::content();
+        return view('frontend.pages.cart-detail', compact('cartItems'));
     }
 }
