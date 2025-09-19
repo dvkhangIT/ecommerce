@@ -38,9 +38,9 @@ Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sal
 // Product detail route
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
 
-// Add to cart routes
+// Cart routes
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
-
+Route::get('cart-details', [CartController::class, 'cartDetails'])->name('cart-details');
 Route::group([
     'middleware' => ['auth', 'verified'],
     'prefix' => 'user',
