@@ -53,8 +53,8 @@
                       <td class="wsus__pro_select">
                         <div class="product_qty_wrapper">
                           <button class="btn btn-danger product-decrement">-</button>
-                          <input class="product-qty" data-rowid="{{ $item->rowId }}" type="text" min="1"
-                            max="100" value="{{ $item->qty }}" />
+                          <input readonly class="product-qty" data-rowid="{{ $item->rowId }}" type="text"
+                            min="1" max="100" value="{{ $item->qty }}" />
                           <button class="btn btn-success product-increment">+</button>
                         </div>
                       </td>
@@ -133,10 +133,41 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
+      // product increment
       $('.product-increment').on('click', function() {
         let input = $(this).siblings('.product-qty');
         let quantity = parseInt(input.val()) + 1;
         let rowId = input.data('rowid');
+        input.val(quantity);
+        $.ajax({
+          type: "POST",
+          url: "{{ route('cart.update-quantity') }}",
+          data: {
+            quantity,
+            rowId,
+          },
+          success: function(response) {
+            if (response.status === 'success') {
+              let productId = '#' + rowId;
+              let totalAmount = "{{ $settings->currency_icon }}" +
+                response.product_total
+              $(productId).text(totalAmount);
+              flasher.success(response.message);
+            }
+          },
+          error: function(response) {
+            console.log(response);
+          }
+        });
+      })
+      // product decrement
+      $('.product-decrement').on('click', function() {
+        let input = $(this).siblings('.product-qty');
+        let quantity = parseInt(input.val()) - 1;
+        let rowId = input.data('rowid');
+        if (quantity < 1) {
+          return;
+        }
         input.val(quantity);
         $.ajax({
           type: "POST",
