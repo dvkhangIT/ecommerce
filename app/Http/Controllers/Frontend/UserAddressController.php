@@ -15,6 +15,7 @@ class UserAddressController extends Controller
     public function index()
     {
         $addresses = UserAddress::where('user_id', Auth::user()->id)->get();
+
         return view('frontend.dashboard.address.index', compact('addresses'));
     }
 
@@ -41,7 +42,7 @@ class UserAddressController extends Controller
             'zip' => 'required|max:200',
             'address' => 'required|max:200',
         ]);
-        $address = new UserAddress();
+        $address = new UserAddress;
         $address->user_id = Auth::user()->id;
         $address->name = $request->name;
         $address->email = $request->email;
@@ -71,6 +72,7 @@ class UserAddressController extends Controller
     public function edit(string $id)
     {
         $address = UserAddress::findOrFail($id);
+
         return view('frontend.dashboard.address.edit', compact('address'));
     }
 
@@ -89,7 +91,7 @@ class UserAddressController extends Controller
             'zip' => 'required|max:200',
             'address' => 'required|max:200',
         ]);
-        $address =  UserAddress::findOrFail($id);
+        $address = UserAddress::findOrFail($id);
         $address->user_id = Auth::user()->id;
         $address->name = $request->name;
         $address->email = $request->email;
@@ -101,7 +103,6 @@ class UserAddressController extends Controller
         $address->address = $request->address;
         $address->save();
         flasher('Updated Successffuly!', 'success');
-
         return redirect()->route('user.address.index');
     }
 
@@ -112,6 +113,7 @@ class UserAddressController extends Controller
     {
         $address = UserAddress::findOrFail($id);
         $address->delete();
+
         return response(['status' => 'success', 'Deleted Successffuly!']);
     }
 }

@@ -41,14 +41,22 @@ class CartController extends Controller
         $cartData['options']['image'] = $product->thumb_image;
         $cartData['options']['slug'] = $product->slug;
         Cart::add($cartData);
+
         return response([
             'status' => 'success',
-            'message' => 'Added to cart successflly'
+            'message' => 'Added to cart successflly',
         ]);
     }
+
     public function cartDetails()
     {
         $cartItems = Cart::content();
+
         return view('frontend.pages.cart-detail', compact('cartItems'));
+    }
+    public function updateProductQuantity(Request $request)
+    {
+        Cart::update($request->rowId, $request->quantity);
+        return response(['status' => 'success', 'message' => 'Product quantity updated!']);
     }
 }

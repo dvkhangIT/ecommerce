@@ -41,19 +41,26 @@
                       <td class="wsus__pro_name">
                         <p>{!! $item->name !!}</p>
                         @foreach ($item->options->variants as $key => $variant)
-                          <span>{{ $key }}: {{ $variant['name'] }}
+                          <span>{{ $key }}:
+                            {{ $variant['name'] }}
                             ({{ $settings->currency_icon . $variant['price'] }})
                           </span>
                         @endforeach
                       </td>
                       <td class="wsus__pro_status">
-                        <h6>{{ $settings->currency_icon . $item->price }}</h6>
+                        <h6>{{ $settings->currency_icon . $item->price }}
+                        </h6>
                       </td>
                       <td class="wsus__pro_select">
-                        <form class="select_number">
-                          <input class="number_area" type="text" min="1"
-                            max="100" value="1" />
-                        </form>
+                        <div class="product_qty_wrapper">
+                          <button
+                            class="btn btn-danger product-decrement">-</button>
+                          <input class="product-qty"
+                            data-rowid="{{ $item->rowId }}" type="text"
+                            min="1" max="100" value="1" />
+                          <button
+                            class="btn btn-success product-increment">+</button>
+                        </div>
                       </td>
                       <td class="wsus__pro_tk">
                         <h6>
@@ -76,7 +83,8 @@
             <p>subtotal: <span>$124.00</span></p>
             <p>delivery: <span>$00.00</span></p>
             <p>discount: <span>$10.00</span></p>
-            <p class="total"><span>total:</span> <span>$134.00</span></p>
+            <p class="total"><span>total:</span> <span>$134.00</span>
+            </p>
 
             <form>
               <input type="text" placeholder="Coupon Code">
@@ -126,3 +134,37 @@
   </section>
   {{-- CART VIEW PAGE END --}}
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      $('.product-increment').on('click', function() {
+        let input = $(this).siblings('.product-qty');
+        let quantity = parseInt(input.val()) + 1;
+        let rowId = input.data('rowid');
+        console.log(rowId);
+        input.val(quantity);
+        $.ajax({
+          type: "POST",
+          url: "{{ route('cart.update-quantity') }}",
+          data: {
+            quantity,
+            rowId,
+          },
+          success: function(response) {
+            if (response.status === 'success') {
+              flasher.success(response.message);
+            }
+          },
+          error: function(response) {
+            console.log(response);
+          }
+        });
+      })
+    });
+  </script>
+@endpush
