@@ -34,8 +34,7 @@
                   </tr>
                   @foreach ($cartItems as $item)
                     <tr class="d-flex">
-                      <td class="wsus__pro_img"><img
-                          src="{{ asset($item->options->image) }}" alt="product"
+                      <td class="wsus__pro_img"><img src="{{ asset($item->options->image) }}" alt="product"
                           class="img-fluid w-100">
                       </td>
                       <td class="wsus__pro_name">
@@ -53,18 +52,15 @@
                       </td>
                       <td class="wsus__pro_select">
                         <div class="product_qty_wrapper">
-                          <button
-                            class="btn btn-danger product-decrement">-</button>
-                          <input class="product-qty"
-                            data-rowid="{{ $item->rowId }}" type="text"
-                            min="1" max="100" value="1" />
-                          <button
-                            class="btn btn-success product-increment">+</button>
+                          <button class="btn btn-danger product-decrement">-</button>
+                          <input class="product-qty" data-rowid="{{ $item->rowId }}" type="text" min="1"
+                            max="100" value="{{ $item->qty }}" />
+                          <button class="btn btn-success product-increment">+</button>
                         </div>
                       </td>
                       <td class="wsus__pro_tk">
-                        <h6>
-                          {{ $settings->currency_icon . $item->price + $item->options->variants_total }}
+                        <h6 id="{{ $item->rowId }}">
+                          {{ $settings->currency_icon . ($item->price + $item->options->variants_total) * $item->qty }}
                         </h6>
                       </td>
                       <td class="wsus__pro_icon">
@@ -85,15 +81,12 @@
             <p>discount: <span>$10.00</span></p>
             <p class="total"><span>total:</span> <span>$134.00</span>
             </p>
-
             <form>
               <input type="text" placeholder="Coupon Code">
               <button type="submit" class="common_btn">apply</button>
             </form>
-            <a class="common_btn mt-4 w-100 text-center"
-              href="check_out.html">checkout</a>
-            <a class="common_btn mt-1 w-100 text-center"
-              href="product_grid_view.html"><i class="fab fa-shopify"></i> go
+            <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
+            <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html"><i class="fab fa-shopify"></i> go
               shop</a>
           </div>
         </div>
@@ -106,8 +99,7 @@
         <div class="col-xl-6 col-lg-6">
           <div class="wsus__single_banner_content">
             <div class="wsus__single_banner_img">
-              <img src="images/single_banner_2.jpg" alt="banner"
-                class="img-fluid w-100">
+              <img src="images/single_banner_2.jpg" alt="banner" class="img-fluid w-100">
             </div>
             <div class="wsus__single_banner_text">
               <h6>sell on <span>35% off</span></h6>
@@ -119,8 +111,7 @@
         <div class="col-xl-6 col-lg-6">
           <div class="wsus__single_banner_content single_banner_2">
             <div class="wsus__single_banner_img">
-              <img src="images/single_banner_3.jpg" alt="banner"
-                class="img-fluid w-100">
+              <img src="images/single_banner_3.jpg" alt="banner" class="img-fluid w-100">
             </div>
             <div class="wsus__single_banner_text">
               <h6>New Collection</h6>
@@ -146,7 +137,6 @@
         let input = $(this).siblings('.product-qty');
         let quantity = parseInt(input.val()) + 1;
         let rowId = input.data('rowid');
-        console.log(rowId);
         input.val(quantity);
         $.ajax({
           type: "POST",
@@ -157,6 +147,10 @@
           },
           success: function(response) {
             if (response.status === 'success') {
+              let productId = '#' + rowId;
+              let totalAmount = "{{ $settings->currency_icon }}" +
+                response.product_total
+              $(productId).text(totalAmount);
               flasher.success(response.message);
             }
           },
