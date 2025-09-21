@@ -426,6 +426,7 @@
           data: formData,
           success: function(response) {
             getCartCount();
+            fetchSidebarCartProducts();
             flasher.success(response.message);
           }
         });
@@ -437,6 +438,32 @@
           url: "{{ route('cart-count') }}",
           success: function(response) {
             $('#cart-count').text(response);
+          }
+        });
+      }
+
+      function fetchSidebarCartProducts() {
+        $.ajax({
+          type: "GET",
+          url: "{{ route('cart-products') }}",
+          success: function(response) {
+            console.log(response);
+            $('.mini_cart_wrapper').html('');
+            var html = '';
+            for (let item in response) {
+              let product = response[item];
+              html += `<li>
+                <div class="wsus__cart_img">
+                    <a href="{{ url('product-detail') }}/${product.options.slug}"><img src="{{ asset('/') }}${product.options.image}" alt="product" class="img-fluid w-100"></a>
+                    <a class="wsis__del_icon" href="#"><i class="fas fa-minus-circle"></i></a>
+                </div>
+                <div class="wsus__cart_text">
+                    <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${product.name}"</a>
+                    <p>{{ $settings->currency_icon }}${product.price}</p>
+                </div>
+                </li>`;
+            }
+            $('.mini_cart_wrapper').html(html);
           }
         });
       }
