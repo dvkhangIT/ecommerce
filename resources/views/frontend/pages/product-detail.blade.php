@@ -28,28 +28,24 @@
               <div class="exzoom hidden" id="exzoom">
                 <div class="exzoom_img_box">
                   @if ($product->video_link)
-                    <a class="venobox wsus__pro_det_video" data-autoplay="true"
-                      data-vbtype="video" href="{{ $product->video_link }}">
+                    <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
+                      href="{{ $product->video_link }}">
                       <i class="fas fa-play"></i>
                     </a>
                   @endif
                   <ul class='exzoom_img_ul'>
-                    <li><img class="zoom ing-fluid w-100"
-                        src="{{ asset($product->thumb_image) }}" alt="product">
+                    <li><img class="zoom ing-fluid w-100" src="{{ asset($product->thumb_image) }}" alt="product">
                     </li>
                     @foreach ($product->productImageGalleries as $productImage)
-                      <li><img class="zoom ing-fluid w-100"
-                          src="{{ asset($productImage->image) }}" alt="product">
+                      <li><img class="zoom ing-fluid w-100" src="{{ asset($productImage->image) }}" alt="product">
                       </li>
                     @endforeach
                   </ul>
                 </div>
                 <div class="exzoom_nav"></div>
                 <p class="exzoom_btn">
-                  <a href="javascript:void(0);" class="exzoom_prev_btn"> <i
-                      class="far fa-chevron-left"></i> </a>
-                  <a href="javascript:void(0);" class="exzoom_next_btn"> <i
-                      class="far fa-chevron-right"></i> </a>
+                  <a href="javascript:void(0);" class="exzoom_prev_btn"> <i class="far fa-chevron-left"></i> </a>
+                  <a href="javascript:void(0);" class="exzoom_next_btn"> <i class="far fa-chevron-right"></i> </a>
                 </p>
               </div>
             </div>
@@ -80,8 +76,7 @@
               <form action="" class="shopping-cart-form">
                 <div class="wsus__selectbox">
                   <div class="row">
-                    <input type="hidden" value="{{ $product->id }}"
-                      name="product_id">
+                    <input type="hidden" value="{{ $product->id }}" name="product_id">
                     @foreach ($product->variants as $variant)
                       <div class="col-xl-6 col-sm-6">
                         <h5 class="mb-2">{{ $variant->name }}:</h5>
@@ -101,8 +96,8 @@
                 <div class="wsus__quentity">
                   <h5>quentity :</h5>
                   <div class="select_number">
-                    <input name="qty" class="number_area" type="text"
-                      min="1" max="100" value="1" />
+                    <input name="qty" class="number_area" type="text" min="1" max="100"
+                      value="1" />
                   </div>
                   <h3>$50.00</h3>
                 </div>
@@ -143,8 +138,7 @@
                 </li>
               </ul>
               <div class="wsus__det_sidebar_banner">
-                <img src="images/blog_1.jpg" alt="banner"
-                  class="img-fluid w-100">
+                <img src="images/blog_1.jpg" alt="banner" class="img-fluid w-100">
                 <div class="wsus__det_sidebar_banner_text_overlay">
                   <div class="wsus__det_sidebar_banner_text">
                     <p>Black Friday Sale</p>
@@ -164,28 +158,24 @@
             <div class="wsus__details_bg">
               <ul class="nav nav-pills mb-3" id="pills-tab3" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="pills-home-tab7"
-                    data-bs-toggle="pill" data-bs-target="#pills-home22"
-                    type="button" role="tab" aria-controls="pills-home"
+                  <button class="nav-link active" id="pills-home-tab7" data-bs-toggle="pill"
+                    data-bs-target="#pills-home22" type="button" role="tab" aria-controls="pills-home"
                     aria-selected="true">Description</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-contact-tab"
-                    data-bs-toggle="pill" data-bs-target="#pills-contact"
-                    type="button" role="tab" aria-controls="pills-contact"
+                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                     aria-selected="false">Vendor Info</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-contact-tab2"
-                    data-bs-toggle="pill" data-bs-target="#pills-contact2"
-                    type="button" role="tab"
-                    aria-controls="pills-contact2"
+                  <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact2" type="button" role="tab" aria-controls="pills-contact2"
                     aria-selected="false">Reviews</button>
                 </li>
               </ul>
               <div class="tab-content" id="pills-tabContent4">
-                <div class="tab-pane fade  show active " id="pills-home22"
-                  role="tabpanel" aria-labelledby="pills-home-tab7">
+                <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
+                  aria-labelledby="pills-home-tab7">
                   <div class="row">
                     <div class="col-xl-12">
                       <div class="wsus__description_area">
@@ -221,14 +211,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                  aria-labelledby="pills-contact-tab">
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                   <div class="wsus__pro_det_vendor">
                     <div class="row">
                       <div class="col-xl-6 col-xxl-5 col-md-6">
                         <div class="wsus__vebdor_img">
-                          <img src="{{ asset($product->vendor->banner) }}"
-                            alt="vensor" class="img-fluid w-100">
+                          <img src="{{ asset($product->vendor->banner) }}" alt="vensor" class="img-fluid w-100">
                         </div>
                       </div>
                       <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
@@ -261,8 +249,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="pills-contact2" role="tabpanel"
-                  aria-labelledby="pills-contact-tab2">
+                <div class="tab-pane fade" id="pills-contact2" role="tabpanel" aria-labelledby="pills-contact-tab2">
                   <div class="wsus__pro_det_review">
                     <div class="wsus__pro_det_review_single">
                       <div class="row">
@@ -271,12 +258,10 @@
                             <h4>Reviews <span>02</span></h4>
                             <div class="wsus__main_comment">
                               <div class="wsus__comment_img">
-                                <img src="images/client_img_3.jpg"
-                                  alt="user" class="img-fluid w-100">
+                                <img src="images/client_img_3.jpg" alt="user" class="img-fluid w-100">
                               </div>
                               <div class="wsus__comment_text reply">
-                                <h6>Shopnil mahadi <span>4 <i
-                                      class="fas fa-star"></i></span></h6>
+                                <h6>Shopnil mahadi <span>4 <i class="fas fa-star"></i></span></h6>
                                 <span>09 Jul 2021</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur
                                   adipisicing
@@ -285,34 +270,26 @@
                                   eaque.
                                 </p>
                                 <ul class="">
-                                  <li><img src="images/headphone_1.jpg"
-                                      alt="product" class="img-fluid w-100">
+                                  <li><img src="images/headphone_1.jpg" alt="product" class="img-fluid w-100">
                                   </li>
-                                  <li><img src="images/headphone_2.jpg"
-                                      alt="product" class="img-fluid w-100">
+                                  <li><img src="images/headphone_2.jpg" alt="product" class="img-fluid w-100">
                                   </li>
-                                  <li><img src="images/kids_1.jpg"
-                                      alt="product" class="img-fluid w-100">
+                                  <li><img src="images/kids_1.jpg" alt="product" class="img-fluid w-100">
                                   </li>
                                 </ul>
                                 <a href="#" data-bs-toggle="collapse"
                                   data-bs-target="#flush-collapsetwo">reply</a>
-                                <div class="accordion accordion-flush"
-                                  id="accordionFlushExample2">
+                                <div class="accordion accordion-flush" id="accordionFlushExample2">
                                   <div class="accordion-item">
-                                    <div id="flush-collapsetwo"
-                                      class="accordion-collapse collapse"
-                                      aria-labelledby="flush-collapsetwo"
-                                      data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapsetwo" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-collapsetwo" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body">
                                         <form>
-                                          <div
-                                            class="wsus__riv_edit_single text_area">
+                                          <div class="wsus__riv_edit_single text_area">
                                             <i class="far fa-edit"></i>
                                             <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                           </div>
-                                          <button type="submit"
-                                            class="common_btn">submit</button>
+                                          <button type="submit" class="common_btn">submit</button>
                                         </form>
                                       </div>
                                     </div>
@@ -322,12 +299,10 @@
                             </div>
                             <div class="wsus__main_comment">
                               <div class="wsus__comment_img">
-                                <img src="images/client_img_1.jpg"
-                                  alt="user" class="img-fluid w-100">
+                                <img src="images/client_img_1.jpg" alt="user" class="img-fluid w-100">
                               </div>
                               <div class="wsus__comment_text reply">
-                                <h6>Smith jhon <span>5 <i
-                                      class="fas fa-star"></i></span>
+                                <h6>Smith jhon <span>5 <i class="fas fa-star"></i></span>
                                 </h6>
                                 <span>09 Jul 2021</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur
@@ -338,22 +313,17 @@
                                 </p>
                                 <a href="#" data-bs-toggle="collapse"
                                   data-bs-target="#flush-collapsetwo2">reply</a>
-                                <div class="accordion accordion-flush"
-                                  id="accordionFlushExample2">
+                                <div class="accordion accordion-flush" id="accordionFlushExample2">
                                   <div class="accordion-item">
-                                    <div id="flush-collapsetwo2"
-                                      class="accordion-collapse collapse"
-                                      aria-labelledby="flush-collapsetwo"
-                                      data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapsetwo2" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-collapsetwo" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body">
                                         <form>
-                                          <div
-                                            class="wsus__riv_edit_single text_area">
+                                          <div class="wsus__riv_edit_single text_area">
                                             <i class="far fa-edit"></i>
                                             <textarea cols="3" rows="1" placeholder="Your Text"></textarea>
                                           </div>
-                                          <button type="submit"
-                                            class="common_btn">submit</button>
+                                          <button type="submit" class="common_btn">submit</button>
                                         </form>
                                       </div>
                                     </div>
@@ -365,24 +335,17 @@
                               <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                   <li class="page-item">
-                                    <a class="page-link" href="#"
-                                      aria-label="Previous">
+                                    <a class="page-link" href="#" aria-label="Previous">
                                       <i class="fas fa-chevron-left"></i>
                                     </a>
                                   </li>
-                                  <li class="page-item"><a
-                                      class="page-link page_active"
-                                      href="#">1</a>
+                                  <li class="page-item"><a class="page-link page_active" href="#">1</a>
                                   </li>
-                                  <li class="page-item"><a class="page-link"
-                                      href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link"
-                                      href="#">3</a></li>
-                                  <li class="page-item"><a class="page-link"
-                                      href="#">4</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">4</a></li>
                                   <li class="page-item">
-                                    <a class="page-link" href="#"
-                                      aria-label="Next">
+                                    <a class="page-link" href="#" aria-label="Next">
                                       <i class="fas fa-chevron-right"></i>
                                     </a>
                                   </li>
@@ -392,8 +355,7 @@
                           </div>
                         </div>
                         <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
-                          <div class="wsus__post_comment rev_mar"
-                            id="sticky_sidebar3">
+                          <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
                             <h4>write a Review</h4>
                             <form action="#">
                               <p class="rating">
@@ -425,9 +387,7 @@
                               </div>
                               <div class="img_upload">
                                 <div class="gallery">
-                                  <a class="cam"
-                                    href="javascript:void(0)"><span><i
-                                        class="fas fa-image"></i></span>
+                                  <a class="cam" href="javascript:void(0)"><span><i class="fas fa-image"></i></span>
                                   </a>
                                 </div>
                               </div>
@@ -465,7 +425,7 @@
           url: "{{ route('add-to-cart') }}",
           data: formData,
           success: function(response) {
-
+            flasher.success(response.message);
           }
         });
       })
