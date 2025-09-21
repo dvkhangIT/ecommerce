@@ -416,19 +416,30 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
+      // add to cart
       $('.shopping-cart-form').on('submit', function(e) {
         e.preventDefault();
         let formData = $(this).serialize();
-        console.log(formData);
         $.ajax({
           type: "POST",
           url: "{{ route('add-to-cart') }}",
           data: formData,
           success: function(response) {
+            getCartCount();
             flasher.success(response.message);
           }
         });
       })
+      // cart count
+      function getCartCount() {
+        $.ajax({
+          type: "GET",
+          url: "{{ route('cart-count') }}",
+          success: function(response) {
+            $('#cart-count').text(response);
+          }
+        });
+      }
     });
   </script>
 @endpush
