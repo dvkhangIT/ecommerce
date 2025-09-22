@@ -427,6 +427,7 @@
           success: function(response) {
             getCartCount();
             fetchSidebarCartProducts();
+            $('.mini_cart_actions').removeClass('d-none');
             flasher.success(response.message);
           }
         });
@@ -461,13 +462,19 @@
                 <div class="wsus__cart_text">
                     <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${product.name}</a>
                     <p>{{ $settings->currency_icon }}${product.price}</p>
+                    <small>Variant total:
+                    {{ $settings->currency_icon }}${product.options.variants_total}</small>
+                    <br>
+                    <small>Qty: ${product.qty}</small>
                 </div>
                 </li>`;
             }
             $('.mini_cart_wrapper').html(html);
+            getSidebarCartSubTotal();
           }
         });
       }
+      // remove product from sidebar cart
       $('body').on('click', '.remove_sidebar_product', function(e) {
         e.preventDefault();
         let rowId = $(this).data('id');
@@ -480,10 +487,26 @@
           success: function(response) {
             let productId = '#mini_cart_' + rowId;
             $(productId).remove();
+            getCartCount();
+            getSidebarCartSubTotal();
+            if ($('.mini_cart_wrapper').find('li').length === 0) {
+              $('.mini_cart_actions').addClass('d-none');
+              $('.mini_cart_wrapper').html('<li class="text-center">Cart Is Empty</li>');
+            }
             flasher.success(response.message);
           }
         });
       })
+      // get sidebar cart sub total
+      function getSidebarCartSubTotal() {
+        $.ajax({
+          type: "GET",
+          url: "{{ route('cart.sidebar-product-total') }}",
+          success: function(response) {
+            $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + response);
+          }
+        });
+      }
     });
   </script>
 @endpush
