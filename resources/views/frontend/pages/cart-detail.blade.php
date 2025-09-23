@@ -94,8 +94,8 @@
               <p>discount: <span>$10.00</span></p>
               <p class="total"><span>total:</span> <span>$134.00</span>
               </p>
-              <form>
-                <input type="text" placeholder="Coupon Code">
+              <form id="coupon_form">
+                <input type="text" placeholder="Coupon Code" name="coupon_code">
                 <button type="submit" class="common_btn">apply</button>
               </form>
               <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
@@ -251,6 +251,24 @@
           }
         });
       }
+      // apply coupon on cart
+      $('#coupon_form').submit(function(e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        $.ajax({
+          type: "get",
+          url: "{{ route('apply-coupon') }}",
+          data: formData,
+          success: function(response) {
+            if (response.status === 'error') {
+              toastr.error(response.message)
+            }
+          },
+          error: function(response) {
+            console.log(response);
+          }
+        });
+      });
     });
   </script>
 @endpush
