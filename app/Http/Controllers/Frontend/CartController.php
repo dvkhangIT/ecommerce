@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function cartDetails()
+    {
+        $cartItems = Cart::content();
+        return view('frontend.pages.cart-detail', compact('cartItems'));
+    }
     public function addToCart(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
@@ -53,13 +58,6 @@ class CartController extends Controller
             'message' => 'Added to cart successflly',
         ]);
     }
-
-    public function cartDetails()
-    {
-        $cartItems = Cart::content();
-
-        return view('frontend.pages.cart-detail', compact('cartItems'));
-    }
     public function updateProductQuantity(Request $request)
     {
         $prodcutId = Cart::get($request->rowId)->id;
@@ -100,6 +98,7 @@ class CartController extends Controller
     public function removeProduct($rowId)
     {
         Cart::remove($rowId);
+        toastr()->success('Product removed successflly!', ' ');
         return redirect()->back();
     }
     public function getCartCount()
