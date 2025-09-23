@@ -53,8 +53,13 @@
           <div class="col-xl-5 col-md-7 col-lg-7">
             <div class="wsus__pro_details_text">
               <a class="title" href="javascript:;">{{ $product->name }}</a>
-              <p class="wsus__stock_area"><span class="in_stock">in stock</span>
-                (167 item)</p>
+              @if ($product->qty > 0)
+                <p class="wsus__stock_area"><span class="in_stock">in stock</span>
+                  ({{ $product->qty }} item)</p>
+              @elseif ($product->qty === 0)
+                <p class="wsus__stock_area"><span class="stock_out">Stock Out</span> (0 item)
+                </p>
+              @endif
               @if (checkDiscount($product))
                 <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
                   <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
@@ -103,7 +108,6 @@
                     <input name="qty" class="number_area" type="text" min="1" max="100"
                       value="1" />
                   </div>
-                  <h3>$50.00</h3>
                 </div>
                 <ul class="wsus__button_area">
                   <li><button type="submit" class="add_cart">add to cart</a></li>

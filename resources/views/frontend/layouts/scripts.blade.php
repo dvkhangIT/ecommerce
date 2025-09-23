@@ -14,10 +14,14 @@
          url: "{{ route('add-to-cart') }}",
          data: formData,
          success: function(response) {
-           getCartCount();
-           fetchSidebarCartProducts();
-           $('.mini_cart_actions').removeClass('d-none');
-           flasher.success(response.message);
+           if (response.status === 'success') {
+             getCartCount();
+             fetchSidebarCartProducts();
+             $('.mini_cart_actions').removeClass('d-none');
+             flasher.success(response.message);
+           } else if (response.status === 'error') {
+             flasher.error(response.message);
+           }
          }
        });
      })

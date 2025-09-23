@@ -169,6 +169,8 @@
                 response.product_total
               $(productId).text(totalAmount);
               flasher.success(response.message);
+            } else if (response.status === 'error') {
+              flasher.error(response.message);
             }
           },
           error: function(response) {
@@ -199,6 +201,8 @@
                 response.product_total
               $(productId).text(totalAmount);
               flasher.success(response.message);
+            } else if (response.status === 'error') {
+              flasher.error(response.message);
             }
           },
           error: function(response) {
