@@ -44,7 +44,7 @@ class ProductVariantController extends Controller
         $variant->status = $request->status;
         $variant->product_id = $request->product;
         $variant->save();
-        flasher('Created successfully', 'success');
+        toastr()->success('Created successfully', ' ');
 
         return redirect()->route('admin.products-variant.index', ['product' => $request->product]);
     }
@@ -80,7 +80,7 @@ class ProductVariantController extends Controller
         $variant->name = $request->name;
         $variant->status = $request->status;
         $variant->save();
-        flasher('Updated successfully', 'success');
+        toastr()->success('Updated successfully', ' ');
 
         return redirect()->route('admin.products-variant.index', ['product' => $variant->product_id]);
     }

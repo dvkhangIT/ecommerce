@@ -11,8 +11,7 @@
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> Products</h3>
             <div class="create_button">
-              <a href="{{ route('vendor.products.create') }}"
-                class="btn btn-primary"><i class="fas fa-plus"></i>
+              <a href="{{ route('vendor.products.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i>
                 Create Product</a>
             </div>
             <div class="wsus__dashboard_profile">
@@ -41,7 +40,7 @@
             id: id
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);

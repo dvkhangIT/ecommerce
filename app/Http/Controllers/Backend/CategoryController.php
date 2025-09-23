@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->status = $request->status;
         $category->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.category.index');
     }
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'icon' => 'required|not_in:empty',
-            'name' => 'required|max:200|unique:categories,name,'.$id,
+            'name' => 'required|max:200|unique:categories,name,' . $id,
             'status' => 'required',
         ]);
         $category = Category::findOrfail($id);
@@ -82,7 +82,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->status = $request->status;
         $category->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.category.index');
     }

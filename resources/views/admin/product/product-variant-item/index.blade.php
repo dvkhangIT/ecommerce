@@ -5,8 +5,7 @@
       <h1>Product Variant Items</h1>
     </div>
     <div class="mb-3">
-      <a href="{{ route('admin.products-variant.index', ['product' => $product->id]) }}"
-        class="btn btn-primary">Back</a>
+      <a href="{{ route('admin.products-variant.index', ['product' => $product->id]) }}" class="btn btn-primary">Back</a>
     </div>
     <div class="section-body">
       <div class="row">
@@ -43,7 +42,7 @@
             id: id
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);

@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
-    <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
-    <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
+    <!--toastr-->
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
   </head>
 
   <body>
@@ -106,6 +106,9 @@
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--toastr-->
+    <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('toastr/custom.js') }}"></script>
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <!--main/custom js-->
@@ -113,7 +116,7 @@
     <script>
       @if ($errors->any())
         @foreach ($errors->all() as $error)
-          flasher.error("{{ $error }}");
+          toastr.error("{{ $error }}");
         @endforeach
       @endif
     </script>

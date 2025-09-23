@@ -18,7 +18,7 @@ class UserProfileController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:100'],
-            'email' => ['required', 'email', 'unique:users,email,'.Auth::user()->id],
+            'email' => ['required', 'email', 'unique:users,email,' . Auth::user()->id],
             'image' => ['image', 'max:2048'],
         ]);
         $user = Auth::user();
@@ -27,15 +27,15 @@ class UserProfileController extends Controller
                 File::delete(public_path($user->image));
             }
             $image = $request->image;
-            $imageName = rand().'-'.$image->getClientOriginalName();
+            $imageName = rand() . '-' . $image->getClientOriginalName();
             $image->move(public_path('uploads'), $imageName);
-            $path = '/uploads/'.$imageName;
+            $path = '/uploads/' . $imageName;
             $user->image = $path;
         }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        flasher('Profile Update Successfully', 'success');
+        toastr()->success('Profile Update Successfully', ' ');
 
         return redirect()->back();
     }
@@ -49,7 +49,7 @@ class UserProfileController extends Controller
         $request->user()->update([
             'password' => bcrypt($request->password),
         ]);
-        flasher('Profile Password Update Successfully', 'success');
+        toastr()->success('Profile Password Update Successfully', ' ');
 
         return redirect()->back();
     }

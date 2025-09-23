@@ -6,38 +6,28 @@
     <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
     <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
-    <link rel="icon" type="image/png"
-      href="{{ asset('frontend/images/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('frontend/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/jquery.nice-number.min.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/jquery.calendar.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/add_row_custon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.nice-number.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/add_row_custon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/mobile_menu.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/jquery.exzoom.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/multiple-image-video.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/multiple-image-video.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/ranger_style.css') }}">
-    <link rel="stylesheet"
-      href="{{ asset('frontend/css/jquery.classycountdown.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
-    <link rel="stylesheet"
-      href="{{ asset('vendor/flasher/flasher.min.css') }}">
-    <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
+    <!--toastr-->
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
   </head>
 
   <body>
@@ -112,12 +102,15 @@
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--toastr-->
+    <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('toastr/custom.js') }}"></script>
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script>
       @if ($errors->any())
         @foreach ($errors->all() as $error)
-          flasher.error("{{ $error }}");
+          toastr.error("{{ $error }}");
         @endforeach
       @endif
     </script>

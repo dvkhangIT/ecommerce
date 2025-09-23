@@ -81,7 +81,7 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->slug = Str::slug($request->name);
         $product->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.products.index');
     }
@@ -148,7 +148,7 @@ class ProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->slug = Str::slug($request->name);
         $product->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.products.index');
     }

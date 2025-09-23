@@ -18,9 +18,9 @@
              getCartCount();
              fetchSidebarCartProducts();
              $('.mini_cart_actions').removeClass('d-none');
-             flasher.success(response.message);
+             toastr.success(response.message);
            } else if (response.status === 'error') {
-             flasher.error(response.message);
+             toastr.error(response.message);
            }
          }
        });
@@ -86,7 +86,7 @@
              $('.mini_cart_actions').addClass('d-none');
              $('.mini_cart_wrapper').html('<li class="text-center">Cart Is Empty</li>');
            }
-           flasher.success(response.message);
+           toastr.success(response.message);
          }
        });
      })

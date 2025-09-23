@@ -31,8 +31,7 @@ class FlashSaleController extends Controller
             ['id' => 1],
             ['end_date' => $request->end_date]
         );
-        flasher('Updated Successfully!');
-
+        toastr()->success('Updated Successfully', ' ');
         return redirect()->back();
     }
 
@@ -52,7 +51,7 @@ class FlashSaleController extends Controller
         $flashSaleItem->show_at_home = $request->show_at_home;
         $flashSaleItem->status = $request->status;
         $flashSaleItem->save();
-        flasher('Product Added Successfully!');
+        toastr()->success('Product Added Successfully!', ' ');
 
         return redirect()->back();
     }

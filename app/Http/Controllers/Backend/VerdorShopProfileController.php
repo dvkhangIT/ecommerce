@@ -59,7 +59,7 @@ class VerdorShopProfileController extends Controller
         $vendor->tw_link = $request->tw_link;
         $vendor->insta_link = $request->insta_link;
         $vendor->save();
-        flasher('Updated Successffuly!', 'success');
+        toastr()->success('Updated Successffuly!', ' ');
 
         return redirect()->back();
     }

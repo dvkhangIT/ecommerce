@@ -52,7 +52,7 @@ class SliderController extends Controller
         $slider->serial = $request->serial;
         $slider->status = $request->status;
         $slider->save();
-        flasher('Created Successffuly!', 'success');
+        toastr()->success('Created Successffuly!', ' ');
 
         return redirect()->back();
     }
@@ -99,7 +99,7 @@ class SliderController extends Controller
         $slider->serial = $request->serial;
         $slider->status = $request->status;
         $slider->save();
-        flasher('Updated Successffuly!', 'success');
+        toastr()->success('Updated Successffuly!', ' ');
 
         return redirect()->route('admin.slider.index');
     }

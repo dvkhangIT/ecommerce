@@ -46,7 +46,7 @@ class SubCategoryController extends Controller
         $subCategory->slug = Str::slug($request->name);
         $subCategory->status = $request->status;
         $subCategory->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.sub-category.index');
     }
@@ -77,7 +77,7 @@ class SubCategoryController extends Controller
     {
         $request->validate([
             'category' => 'required',
-            'name' => 'required|max:200|unique:sub_categories,name,'.$id,
+            'name' => 'required|max:200|unique:sub_categories,name,' . $id,
             'status' => 'required',
         ]);
         $subCategory = SubCategory::findOrFail($id);
@@ -86,7 +86,7 @@ class SubCategoryController extends Controller
         $subCategory->slug = Str::slug($request->name);
         $subCategory->status = $request->status;
         $subCategory->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.sub-category.index');
     }

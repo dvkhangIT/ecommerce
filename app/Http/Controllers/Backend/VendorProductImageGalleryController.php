@@ -51,7 +51,7 @@ class VendorProductImageGalleryController extends Controller
             $productImageGallery->product_id = $request->product;
             $productImageGallery->save();
         }
-        flasher('Uploaded successfully!', 'success');
+        toastr()->success('Uploaded successfully!', ' ');
 
         return redirect()->back();
     }

@@ -36,7 +36,7 @@ class SettingController extends Controller
                 'time_zone' => $request->timezone,
             ]
         );
-        flasher('Update Successfully', 'success');
+        toastr()->success('Update Successfully', ' ');
 
         return redirect()->back();
     }

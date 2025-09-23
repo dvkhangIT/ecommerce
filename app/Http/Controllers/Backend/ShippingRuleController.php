@@ -44,7 +44,7 @@ class ShippingRuleController extends Controller
         $shipping->cost = $request->cost;
         $shipping->status = $request->status;
         $shipping->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.shipping-rule.index');
     }
@@ -86,7 +86,7 @@ class ShippingRuleController extends Controller
         $shipping->cost = $request->cost;
         $shipping->status = $request->status;
         $shipping->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.shipping-rule.index');
     }

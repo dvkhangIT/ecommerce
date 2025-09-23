@@ -48,7 +48,7 @@ class ChildCategoryController extends Controller
         $childCategory->slug = Str::slug($request->name);
         $childCategory->status = $request->status;
         $childCategory->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.child-category.index');
     }
@@ -92,7 +92,7 @@ class ChildCategoryController extends Controller
         $request->validate([
             'category' => 'required',
             'sub_category' => 'required',
-            'name' => 'required|max:200|unique:child_categories,name,'.$id,
+            'name' => 'required|max:200|unique:child_categories,name,' . $id,
             'status' => 'required',
         ]);
         $childCategory = ChildCategory::findOrFail($id);
@@ -102,7 +102,7 @@ class ChildCategoryController extends Controller
         $childCategory->slug = Str::slug($request->name);
         $childCategory->status = $request->status;
         $childCategory->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.child-category.index');
     }

@@ -53,7 +53,7 @@ class CouponController extends Controller
         $coupon->total_used = 0;
         $coupon->status = $request->status;
         $coupon->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('admin.coupons.index');
     }
@@ -103,7 +103,7 @@ class CouponController extends Controller
         $coupon->discount = $request->discount;
         $coupon->status = $request->status;
         $coupon->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('admin.coupons.index');
     }

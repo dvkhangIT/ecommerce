@@ -37,7 +37,7 @@
             id: id
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);
@@ -57,7 +57,7 @@
             id,
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
             window.location.reload();
           },
           error: function(xhr, status, errors) {

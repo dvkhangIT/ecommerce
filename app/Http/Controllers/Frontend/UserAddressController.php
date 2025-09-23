@@ -53,7 +53,7 @@ class UserAddressController extends Controller
         $address->zip = $request->zip;
         $address->address = $request->address;
         $address->save();
-        flasher('Created Successffuly!', 'success');
+        toastr()->success('Created Successffuly!', ' ');
 
         return redirect()->route('user.address.index');
     }
@@ -102,7 +102,7 @@ class UserAddressController extends Controller
         $address->zip = $request->zip;
         $address->address = $request->address;
         $address->save();
-        flasher('Updated Successffuly!', 'success');
+        toastr()->success('Updated Successffuly!', ' ');
         return redirect()->route('user.address.index');
     }
 

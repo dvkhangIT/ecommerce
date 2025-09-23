@@ -18,8 +18,8 @@
                 <div class="">
                   <div class="form-group">
                     <label>Sale End Date</label>
-                    <input type="text" class="form-control datepicker"
-                      name="end_date" value="{{ @$flashSaleDate->end_date }}">
+                    <input type="text" class="form-control datepicker" name="end_date"
+                      value="{{ @$flashSaleDate->end_date }}">
                   </div>
                 </div>
                 <button class="btn btn-primary" type="submit">Save</button>
@@ -37,13 +37,11 @@
               <h4>Add Flash Sale Products</h4>
             </div>
             <div class="card-body">
-              <form action="{{ route('admin.flash-sale.add-product') }}"
-                method="POST">
+              <form action="{{ route('admin.flash-sale.add-product') }}" method="POST">
                 @csrf
                 <div class="form-group">
                   <label>Add Product</label>
-                  <select name="product" class="form-control select2"
-                    id="">
+                  <select name="product" class="form-control select2" id="">
                     <option value="">Select</option>
                     @foreach ($products as $product)
                       <option value="{{ $product->id }}">{{ $product->name }}
@@ -55,8 +53,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Show at home?</label>
-                      <select name="show_at_home" class="form-control"
-                        id="">
+                      <select name="show_at_home" class="form-control" id="">
                         <option value="">Select</option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -112,7 +109,7 @@
             id: id
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);
@@ -131,7 +128,7 @@
             id: id
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);

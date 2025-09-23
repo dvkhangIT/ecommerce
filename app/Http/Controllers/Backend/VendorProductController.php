@@ -19,7 +19,6 @@ use Str;
 class VendorProductController extends Controller
 {
     use ImageUploadTrait;
-
     /**
      * Display a listing of the resource.
      */
@@ -82,7 +81,7 @@ class VendorProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->slug = Str::slug($request->name);
         $product->save();
-        flasher('Created Successfully', 'success');
+        toastr()->success('Created Successfully', ' ');
 
         return redirect()->route('vendor.products.index');
     }
@@ -159,7 +158,7 @@ class VendorProductController extends Controller
         $product->seo_description = $request->seo_description;
         $product->slug = Str::slug($request->name);
         $product->save();
-        flasher('Updated Successfully', 'success');
+        toastr()->success('Updated Successfully', ' ');
 
         return redirect()->route('vendor.products.index');
     }

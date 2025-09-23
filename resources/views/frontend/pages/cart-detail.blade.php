@@ -168,9 +168,9 @@
               let totalAmount = "{{ $settings->currency_icon }}" +
                 response.product_total
               $(productId).text(totalAmount);
-              flasher.success(response.message);
+              toastr.success(response.message);
             } else if (response.status === 'error') {
-              flasher.error(response.message);
+              toastr.error(response.message);
             }
           },
           error: function(response) {
@@ -200,9 +200,9 @@
               let totalAmount = "{{ $settings->currency_icon }}" +
                 response.product_total
               $(productId).text(totalAmount);
-              flasher.success(response.message);
+              toastr.success(response.message);
             } else if (response.status === 'error') {
-              flasher.error(response.message);
+              toastr.error(response.message);
             }
           },
           error: function(response) {

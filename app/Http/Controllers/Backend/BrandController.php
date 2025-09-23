@@ -48,7 +48,7 @@ class BrandController extends Controller
         $brand->is_featured = $request->is_featured;
         $brand->status = $request->status;
         $brand->save();
-        flasher('Created Successffuly!', 'success');
+        toastr()->success('Created Successffuly!', ' ');
 
         return redirect()->route('admin.brand.index');
     }
@@ -90,7 +90,7 @@ class BrandController extends Controller
         $brand->is_featured = $request->is_featured;
         $brand->status = $request->status;
         $brand->save();
-        flasher('Updated Successffuly!', 'success');
+        toastr()->success('Updated Successffuly!', ' ');
 
         return redirect()->route('admin.brand.index');
     }

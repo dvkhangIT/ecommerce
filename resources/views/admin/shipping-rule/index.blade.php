@@ -11,8 +11,8 @@
             <div class="card-header">
               <h4>All Shipping Rules</h4>
               <div class="card-header-action">
-                <a href="{{ route('admin.shipping-rule.create') }}"
-                  class="btn btn-primary"><i class="fas fa-plus"></i> Create</a>
+                <a href="{{ route('admin.shipping-rule.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i>
+                  Create</a>
               </div>
             </div>
             <div class="card-body">
@@ -40,7 +40,7 @@
             id: id,
           },
           success: function(data) {
-            flasher.success(data.message);
+            toastr.success(data.message);
           },
           error: function(xhr, status, errors) {
             console.log(errors);
