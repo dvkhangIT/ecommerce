@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductVariantItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -127,7 +128,24 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'Coupon not exist!']);
         } elseif ($coupon->end_date < date('Y-m-d')) {
             return response(['status' => 'error', 'message' => 'Coupon expired!']);
+        } elseif ($coupon->total_used >= $coupon->quantity) {
+            return response(['status' => 'error', 'message' => 'You can not apply this coupon!']);
         }
-        dd($coupon);
+        if ($coupon->discount_type === 'amount') {
+            Session::put('coupon', [
+                'coupon_name' => $coupon->name,
+                'coupon_code' => $coupon->code,
+                'discount_type' => 'amount',
+                'discount' => $coupon->discount,
+            ]);
+        } elseif ($coupon->discount_type === 'percent') {
+            Session::put('coupon', [
+                'coupon_name' => $coupon->name,
+                'coupon_code' => $coupon->code,
+                'discount_type' => 'percent',
+                'discount' => $coupon->discount,
+            ]);
+        }
+        return response(['status' => 'success', 'message' => 'Coupon applied successflly!']);
     }
 }

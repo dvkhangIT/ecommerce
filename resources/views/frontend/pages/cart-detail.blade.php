@@ -262,6 +262,8 @@
           success: function(response) {
             if (response.status === 'error') {
               toastr.error(response.message)
+            } else if (response.status === 'success') {
+              toastr.success(response.message);
             }
           },
           error: function(response) {
