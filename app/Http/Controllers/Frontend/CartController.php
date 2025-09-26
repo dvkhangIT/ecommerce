@@ -15,6 +15,9 @@ class CartController extends Controller
     public function cartDetails()
     {
         $cartItems = Cart::content();
+        if (count($cartItems) === 0) {
+            Session::forget('coupon');
+        }
         return view('frontend.pages.cart-detail', compact('cartItems'));
     }
     public function addToCart(Request $request)
@@ -150,22 +153,31 @@ class CartController extends Controller
     }
     public function couponCalculation()
     {
-        $coupon = Session::get('coupon');
-        $subTotal = getCartTotal();
-        if ($coupon['discount_type'] === 'amount') {
-            $total = $subTotal - $coupon['discount'];
+        if (Session::has('coupon')) {
+            $coupon = Session::get('coupon');
+            $subTotal = getCartTotal();
+            if ($coupon['discount_type'] === 'amount') {
+                $total = $subTotal - $coupon['discount'];
+                return response([
+                    'status' => 'success',
+                    'cart_total' => $total,
+                    'discount' => $coupon['discount']
+                ]);
+            } elseif ($coupon['discount_type'] === 'percent') {
+                $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+                $total = $subTotal - $discount;
+                return response([
+                    'status' => 'success',
+                    'cart_total' => $total,
+                    'discount' => $discount
+                ]);
+            }
+        } else {
+            $total = getCartTotal();
             return response([
                 'status' => 'success',
                 'cart_total' => $total,
-                'discount' => $coupon['discount']
-            ]);
-        } elseif ($coupon['discount_type'] === 'percent') {
-            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
-            $total = $subTotal - $discount;
-            return response([
-                'status' => 'success',
-                'cart_total' => $total,
-                'discount' => $discount
+                'discount' => 0,
             ]);
         }
     }
