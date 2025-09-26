@@ -3,6 +3,7 @@
 // Set sidebar item active
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 
 function setActive(array $route)
 {
@@ -63,4 +64,40 @@ function getCartTotal()
         $total += ($product->price + $product->options->variants_total) * $product->qty;
     }
     return $total;
+}
+
+// get payable total amount
+function getMiniCartTotal()
+{
+    $subTotal = getCartTotal();
+    if (Session::has('coupon')) {
+        $coupon = Session::get('coupon');
+        if ($coupon['discount_type'] === 'amount') {
+            $total = $subTotal - $coupon['discount'];
+            return $total;
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+            $total = $subTotal - $discount;
+            return $total;
+        }
+    } else {
+        return getCartTotal();
+    }
+}
+
+// get cart discount
+function getCartDiscount()
+{
+    $coupon = Session::get('coupon');
+    $subTotal = getCartTotal();
+    if (Session::has('coupon')) {
+        if ($coupon['discount_type'] === 'amount') {
+            return  $coupon['discount'];
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+            return $discount;
+        }
+    } else {
+        return 0;
+    }
 }

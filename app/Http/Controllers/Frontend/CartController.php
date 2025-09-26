@@ -148,4 +148,25 @@ class CartController extends Controller
         }
         return response(['status' => 'success', 'message' => 'Coupon applied successflly!']);
     }
+    public function couponCalculation()
+    {
+        $coupon = Session::get('coupon');
+        $subTotal = getCartTotal();
+        if ($coupon['discount_type'] === 'amount') {
+            $total = $subTotal - $coupon['discount'];
+            return response([
+                'status' => 'success',
+                'cart_total' => $total,
+                'discount' => $coupon['discount']
+            ]);
+        } elseif ($coupon['discount_type'] === 'percent') {
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+            $total = $subTotal - $discount;
+            return response([
+                'status' => 'success',
+                'cart_total' => $total,
+                'discount' => $discount
+            ]);
+        }
+    }
 }

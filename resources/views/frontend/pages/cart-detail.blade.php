@@ -91,8 +91,9 @@
               <h6>total cart</h6>
               <p>subtotal: <span id="sub_total">{{ $settings->currency_icon }}{{ getCartTotal() }}</span></p>
               <p>delivery: <span>$00.00</span></p>
-              <p>discount: <span>$10.00</span></p>
-              <p class="total"><span>total:</span> <span>$134.00</span>
+              <p>discount: <span id="discount">{{ $settings->currency_icon }}{{ getCartDiscount() }}</span></p>
+              <p class="total"><span>total:</span> <span
+                  id="cart_total">{{ $settings->currency_icon }}{{ getMiniCartTotal() }}</span>
               </p>
               <form id="coupon_form">
                 <input type="text" placeholder="Coupon Code" name="coupon_code">
@@ -169,6 +170,7 @@
                 response.product_total
               $(productId).text(totalAmount);
               renderCartSubTotal();
+              calculateCouponDescount()
               toastr.success(response.message);
             } else if (response.status === 'error') {
               toastr.error(response.message);
@@ -202,6 +204,7 @@
                 response.product_total
               $(productId).text(totalAmount);
               renderCartSubTotal();
+              calculateCouponDescount()
               toastr.success(response.message);
             } else if (response.status === 'error') {
               toastr.error(response.message);
@@ -263,6 +266,7 @@
             if (response.status === 'error') {
               toastr.error(response.message)
             } else if (response.status === 'success') {
+              calculateCouponDescount();
               toastr.success(response.message);
             }
           },
@@ -271,6 +275,20 @@
           }
         });
       });
+
+      // Calculate discount amount
+      function calculateCouponDescount() {
+        $.ajax({
+          type: "GET",
+          url: "{{ route('coupon-calculation') }}",
+          success: function(response) {
+            if (response.status === 'success') {
+              $('#discount').text('{{ $settings->currency_icon }}' + response.discount);
+              $('#cart_total').text('{{ $settings->currency_icon }}' + response.cart_total);
+            }
+          }
+        });
+      }
     });
   </script>
 @endpush
