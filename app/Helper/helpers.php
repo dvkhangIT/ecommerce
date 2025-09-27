@@ -67,7 +67,7 @@ function getCartTotal()
 }
 
 // get payable total amount
-function getMiniCartTotal()
+function getMainCartTotal()
 {
     $subTotal = getCartTotal();
     if (Session::has('coupon')) {

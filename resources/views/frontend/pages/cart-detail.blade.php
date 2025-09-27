@@ -93,7 +93,7 @@
               {{-- <p>delivery: <span>$00.00</span></p> --}}
               <p>coupon (-): <span id="discount">{{ $settings->currency_icon }}{{ getCartDiscount() }}</span></p>
               <p class="total"><span>total:</span> <span
-                  id="cart_total">{{ $settings->currency_icon }}{{ getMiniCartTotal() }}</span>
+                  id="cart_total">{{ $settings->currency_icon }}{{ getMainCartTotal() }}</span>
               </p>
               <form id="coupon_form">
                 <input type="text" placeholder="Coupon Code" name="coupon_code"
