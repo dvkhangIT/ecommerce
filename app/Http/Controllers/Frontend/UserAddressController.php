@@ -42,7 +42,7 @@ class UserAddressController extends Controller
             'zip' => 'required|max:200',
             'address' => 'required|max:200',
         ]);
-        $address = new UserAddress;
+        $address = new UserAddress();
         $address->user_id = Auth::user()->id;
         $address->name = $request->name;
         $address->email = $request->email;
