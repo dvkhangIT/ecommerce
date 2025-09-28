@@ -28,15 +28,16 @@
         <div class="row">
           <div class="col-xl-8 col-lg-7">
             <div class="wsus__check_form">
-              <h5>Billing Details <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">add
+              <h5>Shipping Details <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">add
                   new address</a></h5>
               <div class="row">
                 @foreach ($addresses as $address)
                   <div class="col-xl-6">
                     <div class="wsus__checkout_single_address">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input shipping_address" data-id="{{ $address->id }}" type="radio"
+                          name="flexRadioDefault" id="shipping_address{{ $address->id }}">
+                        <label class="form-check-label" for="shipping_address{{ $address->id }}">
                           Select Address
                         </label>
                       </div>
@@ -61,8 +62,9 @@
               @foreach ($shippingMethods as $method)
                 @if ($method->type === 'min_cost' && getCartTotal() >= $method->min_cost)
                   <div class="form-check">
-                    <input class="form-check-input shopping_method" type="radio" name="shopping_method" checked
-                      id="shopping_method{{ $method->id }}" value="{{ $method->id }}" data-id="{{ $method->cost }}">
+                    <input class="form-check-input shopping_method" type="radio" name="shopping_method"
+                      id="shopping_method{{ $method->id }}" value="{{ $method->id }}"
+                      data-id="{{ $method->cost }}">
                     <label class="form-check-label" for="shopping_method{{ $method->id }}">
                       {{ $method->name }}
                       <span>cost: ({{ $settings->currency_icon }}{{ $method->cost }})</span>
@@ -70,7 +72,7 @@
                   </div>
                 @elseif ($method->type === 'flat_cost')
                   <div class="form-check">
-                    <input class="form-check-input shopping_method" type="radio" name="shopping_method" checked
+                    <input class="form-check-input shopping_method" type="radio" name="shopping_method"
                       id="shopping_method{{ $method->id }}" value="{{ $method->id }}"
                       data-id="{{ $method->cost }}">
                     <label class="form-check-label" for="shopping_method{{ $method->id }}">
@@ -102,8 +104,8 @@
                 </div>
               </div>
               <form action="" id="checkOutForm">
-                <input type="hidden" name="shopping_method_id" value="" id="shopping_method_id">
-                <input type="hidden" name="shopping_address_id" value="" id="shopping_address_id">
+                <input type="hidden" name="shipping_method_id" value="" id="shipping_method_id">
+                <input type="hidden" name="shopping_address_id" value="" id="shipping_address_id">
               </form>
               <a href="payment.html" class="common_btn">Place Order</a>
             </div>
@@ -190,14 +192,20 @@
 @push('scripts')
   <script>
     $(document).ready(function() {
+      $('input[type="radio"]').prop('checked', false);
+      $('#shipping_method_id').val("");
+      $('#shipping_address_id').val("");
       $('.shopping_method').on('click', function() {
         let currentTotalAmount = $('#total_amount').data('id');
         let shippingFee = $(this).data('id');
         let totalAmount = currentTotalAmount + shippingFee;
-        $('#shopping_method_id').val($(this).val());
+        $('#shipping_method_id').val($(this).val());
         $('#shipping_fee').text("{{ $settings->currency_icon }}" + shippingFee);
         $('#total_amount').text("{{ $settings->currency_icon }}" + totalAmount);
       })
+      $('.shipping_address').on('click', function() {
+        $('#shipping_address_id').val($(this).data('id'));
+      });
     });
   </script>
 @endpush
