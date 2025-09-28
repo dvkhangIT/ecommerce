@@ -61,36 +61,37 @@
               @foreach ($shippingMethods as $method)
                 @if ($method->type === 'min_cost' && getCartTotal() >= $method->min_cost)
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                      value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input shopping_method" type="radio" name="shopping_method" checked
+                      id="shopping_method{{ $method->id }}" value="{{ $method->id }}" data-id="{{ $method->cost }}">
+                    <label class="form-check-label" for="shopping_method{{ $method->id }}">
                       {{ $method->name }}
                       <span>cost: ({{ $settings->currency_icon }}{{ $method->cost }})</span>
                     </label>
                   </div>
                 @elseif ($method->type === 'flat_cost')
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                      value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input shopping_method" type="radio" name="shopping_method" checked
+                      id="shopping_method{{ $method->id }}" value="{{ $method->id }}"
+                      data-id="{{ $method->cost }}">
+                    <label class="form-check-label" for="shopping_method{{ $method->id }}">
                       {{ $method->name }}
                       <span>cost: ({{ $settings->currency_icon }}{{ $method->cost }})</span>
                     </label>
                   </div>
                 @endif
               @endforeach
-              {{-- <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                  express shipping
-                  <span>(5 - 10 days)</span>
-                </label>
-              </div> --}}
               <div class="wsus__order_details_summery">
                 <p>subtotal: <span>{{ $settings->currency_icon }}{{ getCartTotal() }}</span></p>
-                <p>shipping fee (+): <span>{{ $settings->currency_icon }}0</span></p>
+                <p>shipping fee (+): <span id="shipping_fee">{{ $settings->currency_icon }}0</span></p>
                 <p>coupon (-): <span>{{ $settings->currency_icon }}{{ getCartDiscount() }}</span></p>
-                <p><b>total:</b> <span><b>{{ $settings->currency_icon }}{{ getMainCartTotal() }}</b></span></p>
+                <p>
+                  <b>total:</b>
+                  <span>
+                    <b id="total_amount"
+                      data-id="{{ getMainCartTotal() }}">{{ $settings->currency_icon }}{{ getMainCartTotal() }}
+                    </b>
+                  </span>
+                </p>
               </div>
               <div class="terms_area">
                 <div class="form-check">
@@ -100,6 +101,10 @@
                   </label>
                 </div>
               </div>
+              <form action="" id="checkOutForm">
+                <input type="hidden" name="shopping_method_id" value="" id="shopping_method_id">
+                <input type="hidden" name="shopping_address_id" value="" id="shopping_address_id">
+              </form>
               <a href="payment.html" class="common_btn">Place Order</a>
             </div>
           </div>
@@ -180,6 +185,19 @@
       </div>
     </div>
   </div>
-
   {{-- CHECK OUT PAGE END --}}
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('.shopping_method').on('click', function() {
+        let currentTotalAmount = $('#total_amount').data('id');
+        let shippingFee = $(this).data('id');
+        let totalAmount = currentTotalAmount + shippingFee;
+        $('#shopping_method_id').val($(this).val());
+        $('#shipping_fee').text("{{ $settings->currency_icon }}" + shippingFee);
+        $('#total_amount').text("{{ $settings->currency_icon }}" + totalAmount);
+      })
+    });
+  </script>
+@endpush
