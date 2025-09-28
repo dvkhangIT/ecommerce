@@ -228,6 +228,8 @@
             success: function(data) {
               if (data.status === 'success') {
                 $('#submitCheckOutForm').html('Place Order')
+                // Redirect to next page
+                window.location.href = data.redirect_url;
               }
             },
             error: function(data) {
