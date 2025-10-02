@@ -56,7 +56,7 @@ class CheckOutController extends Controller
         ]);
         $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
         if ($shippingMethod) {
-            Session::push('shipping_method', [
+            Session::put('shipping_method', [
                 'id' => $shippingMethod->id,
                 'name' => $shippingMethod->name,
                 'type' => $shippingMethod->type,
@@ -65,7 +65,7 @@ class CheckOutController extends Controller
         }
         $address = UserAddress::findOrFail($request->shipping_address_id);
         if ($address) {
-            Session::push('address', $address);
+            Session::put('address', $address);
         }
         return response(['status' => 'success', 'redirect_url' => route('user.payment')]);
     }
