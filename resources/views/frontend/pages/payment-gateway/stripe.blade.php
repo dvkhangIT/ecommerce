@@ -25,7 +25,7 @@
        stripe.createToken(cardElement).then(function(result) {
          if (typeof result.error != 'undefined') {
            document.getElementById("pay-btn").disabled = false;
-           toastr.success(result.error.message);
+           toastr.error(result.error.message);
          }
          // creating token success
          if (typeof result.token != 'undefined') {

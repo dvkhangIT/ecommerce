@@ -115,7 +115,7 @@ class PaymentController extends Controller
         $provider->getAccessToken();
         // Calculate paypal amount depending on currencry rate
         $total = getFinalPayableAmount();
-        $paypalAmount = round($total * $paypalSetting->currency_rate, 2);
+        $payableAmount = round($total * $paypalSetting->currency_rate, 2);
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             'application_context' => [
@@ -126,7 +126,7 @@ class PaymentController extends Controller
                 [
                     "amount" => [
                         "currency_code" => $config['currency'],
-                        "value" => $paypalAmount,
+                        "value" => $payableAmount,
                     ]
                 ]
             ]
@@ -168,14 +168,22 @@ class PaymentController extends Controller
     {
         $stripeSetting = StripeSetting::first();
         $total = getFinalPayableAmount();
-        $payableAmount = round($total * $stripeSetting->currency_rate, 2);
+        $paypalSetting = PaypalSetting::first();
+        $payableAmount = round($total * $paypalSetting->currency_rate, 2);
         Stripe::setApikey($stripeSetting->secret_key);
-        Charge::create([
+        $response = Charge::create([
             "amount" => $payableAmount * 100,
             "currency" => $stripeSetting->currency_name,
             "source" => $request->stripe_token,
             "description" => "product purchase!"
         ]);
-        dd('success');
+        if ($response->status === 'succeeded') {
+            $this->storeOrder('stripe', 1, $response->id, $payableAmount, $stripeSetting->currency_name);
+            $this->clearSession();
+            return redirect()->route('user.payment.success');
+        } else {
+            toastr('Something went wrong try agin later!', 'error');
+            return redirect()->route('user.payment');
+        }
     }
 }
