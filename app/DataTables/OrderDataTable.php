@@ -22,7 +22,25 @@ class OrderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'order.action')
+            ->addColumn('action', function ($query) {
+                $showBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-eye"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.products.destroy', $query->id) . '" class="btn btn-danger mx-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                $statusBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-warning"><i class="fas fa-truck"></i></a>';
+                return $showBtn . $deleteBtn . $statusBtn;
+            })
+            ->addColumn('customer', function ($query) {
+                return $query->user->name;
+            })
+            ->addColumn('date', function ($query) {
+                return date('d-M-Y', strtotime($query->created_at));
+            })
+            ->addColumn('order_status', function ($query) {
+                return "<span class='badge bg-warning'>$query->order_status</span>";
+            })
+            ->addColumn('amount', function ($query) {
+                return $query->currency_icon . $query->amount;
+            })
+            ->rawColumns(['action', 'order_status'])
             ->setRowId('id');
     }
 
@@ -44,7 +62,7 @@ class OrderDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),
@@ -62,15 +80,19 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            Column::make('invocie_id'),
+            Column::make('customer'),
+            Column::make('date'),
+            Column::make('product_qty'),
+            Column::make('amount'),
+            Column::make('order_status'),
+            Column::make('payment_method'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(200)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 
