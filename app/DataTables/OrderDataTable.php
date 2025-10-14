@@ -23,7 +23,7 @@ class OrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $showBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-eye"></i></a>';
+                $showBtn = '<a href="' . route('admin.order.show', $query->id) . '" class="btn btn-primary"><i class="far fa-eye"></i></a>';
                 $deleteBtn = '<a href="' . route('admin.products.destroy', $query->id) . '" class="btn btn-danger mx-1 delete-item"><i class="far fa-trash-alt"></i></a>';
                 $statusBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-warning"><i class="fas fa-truck"></i></a>';
                 return $showBtn . $deleteBtn . $statusBtn;
@@ -40,7 +40,14 @@ class OrderDataTable extends DataTable
             ->addColumn('amount', function ($query) {
                 return $query->currency_icon . $query->amount;
             })
-            ->rawColumns(['action', 'order_status'])
+            ->addColumn('payment_status', function ($query) {
+                if ($query->payment_status === 1) {
+                    return "<span class='badge bg-success'>complete</span>";
+                } else {
+                    return "<span class='badge bg-warning'>pending</span>";
+                }
+            })
+            ->rawColumns(['action', 'order_status', 'payment_status'])
             ->setRowId('id');
     }
 
@@ -87,6 +94,7 @@ class OrderDataTable extends DataTable
             Column::make('product_qty'),
             Column::make('amount'),
             Column::make('order_status'),
+            Column::make('payment_status'),
             Column::make('payment_method'),
             Column::computed('action')
                 ->exportable(false)
