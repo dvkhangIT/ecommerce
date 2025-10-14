@@ -53,7 +53,7 @@
                             <address>
                               <strong>Payment Information:</strong><br>
                               <b>Method: </b>{{ $order->payment_method }}<br>
-                              <b>Transaction Id: </b> {{ $order->transaction->transaction_id }}
+                              <b>Transaction Id: </b> {{ $order->transaction->transaction_id }} <br>
                               <b>Status: </b> {{ $order->payment_status === 1 ? 'Complete' : 'Pending' }}
                             </address>
                           </div>
@@ -66,7 +66,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="row mt-4">
                       <div class="col-md-12">
                         <div class="section-title">Order Summary</div>
@@ -88,7 +87,13 @@
                               @endphp
                               <tr>
                                 <td>{{ ++$loop->index }}</td>
-                                <td>{{ $product->product_name }}</td>
+                                @if (isset($product->product->slug))
+                                  <td><a target="_blank"
+                                      href="{{ route('product-detail', $product->product->slug) }}">{{ $product->product_name }}</a>
+                                  </td>
+                                @else
+                                  <td>{{ $product->product_name }}</td>
+                                @endif
                                 <td>
                                   @foreach ($variants as $key => $variant)
                                     <b>{{ $key }}:</b>
