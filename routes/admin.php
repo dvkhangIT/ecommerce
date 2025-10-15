@@ -99,6 +99,7 @@ Route::resource('shipping-rule', ShippingRuleController::class);
 
 // Order routes
 Route::get('order-status', [OrderController::class, 'changeOrderStatus'])->name('order.status');
+Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])->name('payment.status');
 Route::resource('order', OrderController::class);
 
 /** Setting Route */

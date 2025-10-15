@@ -114,6 +114,15 @@
                           <div class="col-lg-8">
                             <div class="col-md-4">
                               <div class="form-group">
+                                <label for="">Payment Status</label>
+                                <select name="payment_status" class="form-control" id="payment_status"
+                                  data-id="{{ $order->id }}">
+                                  <option {{ $order->payment_status === 0 ? 'selected' : '' }} value="0">Pending
+                                  <option {{ $order->payment_status === 1 ? 'selected' : '' }} value="1">Completed
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group">
                                 <label for="">Order Status</label>
                                 <select name="order_status" id="order_status" data-id="{{ $order->id }}"
                                   class="form-control">
@@ -181,6 +190,26 @@
         $.ajax({
           type: "GET",
           url: "{{ route('admin.order.status') }}",
+          data: {
+            status,
+            id,
+          },
+          success: function(data) {
+            if (data.status === 'success') {
+              toastr.success(data.message);
+            }
+          },
+          error: function(data) {
+            console.log(data);
+          }
+        })
+      });
+      $('#payment_status').on('change', function() {
+        let status = $(this).val();
+        let id = $(this).data('id');
+        $.ajax({
+          type: "GET",
+          url: "{{ route('admin.payment.status') }}",
           data: {
             status,
             id,
