@@ -25,7 +25,7 @@ class OutForDeliveryDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $showBtn = '<a href="' . route('admin.order.show', $query->id) . '" class="btn btn-primary mr-1"><i class="far fa-eye"></i></a>';
-                $deleteBtn = '<a href="' . route('admin.products.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.order.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i></a>';
                 return $showBtn . $deleteBtn;
             })
             ->addColumn('customer', function ($query) {
