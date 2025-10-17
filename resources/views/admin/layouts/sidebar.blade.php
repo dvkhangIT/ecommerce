@@ -71,6 +71,11 @@
             </li>
           </ul>
         </li>
+        <li class="{{ setActive(['admin.transaction']) }}"><a class="nav-link"
+            href="{{ route('admin.transaction') }}">
+            <i class="far fa-square"></i>
+            <span>Transaction
+            </span></a></li>
         <li
           class="dropdown {{ setActive(['admin.vendor-profile.*', 'admin.flash-sale.*', 'admin.coupons.*', 'admin.shipping-rule.*', 'admin.payment-settings.*']) }}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
