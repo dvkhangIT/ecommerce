@@ -3,32 +3,33 @@
     <i class="far fa-bars dash_bar"></i>
     <i class="far fa-times dash_close"></i>
   </span>
-  <a href="{{ route('vendor.dashboard') }}" class="dash_logo"><img
-      src="{{ asset('frontend/images/logo.png') }}" alt="logo"
-      class="img-fluid" /></a>
+  <a href="{{ route('vendor.dashboard') }}" class="dash_logo"><img src="{{ asset('frontend/images/logo.png') }}"
+      alt="logo" class="img-fluid" /></a>
   <ul class="dashboard_link">
     <li>
-      <a class="active" href="{{ route('vendor.dashboard') }}"><i
+      <a class="{{ setActive(['vendor.dashboard']) }}" href="{{ route('vendor.dashboard') }}"><i
           class="fas fa-tachometer"></i>Dashboard</a>
     </li>
     <li>
-      <a class="" href="{{ route('vendor.products.index') }}"><i
+      <a class="{{ setActive(['vendor.orders.index']) }}" href="{{ route('vendor.orders.index') }}"><i
+          class="fas fa-tachometer"></i>Order</a>
+    </li>
+    <li>
+      <a class="{{ setActive(['vendor.products.index']) }}" href="{{ route('vendor.products.index') }}"><i
           class="fas fa-tachometer"></i>Products</a>
     </li>
-    <li>
-      <a href="{{ route('vendor.shop-profile.index') }}"><i
-          class="fas fa-list-ul"></i> Shop
+    <li class="{{ setActive(['vendor.shop-profile.index']) }}">
+      <a href="{{ route('vendor.shop-profile.index') }}"><i class="fas fa-list-ul"></i> Shop
         Profile</a>
     </li>
-    <li>
+    <li class="{{ setActive(['vendor.profile']) }}">
       <a href="{{ route('vendor.profile') }}"><i class="far fa-user"></i> My
         Profile</a>
     </li>
     <li>
       <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <a href="{{ route('logout') }}"
-          onclick="event.preventDefault();
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
           this.closest('form').submit();">
           <i class="far fa-sign-out-alt"></i> Log
       </form>
