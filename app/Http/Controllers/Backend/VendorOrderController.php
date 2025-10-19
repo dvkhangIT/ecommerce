@@ -18,4 +18,12 @@ class VendorOrderController extends Controller
         $order = Order::with(['user'])->findOrFail($id);
         return view('vendor.order.show', compact('order'));
     }
+    public function orderStatus(Request $request, string $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->order_status = $request->status;
+        $order->save();
+        toastr()->success('Status Updated Successfully', ' ');
+        return redirect()->back();
+    }
 }

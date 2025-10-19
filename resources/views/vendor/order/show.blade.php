@@ -13,7 +13,7 @@
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> Order Details</h3>
-            <section id="">
+            <section class="invoice-print">
               <div class="">
                 <div class="wsus__invoice_area">
                   <div class="wsus__invoice_header">
@@ -45,7 +45,8 @@
                         <div class="col-xl-4 col-md-4">
                           <div class="wsus__invoice_single text-md-end">
                             <h5>Order id: #{{ $order->invoice_id }}</h5>
-                            <h6>Order Status: {{ $order->order_status }}</h6>
+                            <h6>Order Status:
+                              {{ config('order_status.order_status_vendor')[$order->order_status]['status'] }}</h6>
                             <p>Payment Method: {{ $order->payment_method }}</p>
                             <p>Payment Status: {{ $order->payment_status }}</p>
                             <p>Transaction id: {{ $order->transaction->transaction_id }}</p>
@@ -57,9 +58,6 @@
                       <div class="table-responsive">
                         <table class="table">
                           <tr>
-                            {{-- <th class="images">
-                              images
-                            </th> --}}
                             <th class="name">
                               product
                             </th>
@@ -84,9 +82,6 @@
                                 $total += $product->qty * $product->unit_price;
                               @endphp
                               <tr>
-                                {{-- <td class="images">
-                                  <img src="images/pro9.jpg" alt="bag" class="img-fluid w-100">
-                                </td> --}}
                                 <td class="name">
                                   <p>men's fashion sholder bag</p>
                                   @foreach ($variant as $key => $item)
@@ -120,6 +115,28 @@
                 </div>
               </div>
             </section>
+            <div class="row">
+              <div class="col-md-4">
+                <form action="{{ route('vendor.orders.status', $order->id) }}">
+                  @csrf
+                  <div class="form-group mt-5">
+                    <label class="mb-3" for="">Order Status</label>
+                    <select name="status" class="form-control">
+                      @foreach (config('order_status.order_status_vendor') as $key => $status)
+                        <option {{ $key === $order->order_status ? 'selected' : '' }} value="{{ $key }}">
+                          {{ $status['status'] }}</option>
+                      @endforeach
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-8">
+                <div class="mt-5 float-end">
+                  <button class="btn btn-warning print_invoice">Print</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -127,4 +144,15 @@
   </section>
 @endsection
 @push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('.print_invoice').on('click', function() {
+        let printBody = $('.invoice-print');
+        let originalContents = $('body').html();
+        $('body').html(printBody.html());
+        window.print();
+        $('body').html(originalContents);
+      });
+    });
+  </script>
 @endpush
