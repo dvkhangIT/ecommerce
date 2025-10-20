@@ -12,13 +12,11 @@
               <h4>Create Child Category</h4>
             </div>
             <div class="card-body">
-              <form action="{{ route('admin.child-category.store') }}"
-                method="POST">
+              <form action="{{ route('admin.child-category.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                   <label for="inputState">Category</label>
-                  <select id="inputState" class="form-control main-category"
-                    name="category">
+                  <select id="inputState" class="form-control main-category" name="category">
                     <option value="">Select</option>
                     @foreach ($categories as $category)
                       <option value="{{ $category->id }}">{{ $category->name }}
@@ -28,15 +26,13 @@
                 </div>
                 <div class="form-group">
                   <label for="inputState">Sub Category</label>
-                  <select id="inputState" class="form-control sub-category"
-                    name="sub_category">
+                  <select id="inputState" class="form-control sub-category" name="sub_category">
                     <option value="">Select</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" name="name"
-                    value="">
+                  <input type="text" class="form-control" name="name" value="">
                 </div>
                 <div class="form-group">
                   <label for="inputState">Status</label>
@@ -59,7 +55,6 @@
     $(document).ready(function() {
       $('body').on('change', '.main-category', function(e) {
         let id = $(this).val();
-        console.log(id);
         $.ajax({
           method: 'GET',
           url: "{{ route('admin.get-subcategory') }}",
