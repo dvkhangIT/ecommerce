@@ -1,5 +1,7 @@
 @php
   $address = json_decode($order->order_address);
+  $shipping = json_decode($order->shipping_method);
+  $coupon = json_decode($order->coupon);
 @endphp
 @extends('vendor.layouts.master')
 @section('title')
@@ -75,66 +77,52 @@
                             </th>
                           </tr>
                           @foreach ($order->orderProducts as $product)
-                            @if ($product->vendor_id === Auth::user()->vendor->id)
-                              @php
-                                $variant = json_decode($product->variants);
-                                $total = 0;
-                                $total += $product->qty * $product->unit_price;
-                              @endphp
-                              <tr>
-                                <td class="name">
-                                  <p>{{ $product->product_name }}</p>
-                                  @foreach ($variant as $key => $item)
-                                    <span>{{ $key }} : {{ $item->name }}
-                                      ({{ $settings->currency_icon }}{{ $item->price }})
-                                    </span>
-                                  @endforeach
-                                </td>
-                                <td class="amount">
-                                  {{ $settings->currency_icon }}{{ $product->unit_price }}
-                                </td>
-                                <td class="amount">
-                                  {{ $product->vendor->shop_name }}
-                                </td>
-                                <td class="quentity">
-                                  {{ $product->qty }}
-                                </td>
-                                <td class="total">
-                                  {{ $settings->currency_icon }}{{ $product->qty * $product->unit_price }}
-                                </td>
-                              </tr>
-                            @endif
+                            @php
+                              $variant = json_decode($product->variants);
+                              $total = 0;
+                              $total += $product->qty * $product->unit_price;
+                            @endphp
+                            <tr>
+                              <td class="name">
+                                <p>{{ $product->product_name }}</p>
+                                @foreach ($variant as $key => $item)
+                                  <span>{{ $key }} : {{ $item->name }}
+                                    ({{ $settings->currency_icon }}{{ $item->price }})
+                                  </span>
+                                @endforeach
+                              </td>
+                              <td class="amount">
+                                {{ $settings->currency_icon }}{{ $product->unit_price }}
+                              </td>
+                              <td class="amount">
+                                {{ $product->vendor->shop_name }}
+                              </td>
+                              <td class="quentity">
+                                {{ $product->qty }}
+                              </td>
+                              <td class="total">
+                                {{ $settings->currency_icon }}{{ $product->qty * $product->unit_price }}
+                              </td>
+                            </tr>
                           @endforeach
                         </table>
                       </div>
                     </div>
                   </div>
                   <div class="wsus__invoice_footer">
-                    <p><span>Total Amount:</span> {{ $settings->currency_icon }}{{ $total }} </p>
+                    <p><span>Sub Total:</span> {{ $settings->currency_icon }}{{ $order->sub_total }} </p>
+                    <p><span>Shipping Fee(+):</span> {{ $settings->currency_icon }}{{ $shipping->cost }} </p>
+                    <p><span>Coupon(-):</span>
+                      {{ $settings->currency_icon }}{{ @$coupon->discount }} </p>
+                    <p><span>Total Amount:</span>
+                      {{ $settings->currency_icon }}{{ $order->amount }} </p>
                   </div>
                 </div>
               </div>
             </section>
-            <div class="row">
-              <div class="col-md-4">
-                <form action="{{ route('vendor.orders.status', $order->id) }}">
-                  @csrf
-                  <div class="form-group mt-5">
-                    <label class="mb-3" for="">Order Status</label>
-                    <select name="status" class="form-control">
-                      @foreach (config('order_status.order_status_vendor') as $key => $status)
-                        <option {{ $key === $order->order_status ? 'selected' : '' }} value="{{ $key }}">
-                          {{ $status['status'] }}</option>
-                      @endforeach
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">Save</button>
-                  </div>
-                </form>
-              </div>
-              <div class="col-md-8">
-                <div class="mt-5 float-end">
-                  <button class="btn btn-warning print_invoice">Print</button>
-                </div>
+            <div class="col">
+              <div class="mt-2 float-end">
+                <button class="btn btn-warning print_invoice">Print</button>
               </div>
             </div>
           </div>

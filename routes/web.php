@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\UserOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,10 @@ Route::group([
 
     // User address route
     Route::resource('address', UserAddressController::class);
+
+    // Order route
+    Route::get('orders', [UserOrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/show/{id}', [UserOrderController::class, 'show'])->name('orders.show');
 
     // Checkout  routes
     Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');
