@@ -13,7 +13,7 @@
   @include('frontend.home.sections.top-category-product')
   {{-- MONTHLY TOP PRODUCT END --}}
   {{-- BRAND SLIDER START --}}
-  {{-- @include('frontend.home.sections.brand-slider') --}}
+  @include('frontend.home.sections.brand-slider')
   {{-- BRAND SLIDER END --}}
   {{-- SINGLE BANNER START --}}
   {{-- @include('frontend.home.sections.single-banner') --}}
