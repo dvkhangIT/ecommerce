@@ -139,7 +139,6 @@
     <script src="{{ asset('toastr/custom.js') }}"></script>
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
     <script>
       @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -147,8 +146,13 @@
         @endforeach
       @endif
     </script>
+    <script>
+      $(document).ready(function() {
+        $('.auto_click').click();
+      });
+    </script>
+    @include('frontend.layouts.scripts')
+    @stack('scripts')
   </body>
-  @include('frontend.layouts.scripts')
-  @stack('scripts')
 
 </html>
