@@ -4,8 +4,7 @@
         <div class="col-xl-12">
           <div class="wsus__section_header">
             <h3>Consumer Electronics</h3>
-            <a class="see_btn" href="#">see more <i
-                class="fas fa-caret-right"></i></a>
+            <a class="see_btn" href="#">see more <i class="fas fa-caret-right"></i></a>
           </div>
         </div>
       </div>
@@ -14,14 +13,11 @@
           <div class="wsus__product_item">
             <span class="wsus__new">New</span>
             <a class="wsus__pro_link" href="product_details.html">
-              <img src="images/charger_2.jpg" alt="product"
-                class="img-fluid w-100 img_1" />
-              <img src="images/charger_1.jpg" alt="product"
-                class="img-fluid w-100 img_2" />
+              <img src="images/charger_2.jpg" alt="product" class="img-fluid w-100 img_1" />
+              <img src="images/charger_1.jpg" alt="product" class="img-fluid w-100 img_2" />
             </a>
             <ul class="wsus__single_pro_icon">
-              <li><a href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
               </li>
               <li><a href="#"><i class="far fa-heart"></i></a></li>
               <li><a href="#"><i class="far fa-random"></i></a>
@@ -47,14 +43,11 @@
           <div class="wsus__product_item">
             <span class="wsus__minus">-20%</span>
             <a class="wsus__pro_link" href="product_details.html">
-              <img src="images/headphone_1.jpg" alt="product"
-                class="img-fluid w-100 img_1" />
-              <img src="images/headphone_2.jpg" alt="product"
-                class="img-fluid w-100 img_2" />
+              <img src="images/headphone_1.jpg" alt="product" class="img-fluid w-100 img_1" />
+              <img src="images/headphone_2.jpg" alt="product" class="img-fluid w-100 img_2" />
             </a>
             <ul class="wsus__single_pro_icon">
-              <li><a href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
               </li>
               <li><a href="#"><i class="far fa-heart"></i></a></li>
               <li><a href="#"><i class="far fa-random"></i></a>
@@ -79,14 +72,11 @@
         <div class="col-xl-3 col-sm-6 col-lg-4">
           <div class="wsus__product_item">
             <a class="wsus__pro_link" href="product_details.html">
-              <img src="images/tab_1.jpg" alt="product"
-                class="img-fluid w-100 img_1" />
-              <img src="images/tab_2.jpg" alt="product"
-                class="img-fluid w-100 img_2" />
+              <img src="images/tab_1.jpg" alt="product" class="img-fluid w-100 img_1" />
+              <img src="images/tab_2.jpg" alt="product" class="img-fluid w-100 img_2" />
             </a>
             <ul class="wsus__single_pro_icon">
-              <li><a href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-eye"></i></a>
               </li>
               <li><a href="#"><i class="far fa-heart"></i></a></li>
               <li><a href="#"><i class="far fa-random"></i></a>
@@ -111,14 +101,11 @@
         <div class="col-xl-3 col-sm-6 col-lg-4">
           <div class="wsus__product_item ">
             <a class="wsus__pro_link" href="product_details.html">
-              <img src="images/mobile_1.jpg" alt="product"
-                class="img-fluid w-100 img_1" />
-              <img src="images/mobile_2.jpg" alt="product"
-                class="img-fluid w-100 img_2" />
+              <img src="images/mobile_1.jpg" alt="product" class="img-fluid w-100 img_1" />
+              <img src="images/mobile_2.jpg" alt="product" class="img-fluid w-100 img_2" />
             </a>
             <ul class="wsus__single_pro_icon">
-              <li><a href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                     class="far fa-eye"></i></a>
               </li>
               <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -146,14 +133,11 @@
             <span class="wsus__new">New</span>
             <span class="wsus__minus">-20%</span>
             <a class="wsus__pro_link" href="product_details.html">
-              <img src="images/mobile_1.jpg" alt="product"
-                class="img-fluid w-100 img_1" />
-              <img src="images/mobile_2.jpg" alt="product"
-                class="img-fluid w-100 img_2" />
+              <img src="images/mobile_1.jpg" alt="product" class="img-fluid w-100 img_1" />
+              <img src="images/mobile_2.jpg" alt="product" class="img-fluid w-100 img_2" />
             </a>
             <ul class="wsus__single_pro_icon">
-              <li><a href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"><i
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                     class="far fa-eye"></i></a>
               </li>
               <li><a href="#"><i class="far fa-heart"></i></a></li>

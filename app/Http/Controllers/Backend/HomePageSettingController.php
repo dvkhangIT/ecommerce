@@ -13,10 +13,29 @@ class HomePageSettingController extends Controller
     {
         $categories  = Category::where('status', 1)->get();
         $popularCategorySection = HomePageSetting::where('key', 'popular_category_section')->first();
-        return view('admin.home-page-setting.index', compact('categories', 'popularCategorySection'));
+        $sliderSectionOne = HomePageSetting::where('key', 'product_slider_section_one')->first();
+        return view('admin.home-page-setting.index', compact(
+            'categories',
+            'popularCategorySection',
+            'sliderSectionOne'
+        ));
     }
     public function updatePopularCategorySection(Request $request)
     {
+        $request->validate(
+            [
+                'cat_one' => ['required'],
+                'cat_two' => ['required'],
+                'cat_three' => ['required'],
+                'cat_four' => ['required'],
+            ],
+            [
+                'cat_one' => 'Category one filed is required',
+                'cat_two' => 'Category one filed is required',
+                'cat_three' => 'Category three filed is required',
+                'cat_four' => 'Category four filed is required',
+            ]
+        );
         $data = [
             [
                 'category' => $request->cat_one,
@@ -42,6 +61,25 @@ class HomePageSettingController extends Controller
         HomePageSetting::updateOrCreate(
             [
                 'key' => 'popular_category_section'
+            ],
+            [
+                'value' => json_encode($data),
+            ]
+        );
+        toastr()->success('Updated Successfully', ' ');
+        return redirect()->back();
+    }
+    public function updateProductSliderSectionOne(Request $request)
+    {
+        $request->validate(['cat_one' => ['required']], ['cat_one' => 'Category filed is required']);
+        $data = [
+            'category' => $request->cat_one,
+            'sub_category' => $request->sub_cat_one,
+            'child_category' => $request->child_cat_one,
+        ];
+        HomePageSetting::updateOrCreate(
+            [
+                'key' => 'product_slider_section_one'
             ],
             [
                 'value' => json_encode($data),
