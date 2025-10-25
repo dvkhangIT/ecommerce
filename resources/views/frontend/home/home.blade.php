@@ -28,10 +28,10 @@
   @include('frontend.home.sections.category-product-slider-two')
   {{-- ELECTRONIC PART END --}}
   {{-- LARGE BANNER START --}}
-  {{-- @include('frontend.home.sections.large_banner') --}}
+  @include('frontend.home.sections.large_banner')
   {{-- LARGE BANNER END --}}
   {{-- WEEKLY BEST ITEM START --}}
-  {{-- @include('frontend.home.sections.weekly-best-item') --}}
+  @include('frontend.home.sections.weekly-best-item')
   {{-- WEEKLY BEST ITEM END --}}
   {{-- HOME SERVICES START --}}
   {{-- @include('frontend.home.sections.services') --}}

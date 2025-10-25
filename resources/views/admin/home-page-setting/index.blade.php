@@ -20,6 +20,8 @@
                         href="#list-messages" role="tab" aria-selected="false">Product Slider Section One</a>
                       <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
                         href="#list-settings" role="tab" aria-selected="true">Product Slider Section Two</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+                        href="#slider-section-three" role="tab" aria-selected="true">Product Slider Section Three</a>
                     </div>
                   </div>
                   <div class="col-10">
@@ -27,6 +29,7 @@
                       @include('admin.home-page-setting.section.popular-category-section')
                       @include('admin.home-page-setting.section.product-slider-section-one')
                       @include('admin.home-page-setting.section.product-slider-section-two')
+                      @include('admin.home-page-setting.section.product-slider-section-three')
                     </div>
                   </div>
                 </div>
