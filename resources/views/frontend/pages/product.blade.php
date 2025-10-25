@@ -215,14 +215,16 @@
               <div class="wsus__product_topbar">
                 <div class="wsus__product_topbar_left">
                   <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                      data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                      aria-selected="true">
+                    <button
+                      class="nav-link {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'active' : '' }} {{ !session()->has('product_list_style') ? 'active' : '' }} list-view"
+                      data-id="grid" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                      type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
                       <i class="fas fa-th"></i>
                     </button>
-                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                      data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                      aria-selected="false">
+                    <button
+                      class="nav-link list-view {{ session()->has('product_list_style') && session()->get('product_list_style') == 'list' ? 'active' : '' }}"
+                      data-id="list" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                      type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                       <i class="fas fa-list-ul"></i>
                     </button>
                   </div>
@@ -247,8 +249,9 @@
               </div>
             </div>
             <div class="tab-content" id="v-pills-tabContent">
-              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                aria-labelledby="v-pills-home-tab">
+              <div
+                class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'grid' ? 'show active' : '' }} {{ !session()->has('product_list_style') ? 'show active' : '' }}"
+                id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="row">
                   @foreach ($products as $product)
                     <div class="col-xl-4 col-sm-6">
@@ -260,7 +263,8 @@
                           </span>
                         @endif
                         <a class="wsus__pro_link" href="{{ route('product-detail', $product->slug) }}">
-                          <img src="{{ asset($product->thumb_image) }}" alt="product" class="img-fluid w-100 img_1" />
+                          <img src="{{ asset($product->thumb_image) }}" alt="product"
+                            class="img-fluid w-100 img_1" />
                           <img
                             src="{{ isset($product->productImageGalleries[0]->image) ? asset($product->productImageGalleries[0]->image) : asset($product->thumb_image) }}"
                             alt="product" class="img-fluid w-100 img_2" />
@@ -317,7 +321,9 @@
                   @endforeach
                 </div>
               </div>
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              <div
+                class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'list' ? 'show active' : '' }}"
+                id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <div class="row">
                   @foreach ($products as $product)
                     <div class="col-xl-12">
@@ -414,3 +420,22 @@
   </section>
   {{-- PRODUCT PAGE END --}}
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('.list-view').on('click', function() {
+        let style = $(this).data('id');
+        $.ajax({
+          type: "GET",
+          url: "{{ route('change-product-list-view') }}",
+          data: {
+            style
+          },
+          success: function(data) {
+
+          }
+        });
+      });
+    });
+  </script>
+@endpush
