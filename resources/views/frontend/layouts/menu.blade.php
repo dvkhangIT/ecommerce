@@ -24,22 +24,20 @@
             {{-- <li><a href="#"><i class="fas fa-star"></i> hot
                 promotions</a></li> --}}
             @foreach ($categories as $category)
-              <li><a
-                  class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}"
-                  href="#"><i class="{{ $category->icon }}"></i>
+              <li><a class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}"
+                  href="{{ route('products.index', ['category' => $category->slug]) }}"><i
+                    class="{{ $category->icon }}"></i>
                   {{ $category->name }}
                 </a>
                 @if (count($category->subCategories) > 0)
                   <ul class="wsus_menu_cat_droapdown">
                     @foreach ($category->subCategories as $subCategory)
                       <li><a href="#">{{ $subCategory->name }}
-                          <i
-                            class="{{ count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : '' }}"></i></a>
+                          <i class="{{ count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : '' }}"></i></a>
                         @if (count($subCategory->childCategories) > 0)
                           <ul class="wsus__sub_category">
                             @foreach ($subCategory->childCategories as $chilCategory)
-                              <li><a
-                                  href="#">{{ $chilCategory->name }}</a>
+                              <li><a href="#">{{ $chilCategory->name }}</a>
                               </li>
                             @endforeach
                           </ul>
@@ -52,11 +50,9 @@
             <li><a href="#"><i class="fal fa-gem"></i> View All
                 Categories</a></li>
           </ul>
-
           <ul class="wsus__menu_item">
             <li><a class="active" href="{{ route('home') }}">home</a></li>
-            <li><a href="product_grid_view.html">shop <i
-                  class="fas fa-caret-down"></i></a>
+            <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
               <div class="wsus__mega_menu">
                 <div class="row">
                   <div class="col-xl-3 col-lg-3">
@@ -125,8 +121,7 @@
             <li><a href="vendor.html">vendor</a></li>
             <li><a href="blog.html">blog</a></li>
             <li><a href="daily_deals.html">campain</a></li>
-            <li class="wsus__relative_li"><a href="#">pages <i
-                  class="fas fa-caret-down"></i></a>
+            <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
               <ul class="wsus__menu_droapdown">
                 <li><a href="404.html">404</a></li>
                 <li><a href="faqs.html">faq</a></li>
@@ -183,31 +178,25 @@
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="pills-home-tab"
-        data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
-        aria-controls="pills-home" aria-selected="true">Categories</button>
+      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+        role="tab" aria-controls="pills-home" aria-selected="true">Categories</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-        data-bs-target="#pills-profile" role="tab"
-        aria-controls="pills-profile" aria-selected="false">main menu</button>
+      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+        role="tab" aria-controls="pills-profile" aria-selected="false">main menu</button>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-      aria-labelledby="pills-home-tab">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="wsus__mobile_menu_main_menu">
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <ul class="wsus_mobile_menu_category">
             <li><a href="#"><i class="fas fa-star"></i> hot
                 promotions</a></li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#flush-collapseThreew" aria-expanded="false"
-                aria-controls="flush-collapseThreew"><i
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThreew" aria-expanded="false" aria-controls="flush-collapseThreew"><i
                   class="fal fa-tshirt"></i> fashion</a>
-              <div id="flush-collapseThreew"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThreew" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul>
@@ -219,13 +208,11 @@
                 </div>
               </div>
             </li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#flush-collapseThreer" aria-expanded="false"
-                aria-controls="flush-collapseThreer"><i class="fas fa-tv"></i>
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThreer" aria-expanded="false" aria-controls="flush-collapseThreer"><i
+                  class="fas fa-tv"></i>
                 electronics</a>
-              <div id="flush-collapseThreer"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThreer" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul>
@@ -236,14 +223,11 @@
                 </div>
               </div>
             </li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThreerrp" aria-expanded="false"
-                aria-controls="flush-collapseThreerrp"><i
-                  class="fas fa-chair-office"></i>
+                aria-controls="flush-collapseThreerrp"><i class="fas fa-chair-office"></i>
                 furnicture</a>
-              <div id="flush-collapseThreerrp"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThreerrp" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul>
@@ -254,14 +238,11 @@
                 </div>
               </div>
             </li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThreerrw" aria-expanded="false"
-                aria-controls="flush-collapseThreerrw"><i
-                  class="fal fa-mobile"></i> Smart
+                aria-controls="flush-collapseThreerrw"><i class="fal fa-mobile"></i> Smart
                 Phones</a>
-              <div id="flush-collapseThreerrw"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThreerrw" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul>
@@ -291,18 +272,15 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-      aria-labelledby="pills-profile-tab">
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <div class="wsus__mobile_menu_main_menu">
         <div class="accordion accordion-flush" id="accordionFlushExample2">
           <ul>
             <li><a href="index.html">home</a></li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree" aria-expanded="false"
                 aria-controls="flush-collapseThree">shop</a>
-              <div id="flush-collapseThree"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThree" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample2">
                 <div class="accordion-body">
                   <ul>
@@ -317,12 +295,10 @@
             <li><a href="vendor.html">vendor</a></li>
             <li><a href="blog.html">blog</a></li>
             <li><a href="daily_deals.html">campain</a></li>
-            <li><a href="#" class="accordion-button collapsed"
-                data-bs-toggle="collapse"
+            <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree101" aria-expanded="false"
                 aria-controls="flush-collapseThree101">pages</a>
-              <div id="flush-collapseThree101"
-                class="accordion-collapse collapse"
+              <div id="flush-collapseThree101" class="accordion-collapse collapse"
                 data-bs-parent="#accordionFlushExample2">
                 <div class="accordion-body">
                   <ul>
