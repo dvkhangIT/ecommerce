@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -13,10 +15,24 @@ class FrontendProductController extends Controller
     public function productsIndex(Request $request)
     {
         if ($request->has('category')) {
-            $category = Category::where('slug', $request->category)->first();
+            $category = Category::where('slug', $request->category)->firstOrFail();
             $products = Product::where([
                 'status' => 1,
                 'category_id' => $category->id,
+                'is_approved' => 1,
+            ])->paginate(12);
+        } elseif ($request->has('subcategory')) {
+            $category = SubCategory::where('slug', $request->subcategory)->firstOrFail();
+            $products = Product::where([
+                'status' => 1,
+                'sub_category_id' => $category->id,
+                'is_approved' => 1,
+            ])->paginate(12);
+        } elseif ($request->has('childcategory')) {
+            $category = ChildCategory::where('slug', $request->childcategory)->firstOrFail();
+            $products = Product::where([
+                'status' => 1,
+                'child_category_id' => $category->id,
                 'is_approved' => 1,
             ])->paginate(12);
         }

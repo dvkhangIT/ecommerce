@@ -32,12 +32,14 @@
                 @if (count($category->subCategories) > 0)
                   <ul class="wsus_menu_cat_droapdown">
                     @foreach ($category->subCategories as $subCategory)
-                      <li><a href="#">{{ $subCategory->name }}
+                      <li><a
+                          href="{{ route('products.index', ['subcategory' => $subCategory->slug]) }}">{{ $subCategory->name }}
                           <i class="{{ count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : '' }}"></i></a>
                         @if (count($subCategory->childCategories) > 0)
                           <ul class="wsus__sub_category">
-                            @foreach ($subCategory->childCategories as $chilCategory)
-                              <li><a href="#">{{ $chilCategory->name }}</a>
+                            @foreach ($subCategory->childCategories as $childCategory)
+                              <li><a
+                                  href="{{ route('products.index', ['childcategory' => $childCategory->slug]) }}">{{ $childCategory->name }}</a>
                               </li>
                             @endforeach
                           </ul>
