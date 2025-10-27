@@ -31,9 +31,9 @@ function checkDiscount($product)
 function calculateDiscountPercent($originalPrice, $discountPrice)
 {
     $discountAmount = $originalPrice - $discountPrice;
-    $discountPercent = round(($discountAmount / $originalPrice) * 100, 1);
+    $discountPercent = ($discountAmount / $originalPrice) * 100;
 
-    return $discountPercent;
+    return round($discountPercent);
 }
 
 // Check product type
