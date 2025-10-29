@@ -33,7 +33,8 @@
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $product->id }}"><i
                       class="far fa-eye"></i></a>
                 </li>
-                <li><a href="#"><i class="far fa-heart"></i></a></li>
+                <li><a class="wishlist" data-id="{{ $product->id }}" href="#"><i class="far fa-heart"></i></a>
+                </li>
                 <li><a href="#"><i class="far fa-random"></i></a>
               </ul>
               <div class="wsus__product_details">
@@ -47,7 +48,8 @@
                   <i class="fas fa-star-half-alt"></i>
                   <span>(133 review)</span>
                 </p>
-                <a class="wsus__pro_name" href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
+                <a class="wsus__pro_name"
+                  href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
                 @if (checkDiscount($product))
                   <p class="wsus__price">
                     {{ $settings->currency_icon }}{{ $product->offer_price }}

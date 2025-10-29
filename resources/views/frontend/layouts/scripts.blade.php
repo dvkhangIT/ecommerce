@@ -100,5 +100,24 @@
          }
        });
      }
+     // add product to wishlist
+     $('.wishlist').on('click', function(e) {
+       e.preventDefault();
+       let id = $(this).data('id');
+       $.ajax({
+         type: "GET",
+         url: "{{ route('user.wishlist.store') }}",
+         data: {
+           id
+         },
+         success: function(response) {
+           if (response.status === 'success') {
+             toastr.success(response.message);
+           } else if (response.status === 'error') {
+             toastr.error(response.message);
+           }
+         }
+       });
+     });
    });
  </script>
