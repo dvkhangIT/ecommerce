@@ -161,8 +161,8 @@
                           <li><a href="#" data-bs-toggle="modal"
                               data-bs-target="#product-{{ $product->id }}"><i class="far fa-eye"></i></a>
                           </li>
-                          <li><a href="#"><i class="far fa-heart"></i></a></li>
-                          <li><a href="#"><i class="far fa-random"></i></a>
+                          <li><a data-id="{{ $product->id }}" class="add_to_wishlist" href="#"><i
+                                class="far fa-heart"></i></a></li>
                         </ul>
                         <div class="wsus__product_details">
                           <a class="wsus__category" href="#">{{ $product->category->name }}
@@ -270,7 +270,6 @@
                                 </li>
                               </form>
                               <li><a href="#"><i class="far fa-heart"></i></a></li>
-                              <li><a href="#"><i class="far fa-random"></i></a>
                             </ul>
                         </div>
                       </div>
@@ -402,8 +401,8 @@
                       <ul class="wsus__button_area">
                         <li><button type="submit" class="add_cart">add to cart</a></li>
                         <li><a class="buy_now" href="#">buy now</a></li>
-                        <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                        <li><a href="#"><i class="far fa-random"></i></a></li>
+                        <li><a href="#" data-id="{{ $product->id }}" class="add_to_wishlist"><i
+                              class="fal fa-heart"></i></a></li>
                       </ul>
                     </form>
                     <p class="brand_model"><span>brand :</span>
