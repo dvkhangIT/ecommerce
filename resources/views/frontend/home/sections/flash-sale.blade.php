@@ -33,7 +33,8 @@
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $product->id }}"><i
                       class="far fa-eye"></i></a>
                 </li>
-                <li><a class="wishlist" data-id="{{ $product->id }}" href="#"><i class="far fa-heart"></i></a>
+                <li><a class="add_to_wishlist" data-id="{{ $product->id }}" href="#"><i
+                      class="far fa-heart"></i></a>
                 </li>
                 <li><a href="#"><i class="far fa-random"></i></a>
               </ul>

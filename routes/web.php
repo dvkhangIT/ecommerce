@@ -97,4 +97,5 @@ Route::group([
     // Wishlist routes
     Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+    Route::get('wishlist/remove-product/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 });
