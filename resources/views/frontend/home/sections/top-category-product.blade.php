@@ -71,7 +71,8 @@
                <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3 category-{{ $key }}  elec cam wat">
                  <a class="wsus__hot_deals__single" href="#">
                    <div class="wsus__hot_deals__single_img">
-                     <img src="{{ asset($item->thumb_image) }}" alt="bag" class="img-fluid w-100">
+                     <img src="{{ asset($item->thumb_image) }}" alt="bag" class="img-fluid w-100"
+                       style="height: 130px">
                    </div>
                    <div class="wsus__hot_deals__single_text">
                      <h5>{!! limitText($item->name) !!}</h5>

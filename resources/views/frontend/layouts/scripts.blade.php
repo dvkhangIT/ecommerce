@@ -112,6 +112,7 @@
          },
          success: function(response) {
            if (response.status === 'success') {
+             $('#wishlist_count').text(response.count);
              toastr.success(response.message);
            } else if (response.status === 'error') {
              toastr.error(response.message);

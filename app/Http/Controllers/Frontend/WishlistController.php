@@ -27,7 +27,12 @@ class WishlistController extends Controller
         $wishlist->product_id = $request->id;
         $wishlist->user_id = Auth::user()->id;
         $wishlist->save();
-        return response(['status' => 'success', 'message' => 'Product added into the wishlist!']);
+        $count = Wishlist::where('user_id', Auth::user()->id)->count();
+        return response([
+            'status' => 'success',
+            'message' => 'Product added into the wishlist!',
+            'count' => $count
+        ]);
     }
     public function destroy(string $id)
     {
