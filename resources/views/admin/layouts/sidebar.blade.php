@@ -112,6 +112,18 @@
             </li>
           </ul>
         </li>
+        <li class="dropdown {{ setActive(['admin.footer-info.index']) }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <span>Footer</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ setActive(['admin.footer-info.*']) }}">
+              <a class="nav-link" href="{{ route('admin.footer-info.index') }}">Footer Info</a>
+            </li>
+            <li class="{{ setActive(['admin.home-page-setting']) }}">
+              <a class="nav-link" href="{{ route('admin.home-page-setting') }}">Home Page Setting</a>
+            </li>
+          </ul>
+        </li>
         <li
           class="dropdown {{ setActive([
               'admin.brand.*',
