@@ -33,7 +33,7 @@
         let id = $(this).data('id');
         $.ajax({
           type: "PUT",
-          url: "{{ route('admin.coupon.change-status') }}",
+          url: "{{ route('admin.footer-socials.change-status') }}",
           data: {
             status: status,
             id: id

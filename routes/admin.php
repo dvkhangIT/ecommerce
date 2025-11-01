@@ -135,4 +135,5 @@ Route::put('razorpay-setting/{id}', [RazorpaySettingController::class, 'update']
 
 // Footer route
 Route::resource('footer-info', FooterInfoController::class);
+Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-socials.change-status');
 Route::resource('footer-socials', FooterSocialController::class);

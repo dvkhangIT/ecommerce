@@ -21,25 +21,25 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = '<a href="'.route('admin.category.edit', $query->id).'" class="btn btn-primary"><i class="far fa-edit"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.category.destroy', $query->id).'" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                $editBtn = '<a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.category.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
 
-                return $editBtn.$deleteBtn;
+                return $editBtn . $deleteBtn;
             })
             ->addColumn('icon', function ($query) {
-                return '<i style="font-size:40px" class = "'.$query->icon.'"></i>';
+                return '<i style="font-size:40px" class = "' . $query->icon . '"></i>';
             })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
-          <span class="custom-switch-indicator"></span>
-          </label>';
+                <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                <span class="custom-switch-indicator"></span>
+                </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
-          <span class="custom-switch-indicator"></span>
-          </label>';
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
                 }
 
                 return $button;
@@ -65,7 +65,7 @@ class CategoryDataTable extends DataTable
             ->setTableId('category-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-          // ->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
@@ -103,6 +103,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Category_'.date('YmdHis');
+        return 'Category_' . date('YmdHis');
     }
 }
