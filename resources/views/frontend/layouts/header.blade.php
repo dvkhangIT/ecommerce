@@ -37,7 +37,7 @@
                 <a href="{{ route('user.wishlist.index') }}">
                   <i class="fal fa-heart"></i>
                   <span
-                    id="wishlist_count">{{ isset(auth()->user()->id) ? \App\Models\Wishlist::where('user_id', auth()->user()->id)->count() : 0 }}</span>
+                    id="wishlist_count">{{ auth()->check() ? \App\Models\Wishlist::where('user_id', auth()->user()->id)->count() : 0 }}</span>
                 </a>
               </li>
               <li><a class="wsus__cart_icon" href="#"><i class="fal fa-shopping-bag"></i><span
