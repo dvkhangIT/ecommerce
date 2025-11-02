@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingController;
@@ -137,3 +138,5 @@ Route::put('razorpay-setting/{id}', [RazorpaySettingController::class, 'update']
 Route::resource('footer-info', FooterInfoController::class);
 Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-socials.change-status');
 Route::resource('footer-socials', FooterSocialController::class);
+Route::put('footer-grid-two/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-grid-two.change-status');
+Route::resource('footer-grid-two', FooterGridTwoController::class);
