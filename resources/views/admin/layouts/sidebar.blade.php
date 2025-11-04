@@ -8,7 +8,7 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li class="dropdown active">
+        <li class="dropdown {{ setActive(['admin.dashboard']) }}">
           <a href="{{ route('admin.dashboard') }}" class="nav-link">
             <i class="fas fa-fire"></i>
             <span>Dashboard</span></a>
@@ -162,13 +162,14 @@
               <a class="nav-link" href="{{ route('admin.seller-products.index') }}">Seller
                 Products</a>
             </li>
-            <li class=" {{ setActive(['admin.seller-pending-products.*']) }}">
+            <li class="{{ setActive(['admin.seller-pending-products.*']) }}">
               <a class="nav-link" href="{{ route('admin.seller-pending-products.index') }}">Seller
                 Pending Products</a>
             </li>
           </ul>
         </li>
-        <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i>
+        <li class="{{ setActive(['admin.settings.index']) }}"><a class="nav-link"
+            href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i>
             <span>Settings</span></a></li>
       </ul>
     </aside>
