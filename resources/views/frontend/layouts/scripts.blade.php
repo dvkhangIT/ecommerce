@@ -121,4 +121,26 @@
        });
      });
    });
+
+   // newsletter
+   $('#newsletter').on('submit', function(e) {
+     e.preventDefault();
+     let data = $(this).serialize();
+     $.ajax({
+       type: "POST",
+       url: "{{ route('newsletter-request') }}",
+       data: data,
+       success: function(response) {
+
+       },
+       error: function(response) {
+         let errors = response.responseJSON.errors
+         if (errors) {
+           $.each(errors, function(key, value) {
+             toastr.error(value);
+           });
+         }
+       }
+     });
+   });
  </script>
