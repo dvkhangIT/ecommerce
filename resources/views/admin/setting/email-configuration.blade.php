@@ -37,7 +37,7 @@
              <div class="form-group">
                <label>Mail Encryption</label>
                <select class="form-control" name="encryption" id="">
-                 <option {{ @$emailSettings->encryption == 'tls' ? 'selected' : '' }} value="tls">TLS</option>
+                 <option {{ @$emailSettings->encryption == 'tls' ? 'selected' : '' }} value="tls">TSL</option>
                  <option {{ @$emailSettings->encryption == 'ssl' ? 'selected' : '' }} value="ssl">SSL</option>
                </select>
              </div>

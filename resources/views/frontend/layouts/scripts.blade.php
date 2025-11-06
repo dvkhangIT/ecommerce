@@ -131,7 +131,11 @@
        url: "{{ route('newsletter-request') }}",
        data: data,
        success: function(response) {
-
+         if (response.status === 'success') {
+           toastr.success(response.message);
+         } else if (response.status === 'error') {
+           toastr.success(response.message);
+         }
        },
        error: function(response) {
          let errors = response.responseJSON.errors
