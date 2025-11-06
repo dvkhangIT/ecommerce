@@ -19,10 +19,20 @@ class NewsletterController extends Controller
             'email' => ['required', 'email'],
         ]);
         $existSubcriber = NewsletterSubscriber::where('email', $request->email)->first();
-        if (!empty($existSubcriber) && count($existSubcriber) > 0) {
+        if (!empty($existSubcriber)) {
             if ($existSubcriber->is_verified == 0) {
-                // send variafication link here
-            } elseif ($existSubcriber == 1) {
+                $existSubcriber->verified_token = Str::random(25);
+                $existSubcriber->save();
+                // set mail config
+                \Mail::purge('smtp');
+                MailHelper::setMailConfig();
+                // send mail
+                Mail::to($existSubcriber->email)->send(new SubcriptionVerification($existSubcriber));
+                return response([
+                    'status' => 'success',
+                    'message' => 'A verification link has been sent to your email please check'
+                ]);
+            } elseif ($existSubcriber->is_verified == 1) {
                 return response(['status' => 'error', 'message' => 'You already subcribed with this email!']);
             }
         } else {
@@ -41,6 +51,16 @@ class NewsletterController extends Controller
     }
     public function newsLetterEmailVerify($token)
     {
-        dd($token);
+        $verify = NewsletterSubscriber::where('verified_token', $token)->first();
+        if ($verify) {
+            $verify->verified_token = 'verified';
+            $verify->is_verified = 1;
+            $verify->save();
+            toastr()->success('Email verification successfully', ' ');
+            return redirect()->route('home');
+        } else {
+            toastr()->error('Invalid token', ' ');
+            return redirect()->route('home');
+        }
     }
 }

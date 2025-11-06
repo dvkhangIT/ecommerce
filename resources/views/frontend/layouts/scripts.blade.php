@@ -130,11 +130,17 @@
        type: "POST",
        url: "{{ route('newsletter-request') }}",
        data: data,
+       beforeSend: function() {
+         $('.subscribe-btn').text('Loading...');
+       },
        success: function(response) {
          if (response.status === 'success') {
+           $('.newsletter_email').val('');
+           $('.subscribe-btn').text('subscribe');
            toastr.success(response.message);
          } else if (response.status === 'error') {
-           toastr.success(response.message);
+           $('.subscribe-btn').text('subscribe');
+           toastr.error(response.message);
          }
        },
        error: function(response) {
@@ -144,6 +150,7 @@
              toastr.error(value);
            });
          }
+         $('.subscribe-btn').text('subscribe');
        }
      });
    });
