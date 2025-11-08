@@ -168,6 +168,10 @@
             </li>
           </ul>
         </li>
+        <li class="{{ setActive(['admin.advertisement.*']) }}"><a class="nav-link"
+            href="{{ route('admin.advertisement.index') }}"><i class="far fa-square"></i>
+            <span>Advertisement</span></a>
+        </li>
         <li class="{{ setActive(['admin.subscribers.*']) }}"><a class="nav-link"
             href="{{ route('admin.subscribers.index') }}"><i class="far fa-square"></i>
             <span>Subscribers</span></a>
