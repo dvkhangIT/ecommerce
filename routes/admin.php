@@ -136,6 +136,7 @@ Route::put('product-slider-section-three', [HomePageSettingController::class, 'u
 // Advertisement routes
 Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
 Route::put('advertisement/homepage-banner-section-one', [AdvertisementController::class, 'homepageBannerSectionOne'])->name('homepage-banner-section-one');
+Route::put('advertisement/homepage-banner-section-two', [AdvertisementController::class, 'homepageBannerSectionTwo'])->name('homepage-banner-section-two');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
