@@ -1,15 +1,34 @@
-<div class="tab-pane fade" id="list-banner-four" role="tabpanel" aria-labelledby="list-banner-four-list">
-  <div class="card border">
-    <div class="card-body">
-      <form action="{{ route('admin.general-setting-update') }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-          <label>Site Name</label>
-          <input type="text" value="" class="form-control" name="site_name">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-      </form>
-    </div>
-  </div>
-</div>
+ <div class="tab-pane fade" id="list-banner-four" role="tabpanel" aria-labelledby="list-banner-four-list">
+   <div class="card border">
+     <div class="card-body">
+       <form action="{{ route('admin.homepage-banner-section-four') }}" method="POST" enctype="multipart/form-data">
+         @csrf
+         @method('PUT')
+         <div class="form-group">
+           <div class="control-label">Status</div>
+           <label class="custom-switch mt-2">
+             <input type="checkbox" {{ $homepage_section_banner_four->banner_one->status == 1 ? 'checked' : '' }}
+               name="status" class="custom-switch-input">
+             <span class="custom-switch-indicator"></span>
+           </label>
+         </div>
+         <div class="form-group">
+           <img src="{{ asset($homepage_section_banner_four->banner_one->banner_image) }}" width="150px"
+             alt="">
+         </div>
+         <div class="form-group">
+           <label>Banner Image</label>
+           <input type="file" class="form-control" name="banner_image">
+           <input type="hidden" name="banner_old_image"
+             value="{{ $homepage_section_banner_four->banner_one->banner_image }}">
+         </div>
+         <div class="form-group">
+           <label>Banner Url</label>
+           <input type="text" value="{{ $homepage_section_banner_four->banner_one->banner_url }}"
+             class="form-control" name="banner_url">
+         </div>
+         <button type="submit" class="btn btn-primary">Update</button>
+       </form>
+     </div>
+   </div>
+ </div>

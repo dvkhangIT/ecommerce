@@ -4,7 +4,7 @@
       <form action="{{ route('admin.homepage-banner-section-two') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <h1>banner one</h1>
+        <h1>Banner One</h1>
         <div class="form-group">
           <div class="control-label">Status</div>
           <label class="custom-switch mt-2">
@@ -27,7 +27,7 @@
           <input type="text" value="{{ @$homepage_section_banner_two->banner_one->banner_url }}" class="form-control"
             name="banner_one_url">
         </div>
-        <h1>banner two</h1>
+        <h1>Banner Two</h1>
         <div class="form-group">
           <div class="control-label">Status</div>
           <label class="custom-switch mt-2">
