@@ -22,6 +22,10 @@
                         href="#list-banner-three" role="tab" aria-selected="false">Homepage banner section three</a>
                       <a class="list-group-item list-group-item-action" id="list-banner-four-list" data-toggle="list"
                         href="#list-banner-four" role="tab" aria-selected="true">Homepage banner section four</a>
+                      <a class="list-group-item list-group-item-action" id="list-product-list" data-toggle="list"
+                        href="#list-product" role="tab" aria-selected="true">Product page banner</a>
+                      <a class="list-group-item list-group-item-action" id="list-cart-list" data-toggle="list"
+                        href="#list-cart" role="tab" aria-selected="true">Cart page banner</a>
                     </div>
                   </div>
                   <div class="col-10">
@@ -30,6 +34,8 @@
                       @include('admin.advertisement.homepage-banner-two')
                       @include('admin.advertisement.homepage-banner-three')
                       @include('admin.advertisement.homepage-banner-four')
+                      @include('admin.advertisement.product-page-banner')
+                      @include('admin.advertisement.cart-page-banner')
                     </div>
                   </div>
                 </div>
