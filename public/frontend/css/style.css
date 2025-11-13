@@ -4202,6 +4202,7 @@ PRODUCT DETAILS START
 }
 
 .wsus__single_com input,
+.wsus__single_com select,
 .wsus__single_com textarea {
     width: 100%;
     padding: 10px 20px;
