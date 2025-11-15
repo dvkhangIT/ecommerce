@@ -110,7 +110,7 @@ class FrontendProductController extends Controller
             'variants',
             'brand'
         )->where('slug', $slug)->where('status', 1)->first();
-        $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(1);
+        $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
         return view('frontend.pages.product-detail', compact('product', 'reviews'));
     }
     public function changeListView(Request $request)

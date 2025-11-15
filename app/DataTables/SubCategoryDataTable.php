@@ -21,10 +21,10 @@ class SubCategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = '<a href="'.route('admin.sub-category.edit', $query->id).'" class="btn btn-primary"><i class="far fa-edit"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.sub-category.destroy', $query->id).'" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                $editBtn = '<a href="' . route('admin.sub-category.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.sub-category.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
 
-                return $editBtn.$deleteBtn;
+                return $editBtn . $deleteBtn;
             })
             ->addColumn('category', function ($query) {
                 return $query->category->name;
@@ -32,12 +32,12 @@ class SubCategoryDataTable extends DataTable
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
+          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
           <span class="custom-switch-indicator"></span>
           </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
+          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
           <span class="custom-switch-indicator"></span>
           </label>';
                 }
@@ -65,7 +65,7 @@ class SubCategoryDataTable extends DataTable
             ->setTableId('subcategory-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-          // ->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
@@ -103,6 +103,6 @@ class SubCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'SubCategory_'.date('YmdHis');
+        return 'SubCategory_' . date('YmdHis');
     }
 }

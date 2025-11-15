@@ -104,11 +104,14 @@
     <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('frontend/datatables/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/datatables/dataTables.dataTables.min.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--toastr-->
     <script src="{{ asset('toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('toastr/custom.js') }}"></script>
+    <script src="{{ asset('frontend/datatables/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('frontend/datatables/dataTables.min.js') }}"></script>
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <!--main/custom js-->
@@ -181,6 +184,7 @@
         })
       });
     </script>
+    @stack('scripts')
   </body>
 
 </html>

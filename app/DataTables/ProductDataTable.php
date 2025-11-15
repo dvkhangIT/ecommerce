@@ -22,29 +22,29 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = '<a href="'.route('admin.products.edit', $query->id).'" class="btn btn-primary"><i class="far fa-edit"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.products.destroy', $query->id).'" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                $editBtn = '<a href="' . route('admin.products.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.products.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
                 $moreBtn = '<div class="dropdown dropleft d-inline">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-cog"></i>
                       </button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item has-icon" href="'.route('admin.products-image-gallery.index', ['product' => $query->id]).'"><i class="far fa-heart"></i> Image Gallery</a>
-                        <a class="dropdown-item has-icon" href="'.route('admin.products-variant.index', ['product' => $query->id]).'"><i class="far fa-file"></i> Variants</a>
+                        <a class="dropdown-item has-icon" href="' . route('admin.products-image-gallery.index', ['product' => $query->id]) . '"><i class="far fa-heart"></i> Image Gallery</a>
+                        <a class="dropdown-item has-icon" href="' . route('admin.products-variant.index', ['product' => $query->id]) . '"><i class="far fa-file"></i> Variants</a>
                       </div>
                     </div>';
 
-                return $editBtn.$deleteBtn.$moreBtn;
+                return $editBtn . $deleteBtn . $moreBtn;
             })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
+          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
           <span class="custom-switch-indicator"></span>
           </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
+          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
           <span class="custom-switch-indicator"></span>
           </label>';
                 }
@@ -52,7 +52,7 @@ class ProductDataTable extends DataTable
                 return $button;
             })
             ->addColumn('thumb_image', function ($query) {
-                return $imag = "<img width='70px' src='".asset($query->thumb_image)."'>";
+                return $imag = "<img width='70px' src='" . asset($query->thumb_image) . "'>";
             })
             ->addColumn('type', function ($query) {
                 switch ($query->product_type) {
@@ -94,7 +94,7 @@ class ProductDataTable extends DataTable
             ->setTableId('product-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-          // ->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
@@ -132,6 +132,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Product_'.date('YmdHis');
+        return 'Product_' . date('YmdHis');
     }
 }
