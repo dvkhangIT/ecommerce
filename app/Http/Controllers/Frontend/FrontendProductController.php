@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -109,8 +110,8 @@ class FrontendProductController extends Controller
             'variants',
             'brand'
         )->where('slug', $slug)->where('status', 1)->first();
-
-        return view('frontend.pages.product-detail', compact('product'));
+        $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(1);
+        return view('frontend.pages.product-detail', compact('product', 'reviews'));
     }
     public function changeListView(Request $request)
     {
