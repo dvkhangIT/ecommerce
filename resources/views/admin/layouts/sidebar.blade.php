@@ -155,6 +155,7 @@
                   'admin.products-image-gallery.*',
                   'admin.products-variant.*',
                   'admin.products-variant-item.*',
+                  'admin.reviews.index.*',
               ]) }}">
               <a class="nav-link" href="{{ route('admin.products.index') }}">Products</a>
             </li>
@@ -165,6 +166,9 @@
             <li class="{{ setActive(['admin.seller-pending-products.*']) }}">
               <a class="nav-link" href="{{ route('admin.seller-pending-products.index') }}">Seller
                 Pending Products</a>
+            </li>
+            <li class="{{ setActive(['admin.reviews.index.*']) }}">
+              <a class="nav-link" href="{{ route('admin.reviews.index') }}">Product Review</a>
             </li>
           </ul>
         </li>
