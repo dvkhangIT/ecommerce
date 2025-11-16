@@ -18,13 +18,18 @@
       <a class="{{ setActive(['vendor.products.index']) }}" href="{{ route('vendor.products.index') }}"><i
           class="fas fa-tachometer"></i>Products</a>
     </li>
-    <li class="{{ setActive(['vendor.shop-profile.index']) }}">
-      <a href="{{ route('vendor.shop-profile.index') }}"><i class="fas fa-list-ul"></i> Shop
+    <li>
+      <a class="{{ setActive(['vendor.reviews.index']) }}" href="{{ route('vendor.reviews.index') }}"><i
+          class="fas fa-tachometer"></i>Reviews</a>
+    </li>
+    <li>
+      <a class="{{ setActive(['vendor.shop-profile.index']) }}" href="{{ route('vendor.shop-profile.index') }}"><i
+          class="fas fa-list-ul"></i> Shop
         Profile</a>
     </li>
-    <li class="{{ setActive(['vendor.profile']) }}">
-      <a href="{{ route('vendor.profile') }}"><i class="far fa-user"></i> My
-        Profile</a>
+    <li>
+      <a class="{{ setActive(['vendor.profile']) }}" href="{{ route('vendor.profile') }}"><i class="far fa-user"></i>
+        My Profile </a>
     </li>
     <li>
       <form action="{{ route('logout') }}" method="POST">

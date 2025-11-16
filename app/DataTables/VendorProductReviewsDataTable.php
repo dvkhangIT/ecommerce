@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserProductReviewsDataTable extends DataTable
+class VendorProductReviewsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -45,7 +45,7 @@ class UserProductReviewsDataTable extends DataTable
      */
     public function query(ProductReview $model): QueryBuilder
     {
-        return $model::with('product')->where('user_id', Auth::user()->id)->newQuery();
+        return $model->where('vendor_id', Auth::user()->id)->newQuery();
     }
 
     /**
@@ -54,7 +54,7 @@ class UserProductReviewsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('userproductreviews-table')
+            ->setTableId('vendorproductreviews-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -90,6 +90,6 @@ class UserProductReviewsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'UserProductReviews_' . date('YmdHis');
+        return 'VendorProductReviews_' . date('YmdHis');
     }
 }
