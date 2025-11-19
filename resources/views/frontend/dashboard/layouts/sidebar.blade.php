@@ -30,6 +30,11 @@
         Profile</a>
     </li>
     <li>
+      <a class="{{ setActive(['user.vendor-request.index']) }}" href="{{ route('user.vendor-request.index') }}"><i
+          class="far fa-user"></i>
+        Request to be a vendor</a>
+    </li>
+    <li>
       <a class="{{ setActive(['user.address.index']) }}" href="{{ route('user.address.index') }}"><i
           class="fal fa-gift-card"></i>
         Addresses</a>

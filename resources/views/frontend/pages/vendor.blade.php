@@ -33,13 +33,6 @@
                   <div class="wsus__vendor_text">
                     <div class="wsus__vendor_text_center">
                       <h4>{{ $vendor->shop_name }}</h4>
-                      <p class="wsus__vendor_rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                      </p>
                       <a href="callto:{{ $vendor->phone }}"><i class="far fa-phone-alt"></i>
                         {{ $vendor->phone }}</a>
                       <a href="mailto:{{ $vendor->email }}"><i class="fal fa-envelope"></i>
@@ -54,24 +47,9 @@
         </div>
         <div class="col-xl-12">
           <section id="pagination">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link page_active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            @if ($vendors->hasPages())
+              {{ $vendors->links() }}
+            @endif
           </section>
         </div>
       </div>
