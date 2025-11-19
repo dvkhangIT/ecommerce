@@ -63,6 +63,9 @@ Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->
 Route::post('newsletter-request', [NewsletterController::class, 'newsLetterRequest'])->name('newsletter-request');
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVerify'])->name('newsletter-verify');
 
+// Vendor page route
+Route::get('vendor-shop', [HomeController::class, 'vendorPage'])->name('vendor.index');
+Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
 
 Route::group([
     'middleware' => ['auth', 'verified'],
