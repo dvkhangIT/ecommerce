@@ -112,6 +112,7 @@ Route::group([
 
     // vendor request route
     Route::get('vendor-request', [UserVendorRequestController::class, 'index'])->name('vendor-request.index');
+    Route::post('vendor-request', [UserVendorRequestController::class, 'create'])->name('vendor-request.create');
 
     // product review route
     Route::get('reviews', [ReviewController::class, 'index'])->name('review.index');

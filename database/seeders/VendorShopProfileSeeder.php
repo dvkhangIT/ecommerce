@@ -22,6 +22,7 @@ class VendorShopProfileSeeder extends Seeder
         $vender->email = 'vendor@gmail.com';
         $vender->description = 'shop description';
         $vender->user_id = $user->id;
+        $vender->status = 1;
         $vender->save();
     }
 }
