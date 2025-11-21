@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\VendorRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -146,6 +147,10 @@ Route::put('advertisement/homepage-banner-section-three', [AdvertisementControll
 Route::put('advertisement/homepage-banner-section-four', [AdvertisementController::class, 'homepageBannerSectionFour'])->name('homepage-banner-section-four');
 Route::put('advertisement/productpage-banner', [AdvertisementController::class, 'productPageBanner'])->name('productpage-banner');
 Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'cartPageBanner'])->name('cartpage-banner');
+
+// Vendor request route
+Route::get('vendor-request', [VendorRequestController::class, 'index'])->name('vendor-request.index');
+Route::get('vendor-request/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-request.show');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
