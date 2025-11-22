@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\VendorRequestDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
@@ -17,5 +18,17 @@ class VendorRequestController extends Controller
     {
         $vendor = Vendor::findOrFail($id);
         return view('admin.vendor-request.show', compact('vendor'));
+    }
+    public function changeStatus(string $id, Request $request)
+    {
+        $vendor = Vendor::findOrFail($id);
+        $vendor->status = $request->status;
+        $vendor->save();
+
+        $user = User::findOrFail($vendor->user_id);
+        $user->role = 'vendor';
+        $user->save();
+        toastr()->success('Updated successfully!', ' ');
+        return redirect()->route('admin.vendor-request.index');
     }
 }

@@ -151,6 +151,7 @@ Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'ca
 // Vendor request route
 Route::get('vendor-request', [VendorRequestController::class, 'index'])->name('vendor-request.index');
 Route::get('vendor-request/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-request.show');
+Route::put('vendor-request/{id}/change-status', [VendorRequestController::class, 'changeStatus'])->name('vendor-request.change-status');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');

@@ -18,7 +18,6 @@ class VerdorShopProfileController extends Controller
     public function index()
     {
         $profile = Vendor::where('user_id', Auth::user()->id)->first();
-
         return view('vendor.shop-profile.index', compact('profile'));
     }
 

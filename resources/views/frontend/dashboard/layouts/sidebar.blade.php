@@ -10,6 +10,12 @@
       <a class="{{ setActive(['user.dashboard']) }}" href="{{ route('user.dashboard') }}"><i
           class="fas fa-tachometer"></i>Dashboard</a>
     </li>
+    @if (auth()->user()->role === 'vendor')
+      <li>
+        <a class="{{ setActive(['vendor.dashboard']) }}" href="{{ route('vendor.dashboard') }}"><i
+            class="fas fa-tachometer"></i>Go to Vendor Dashboard</a>
+      </li>
+    @endif
     <li>
       <a class="{{ setActive(['user.orders.index']) }}" href="{{ route('user.orders.index') }}"><i
           class="fas fa-list-ul"></i> Orders</a>
@@ -29,11 +35,13 @@
       <a class="{{ setActive(['user.profile']) }}" href="{{ route('user.profile') }}"><i class="far fa-user"></i> My
         Profile</a>
     </li>
-    <li>
-      <a class="{{ setActive(['user.vendor-request.index']) }}" href="{{ route('user.vendor-request.index') }}"><i
-          class="far fa-user"></i>
-        Request to be a vendor</a>
-    </li>
+    @if (auth()->user()->role !== 'vendor')
+      <li>
+        <a class="{{ setActive(['user.vendor-request.index']) }}" href="{{ route('user.vendor-request.index') }}"><i
+            class="far fa-user"></i>
+          Request to be a vendor</a>
+      </li>
+    @endif
     <li>
       <a class="{{ setActive(['user.address.index']) }}" href="{{ route('user.address.index') }}"><i
           class="fal fa-gift-card"></i>

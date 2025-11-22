@@ -49,14 +49,20 @@
                         <div class="row mt-4">
                           <div class="col-lg-8">
                             <div class="col-md-4">
-                              <div class="form-group">
-                                <label for="">Payment Status</label>
-                                <select name="payment_status" class="form-control" id="payment_status">
-                                  <option {{ $vendor->status == 0 ? 'selected' : '' }} value="0">Pending</option>
-                                  <option {{ $vendor->status == 1 ? 'selected' : '' }} value="1">Approve</option>
-                                  </option>
-                                </select>
-                              </div>
+                              <form method="POST"
+                                action="{{ route('admin.vendor-request.change-status', $vendor->id) }}">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                  <label for="">Payment Status</label>
+                                  <select name="status" class="form-control" id="payment_status">
+                                    <option {{ $vendor->status == 0 ? 'selected' : '' }} value="0">Pending</option>
+                                    <option {{ $vendor->status == 1 ? 'selected' : '' }} value="1">Approve</option>
+                                    </option>
+                                  </select>
+                                  <button class="btn btn-primary mt-3">Update</button>
+                                </div>
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -80,7 +86,6 @@
 @push('scripts')
   <script>
     $(document).ready(function() {
-
       $('#order_status').on('change', function() {
         let status = $(this).val();
         let id = $(this).data('id');
