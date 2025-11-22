@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\EmailConfigurationSettingController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorRequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -152,6 +154,12 @@ Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'ca
 Route::get('vendor-request', [VendorRequestController::class, 'index'])->name('vendor-request.index');
 Route::get('vendor-request/{id}/show', [VendorRequestController::class, 'show'])->name('vendor-request.show');
 Route::put('vendor-request/{id}/change-status', [VendorRequestController::class, 'changeStatus'])->name('vendor-request.change-status');
+
+// Customer list route
+Route::get('customer', [CustomerListController::class, 'index'])->name('customer.index');
+Route::put('customer/change-status', [CustomerListController::class, 'changeStatus'])->name('customer.change-status');
+Route::get('vendor-list', [VendorListController::class, 'index'])->name('vendor-list.index');
+Route::put('vendor-list/change-status', [CustomerListController::class, 'changeStatus'])->name('vendor-list.change-status');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
