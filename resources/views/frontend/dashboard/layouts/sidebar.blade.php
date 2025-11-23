@@ -21,9 +21,6 @@
           class="fas fa-list-ul"></i> Orders</a>
     </li>
     <li>
-      <a href="dsahboard_download.html"><i class="far fa-cloud-download-alt"></i> Downloads</a>
-    </li>
-    <li>
       <a class="{{ setActive(['user.review.index']) }}" href="{{ route('user.review.index') }}"><i
           class="far fa-star"></i> Reviews</a>
     </li>

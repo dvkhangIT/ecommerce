@@ -25,10 +25,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-
         $request->authenticate();
-
         $request->session()->regenerate();
+        if ($request->user()->status === 'inactive') {
+            Auth::guard('web')->logout();
+            $request->session()->regenerateToken();
+            toastr()->error('Account has been banned from website please connect with support');
+            return redirect('/');
+        }
         if ($request->user()->role === 'admin') {
             return redirect()->intended('/admin/dashboard');
         } elseif ($request->user()->role === 'vendor') {
