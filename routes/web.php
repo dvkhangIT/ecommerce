@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
@@ -67,6 +68,8 @@ Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLette
 // Vendor page route
 Route::get('vendor-shop', [HomeController::class, 'vendorPage'])->name('vendor.index');
 Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
+// about page route
+Route::get('about', [PageController::class, 'about'])->name('about');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

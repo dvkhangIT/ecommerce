@@ -2,6 +2,7 @@
 
 // Admin route
 
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
@@ -163,6 +164,10 @@ Route::get('vendor-list', [VendorListController::class, 'index'])->name('vendor-
 Route::put('vendor-list/change-status', [CustomerListController::class, 'changeStatus'])->name('vendor-list.change-status');
 Route::get('vendor-condition', [VendorConditionController::class, 'index'])->name('vendor-condition.index');
 Route::put('vendor-condition/update', [VendorConditionController::class, 'update'])->name('vendor-condition.update');
+
+// About route
+Route::get('about', [AboutController::class, 'index'])->name('about.index');
+Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
