@@ -35,6 +35,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscribersController;
+use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
@@ -168,6 +169,10 @@ Route::put('vendor-condition/update', [VendorConditionController::class, 'update
 // About route
 Route::get('about', [AboutController::class, 'index'])->name('about.index');
 Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
+
+// Terms and condition route
+Route::get('terms', [TermsAndConditionController::class, 'index'])->name('terms.index');
+Route::put('terms/update', [TermsAndConditionController::class, 'update'])->name('terms.update');
 
 // Subscribers routes
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');

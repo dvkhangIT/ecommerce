@@ -68,8 +68,13 @@ Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLette
 // Vendor page route
 Route::get('vendor-shop', [HomeController::class, 'vendorPage'])->name('vendor.index');
 Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
+
 // about page route
 Route::get('about', [PageController::class, 'about'])->name('about');
+
+// Term and condition page route
+Route::get('terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms-and-conditions');
+
 
 Route::group([
     'middleware' => ['auth', 'verified'],
