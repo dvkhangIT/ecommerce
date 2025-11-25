@@ -146,7 +146,7 @@
           </ul>
 
           <ul class="wsus__menu_item wsus__menu_item_right">
-            <li><a href="contact.html">contact</a></li>
+            <li><a href="{{ route('contact') }}">contact</a></li>
             <li><a href="{{ route('user.dashboard') }}">my account</a></li>
             <li><a href="{{ route('login') }}">login</a></li>
           </ul>

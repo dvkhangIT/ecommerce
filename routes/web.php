@@ -75,6 +75,8 @@ Route::get('about', [PageController::class, 'about'])->name('about');
 // Term and condition page route
 Route::get('terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms-and-conditions');
 
+// Contact route
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
 
 Route::group([
     'middleware' => ['auth', 'verified'],
