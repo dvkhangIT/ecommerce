@@ -77,6 +77,7 @@ Route::get('terms-and-conditions', [PageController::class, 'termsAndConditions']
 
 // Contact route
 Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

@@ -59,33 +59,28 @@
           <div class="col-xl-8">
             <div class="wsus__contact_question">
               <h5>Send Us a Message</h5>
-              <form>
+              <form id="contact-form">
                 <div class="row">
                   <div class="col-xl-12">
                     <div class="wsus__con_form_single">
-                      <input type="text" placeholder="Your Name">
+                      <input type="text" placeholder="Your Name" name="name">
                     </div>
                   </div>
                   <div class="col-xl-12">
                     <div class="wsus__con_form_single">
-                      <input type="email" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="col-xl-6">
-                    <div class="wsus__con_form_single">
-                      <input type="text" placeholder="Phone">
-                    </div>
-                  </div>
-                  <div class="col-xl-6">
-                    <div class="wsus__con_form_single">
-                      <input type="text" placeholder="Subject">
+                      <input type="email" placeholder="Email" name="email">
                     </div>
                   </div>
                   <div class="col-xl-12">
                     <div class="wsus__con_form_single">
-                      <textarea cols="3" rows="5" placeholder="Message"></textarea>
+                      <input type="text" placeholder="Subject" name="subject">
                     </div>
-                    <button type="submit" class="common_btn">send now</button>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="wsus__con_form_single">
+                      <textarea cols="3" rows="5" placeholder="Message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="common_btn" id="form-submit">send now</button>
                   </div>
                 </div>
               </form>
@@ -102,3 +97,38 @@
     </div>
   </section>
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('#contact-form').on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        $.ajax({
+          type: "POST",
+          url: "{{ route('handle-contact-form') }}",
+          data: data,
+          beforeSend: function() {
+            $('#form-submit').text('sending...');
+            $('#form-submit').attr('disabled', true);
+          },
+          success: function(data) {
+            if (data.status === 'success') {
+              toastr.success(data.message);
+              $('#contact-form')[0].reset();
+              $('#form-submit').text('send now');
+              $('#form-submit').attr('disabled', false);
+            }
+          },
+          error: function(data) {
+            let errors = data.responseJSON.errors;
+            $.each(errors, function(key, value) {
+              toastr.error(value);
+            });
+            $('#form-submit').text('send now');
+            $('#form-submit').attr('disabled', false);
+          }
+        });
+      });
+    });
+  </script>
+@endpush
