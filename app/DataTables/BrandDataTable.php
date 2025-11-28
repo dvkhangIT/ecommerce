@@ -20,9 +20,8 @@ class BrandDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'brand.action')
             ->addColumn('logo', function ($query) {
-                return $imag = "<img width='100px' src='".asset($query->logo)."'>";
+                return $imag = "<img width='100px' src='" . asset($query->logo) . "'>";
             })
             ->addColumn('is_featured', function ($query) {
                 $active = '<i class="badge badge-success">Yes</i>';
@@ -45,23 +44,23 @@ class BrandDataTable extends DataTable
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-          <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
-          <span class="custom-switch-indicator"></span>
-          </label>';
+                    <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="'.$query->id.'">
-          <span class="custom-switch-indicator"></span>
-          </label>';
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
                 }
 
                 return $button;
             })
             ->addColumn('action', function ($query) {
-                $editBtn = '<a href="'.route('admin.brand.edit', $query->id).'" class="btn btn-primary"><i class="far fa-edit"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.brand.destroy', $query->id).'" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                $editBtn = '<a href="' . route('admin.brand.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.brand.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
 
-                return $editBtn.$deleteBtn;
+                return $editBtn . $deleteBtn;
             })
             ->rawColumns(['logo', 'is_featured', 'status', 'action'])
             ->setRowId('id');
@@ -84,7 +83,7 @@ class BrandDataTable extends DataTable
             ->setTableId('brand-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-          // ->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
@@ -121,6 +120,6 @@ class BrandDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Brand_'.date('YmdHis');
+        return 'Brand_' . date('YmdHis');
     }
 }
