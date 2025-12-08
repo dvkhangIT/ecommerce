@@ -33,15 +33,6 @@ class BrandDataTable extends DataTable
                 }
             })
             ->addColumn('status', function ($query) {
-                $active = '<i class="badge badge-success">Active</i>';
-                $inActive = '<i class="badge badge-danger">Inactive</i>';
-                if ($query->status == 1) {
-                    return $active;
-                } else {
-                    return $inActive;
-                }
-            })
-            ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
                     <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
@@ -53,13 +44,11 @@ class BrandDataTable extends DataTable
                     <span class="custom-switch-indicator"></span>
                     </label>';
                 }
-
                 return $button;
             })
             ->addColumn('action', function ($query) {
                 $editBtn = '<a href="' . route('admin.brand.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
                 $deleteBtn = '<a href="' . route('admin.brand.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
-
                 return $editBtn . $deleteBtn;
             })
             ->rawColumns(['logo', 'is_featured', 'status', 'action'])

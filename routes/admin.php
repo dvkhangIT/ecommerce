@@ -58,6 +58,7 @@ Route::put('change-status', [CategoryController::class, 'changeStatus'])->name('
 Route::resource('category', CategoryController::class);
 
 // Blog route
+Route::put('blog-category/change-status', [BlogCategoryController::class, 'changeStatus'])->name('blog-category.change-status');
 Route::resource('blog-category', BlogCategoryController::class);
 
 // Sub Category Route
