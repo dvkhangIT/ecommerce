@@ -9,12 +9,12 @@ use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BlogCategoryController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CustomerListController;
-use App\Http\Controllers\Backend\EmailConfigurationSettingController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterGridThreeController;
 use App\Http\Controllers\Backend\FooterGridTwoController;
@@ -60,6 +60,7 @@ Route::resource('category', CategoryController::class);
 // Blog route
 Route::put('blog-category/change-status', [BlogCategoryController::class, 'changeStatus'])->name('blog-category.change-status');
 Route::resource('blog-category', BlogCategoryController::class);
+Route::resource('blog', BlogController::class);
 
 // Sub Category Route
 Route::resource('sub-category', SubCategoryController::class);
