@@ -22,7 +22,35 @@ class BlogDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'blog.action')
+            ->addColumn('action', function ($query) {
+                $editBtn = '<a href="' . route('admin.blog.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.blog.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    $button = '<label class="custom-switch mt-2">
+                    <input checked type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                } else {
+                    $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input change-status" data-id="' . $query->id . '">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+                return $button;
+            })
+            ->addColumn('image', function ($query) {
+                return "<img width='100px' src='" . asset($query->image) . "'>";
+            })
+            ->addColumn('category', function ($query) {
+                return $query->category->name;
+            })
+            ->addColumn('publish_date', function ($query) {
+                return date('d-m-y', strtotime($query->created_at));
+            })
+            ->rawColumns(['action', 'image', 'status'])
             ->setRowId('id');
     }
 
@@ -31,7 +59,7 @@ class BlogDataTable extends DataTable
      */
     public function query(Blog $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model::with('category')->newQuery();
     }
 
     /**
@@ -40,20 +68,20 @@ class BlogDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('blog-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('blog-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +90,17 @@ class BlogDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('image')->width(100),
+            Column::make('title'),
+            Column::make('category'),
+            Column::make('status'),
+            Column::make('publish_date'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
