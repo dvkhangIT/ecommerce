@@ -43,6 +43,7 @@ use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorRequestController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -60,6 +61,7 @@ Route::resource('category', CategoryController::class);
 // Blog route
 Route::put('blog-category/change-status', [BlogCategoryController::class, 'changeStatus'])->name('blog-category.change-status');
 Route::resource('blog-category', BlogCategoryController::class);
+Route::put('blog/change-status', [BlogController::class, 'changeStatus'])->name('blog.change-status');
 Route::resource('blog', BlogController::class);
 
 // Sub Category Route

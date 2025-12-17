@@ -112,6 +112,16 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        $this->deleteImage($blog->image);
+        $blog->delete();
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+    }
+    public function changeStatus(Request $request)
+    {
+        $blog = Blog::findOrfail($request->id);
+        $blog->status = $request->status == 'true' ? 1 : 0;
+        $blog->save();
+        return response(['message' => 'Status has been updated!']);
     }
 }
