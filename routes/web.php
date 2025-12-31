@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\FlashSaleController;
@@ -83,6 +84,7 @@ Route::post('contact', [PageController::class, 'handleContactForm'])->name('hand
 // Product track route
 Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
 Route::get('product-track', [ProductTrackController::class, 'track'])->name('product-track');
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

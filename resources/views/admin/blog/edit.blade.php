@@ -15,8 +15,8 @@
               <form method="POST" action="{{ route('admin.blog.update', $blog->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <img src="{{ asset($blog->image) }}" alt="" width="200px">
                 <div class="form-group">
-                  <img src="{{ asset($blog->image) }}" alt="" width="200px">
                   <label>Image</label>
                   <input type="file" class="form-control" name="image">
                 </div>

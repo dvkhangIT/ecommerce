@@ -37,6 +37,6 @@
   {{-- @include('frontend.home.sections.services') --}}
   {{-- HOME SERVICES END --}}
   {{-- HOME BLOGS START --}}
-  {{-- @include('frontend.home.sections.blogs') --}}
+  @include('frontend.home.sections.blogs')
   {{-- HOME BLOGS END --}}
 @endsection
