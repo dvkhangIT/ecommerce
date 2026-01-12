@@ -85,6 +85,7 @@ Route::post('contact', [PageController::class, 'handleContactForm'])->name('hand
 Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
 Route::get('product-track', [ProductTrackController::class, 'track'])->name('product-track');
 Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
 Route::group([
     'middleware' => ['auth', 'verified'],
