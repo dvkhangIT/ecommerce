@@ -110,12 +110,12 @@
                     </div>
                   </div>
                   <div class="wsus__invoice_footer">
-                    <p><span>Sub Total:</span> {{ $settings->currency_icon }}{{ $order->sub_total }} </p>
-                    <p><span>Shipping Fee(+):</span> {{ $settings->currency_icon }}{{ $shipping->cost }} </p>
+                    <p><span>Sub Total:</span> {{ @$settings->currency_icon }}{{ $order->sub_total }} </p>
+                    <p><span>Shipping Fee(+):</span> {{ @$settings->currency_icon }}{{ $shipping->cost }} </p>
                     <p><span>Coupon(-):</span>
-                      {{ $settings->currency_icon }}{{ @$coupon->discount }} </p>
+                      {{ @$settings->currency_icon }}{{ @$coupon->discount ? $coupon->discount : 0 }} </p>
                     <p><span>Total Amount:</span>
-                      {{ $settings->currency_icon }}{{ $order->amount }} </p>
+                      {{ @$settings->currency_icon }}{{ $order->amount }} </p>
                   </div>
                 </div>
               </div>

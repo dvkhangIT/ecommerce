@@ -323,60 +323,62 @@
                           </div>
                         </div>
                         <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
-                          @php
-                            $isBrought = false;
-                            $orders = \App\Models\Order::where([
-                                'user_id' => auth()->user()?->id,
-                                'order_status' => 'delivered',
-                            ])->get();
-                            foreach ($orders as $key => $order) {
-                                $existItem = $order->orderProducts()->where('product_id', $product->id)->get();
-                                if ($existItem) {
-                                    $isBrought = true;
-                                }
-                            }
-                          @endphp
-                          @if ($isBrought)
-                            <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
-                              <h4>write a Review</h4>
-                              <form action="{{ route('user.review.create') }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <p class="rating">
-                                  <span>select your rating : </span>
-                                </p>
-                                <div class="row">
-                                  <div class="col-xl-12">
-                                    <div class="wsus__single_com">
-                                      <select name="rating" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="col-xl-12">
+                          @auth
+                            @php
+                              $isBrought = false;
+                              $orders = \App\Models\Order::where([
+                                  'user_id' => auth()->user()?->id,
+                                  'order_status' => 'delivered',
+                              ])->get();
+                              foreach ($orders as $key => $order) {
+                                  $existItem = $order->orderProducts()->where('product_id', $product->id)->get();
+                                  if ($existItem) {
+                                      $isBrought = true;
+                                  }
+                              }
+                            @endphp
+                            @if ($isBrought)
+                              <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
+                                <h4>write a Review</h4>
+                                <form action="{{ route('user.review.create') }}" method="POST"
+                                  enctype="multipart/form-data">
+                                  @csrf
+                                  <p class="rating">
+                                    <span>select your rating : </span>
+                                  </p>
+                                  <div class="row">
                                     <div class="col-xl-12">
                                       <div class="wsus__single_com">
-                                        <textarea name="review" cols="3" rows="3" placeholder="Write your review"></textarea>
+                                        <select name="rating" class="form-control">
+                                          <option value="">Select</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                      <div class="col-xl-12">
+                                        <div class="wsus__single_com">
+                                          <textarea name="review" cols="3" rows="3" placeholder="Write your review"></textarea>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="img_upload">
-                                  <div class="">
-                                    <input type="file" name="image[]" multiple>
+                                  <div class="img_upload">
+                                    <div class="">
+                                      <input type="file" name="image[]" multiple>
+                                    </div>
                                   </div>
-                                </div>
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="vendor_id" value="{{ $product->vendor_id }}">
-                                <button class="common_btn" type="submit">submit review</button>
-                              </form>
-                            </div>
-                          @endif
+                                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                  <input type="hidden" name="vendor_id" value="{{ $product->vendor_id }}">
+                                  <button class="common_btn" type="submit">submit review</button>
+                                </form>
+                              </div>
+                            @endif
+                          @endauth
                         </div>
                       </div>
                     </div>
