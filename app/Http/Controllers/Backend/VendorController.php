@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductReview;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,13 +33,40 @@ class VendorController extends Controller
                 $q->where('vendor_id', Auth::user()->vendor->id);
             })->count();
         $totalProducts = Product::where('vendor_id', Auth::user()->vendor->id)->count();
+        $todayEarnings = Order::where('order_status', 'delivered')
+            ->whereDate('created_at', Carbon::today())
+            ->whereHas('orderProducts', function ($q) {
+                $q->where('vendor_id', Auth::user()->vendor->id);
+            })->sum('sub_total');
+        $monthEarnings = Order::where('order_status', 'delivered')
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereHas('orderProducts', function ($q) {
+                $q->where('vendor_id', Auth::user()->vendor->id);
+            })->sum('sub_total');
+        $yearEarnings = Order::where('order_status', 'delivered')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereHas('orderProducts', function ($q) {
+                $q->where('vendor_id', Auth::user()->vendor->id);
+            })->sum('sub_total');
+        $totalEarnings = Order::where('order_status', 'delivered')
+            ->whereHas('orderProducts', function ($q) {
+                $q->where('vendor_id', Auth::user()->vendor->id);
+            })->sum('sub_total');
+        $totalReviews = ProductReview::whereHas('product', function ($q) {
+            $q->where('vendor_id', Auth::user()->vendor->id);
+        })->count();
         return view('vendor.dashboard.dashboard', compact(
             'todaysOrder',
             'todaysPendingOrder',
             'totalOrder',
             'totalPendingOrder',
             'totalCompletedOrder',
-            'totalProducts'
+            'totalProducts',
+            'todayEarnings',
+            'monthEarnings',
+            'yearEarnings',
+            'totalEarnings',
+            'totalReviews',
         ));
     }
 }
