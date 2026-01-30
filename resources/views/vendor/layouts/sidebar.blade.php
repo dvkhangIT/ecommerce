@@ -11,20 +11,20 @@
           class="fas fa-tachometer"></i>Dashboard</a>
     </li>
     <li>
-      <a class="{{ setActive(['vendor.orders.index']) }}" href="{{ route('vendor.orders.index') }}"><i
-          class="fas fa-tachometer"></i>Order</a>
+      <a class="{{ setActive(['vendor.orders.*']) }}" href="{{ route('vendor.orders.index') }}"><i
+          class="fas fa-box"></i>Order</a>
     </li>
     <li>
-      <a class="{{ setActive(['vendor.products.index']) }}" href="{{ route('vendor.products.index') }}"><i
-          class="fas fa-tachometer"></i>Products</a>
+      <a class="{{ setActive(['vendor.products.*']) }}" href="{{ route('vendor.products.index') }}"><i
+          class="fas fa-cart-plus"></i>Products</a>
     </li>
     <li>
       <a class="{{ setActive(['vendor.reviews.index']) }}" href="{{ route('vendor.reviews.index') }}"><i
-          class="fas fa-tachometer"></i>Reviews</a>
+          class="fas fa-star"></i>Reviews</a>
     </li>
     <li>
       <a class="{{ setActive(['vendor.shop-profile.index']) }}" href="{{ route('vendor.shop-profile.index') }}"><i
-          class="fas fa-list-ul"></i> Shop
+          class="far fa-user"></i> Shop
         Profile</a>
     </li>
     <li>
