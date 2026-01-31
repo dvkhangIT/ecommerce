@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\NewsletterSubscriber;
 use App\Models\Order;
+use App\Models\ProductReview;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +33,13 @@ class AdminController extends Controller
         $yearEarnings = Order::where('order_status', 'delivered')
             ->whereYear('created_at', Carbon::now()->year)
             ->sum('sub_total');
+        $totalReviews = ProductReview::count();
+        $totalBrands = Brand::count();
+        $totalCategories = Category::count();
+        $totalBlogs = Blog::count();
+        $totalSubscriber = NewsletterSubscriber::count();
+        $totalVendors = User::where('role', 'vendor')->count();
+        $totalUsers = User::where('role', 'user')->count();
         return view('admin.dashboard', compact(
             'todaysOrder',
             'todaysPendingOrder',
@@ -37,6 +50,13 @@ class AdminController extends Controller
             'todayEarnings',
             'monthEarnings',
             'yearEarnings',
+            'totalReviews',
+            'totalBrands',
+            'totalCategories',
+            'totalBlogs',
+            'totalSubscriber',
+            'totalVendors',
+            'totalUsers',
         ));
     }
 

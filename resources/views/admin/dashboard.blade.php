@@ -144,7 +144,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="javascript:;">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-primary">
+            <div class="card-icon bg-info">
               <i class="fas fa-money-check-alt"></i>
             </div>
             <div class="card-wrap">
@@ -159,49 +159,123 @@
         </a>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-          <div class="card-icon bg-danger">
-            <i class="far fa-newspaper"></i>
-          </div>
-          <div class="card-wrap">
-            <div class="card-header">
-              <h4>News</h4>
+        <a href="{{ route('admin.reviews.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-star"></i>
             </div>
-            <div class="card-body">
-              42
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Reviews</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalReviews }}
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-          <div class="card-icon bg-warning">
-            <i class="far fa-file"></i>
-          </div>
-          <div class="card-wrap">
-            <div class="card-header">
-              <h4>Reports</h4>
+        <a href="{{ route('admin.brand.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-copyright"></i>
             </div>
-            <div class="card-body">
-              1,201
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Brands</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalBrands }}
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-          <div class="card-icon bg-success">
-            <i class="fas fa-circle"></i>
-          </div>
-          <div class="card-wrap">
-            <div class="card-header">
-              <h4>Online Users</h4>
+        <a href="{{ route('admin.category.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-list"></i>
             </div>
-            <div class="card-body">
-              47
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Category</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalCategories }}
+              </div>
             </div>
           </div>
-        </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('admin.category.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-list"></i>
+            </div>
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Blog</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalBlogs }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('admin.subscribers.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-list"></i>
+            </div>
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Subscriber</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalSubscriber }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('admin.vendor-list.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-list"></i>
+            </div>
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Vendors</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalVendors }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('admin.customer.index') }}">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-info">
+              <i class="fas fa-list"></i>
+            </div>
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Total Users</h4>
+              </div>
+              <div class="card-body">
+                {{ $settings->currency_icon }}{{ $totalUsers }}
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
