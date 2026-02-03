@@ -93,7 +93,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="{{ route('admin.canceled-orders') }}">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-primary">
+            <div class="card-icon bg-danger">
               <i class="fas fa-cart-plus"></i>
             </div>
             <div class="card-wrap">
@@ -110,7 +110,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="javascript:;">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-primary">
+            <div class="card-icon bg-danger">
               <i class="fas fa-money-check-alt"></i>
             </div>
             <div class="card-wrap">
@@ -127,7 +127,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="javascript:;">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-primary">
+            <div class="card-icon bg-danger">
               <i class="fas fa-money-check-alt"></i>
             </div>
             <div class="card-wrap">
@@ -144,7 +144,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="javascript:;">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-info">
+            <div class="card-icon bg-warning">
               <i class="fas fa-money-check-alt"></i>
             </div>
             <div class="card-wrap">
@@ -161,7 +161,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="{{ route('admin.reviews.index') }}">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-info">
+            <div class="card-icon bg-warning">
               <i class="fas fa-star"></i>
             </div>
             <div class="card-wrap">
@@ -178,7 +178,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="{{ route('admin.brand.index') }}">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-info">
+            <div class="card-icon bg-warning">
               <i class="fas fa-copyright"></i>
             </div>
             <div class="card-wrap">
@@ -195,7 +195,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <a href="{{ route('admin.category.index') }}">
           <div class="card card-statistic-1">
-            <div class="card-icon bg-info">
+            <div class="card-icon bg-warning">
               <i class="fas fa-list"></i>
             </div>
             <div class="card-wrap">
