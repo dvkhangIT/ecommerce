@@ -80,17 +80,14 @@ class SettingController extends Controller
     {
         $request->validate([
             'logo' => ['image', 'max:3000'],
-            'footer_logo' => ['image', 'max:3000'],
             'favicon' => ['image', 'max:3000']
         ]);
         $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
-        $footerLogo = $this->updateImage($request, 'footer_logo', 'uploads', $request->old_footer_logo);
         $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
         LogoSetting::updateOrCreate(
             ['id' => 1],
             [
                 'logo' => !empty($logoPath) ? $logoPath : $request->old_logo,
-                'footer_logo' => !empty($footerLogo) ? $footerLogo : $request->old_footer_logo,
                 'favicon' => !empty($favicon) ? $favicon : $request->old_favicon,
             ]
         );

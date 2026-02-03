@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class LogoSetting extends Model
 {
     use HasFactory;
-    protected $fillable = ['logo', 'footer_logo', 'favicon'];
+    protected $fillable = ['logo', 'favicon'];
 }

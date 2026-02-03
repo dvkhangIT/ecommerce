@@ -12,13 +12,6 @@
            <input type="hidden" value="{{ @$logoSetting->logo }}" class="form-control" name="old_logo">
          </div>
          <div class="form-group">
-           <img src="{{ asset(@$logoSetting->footer_logo) }}" width="150px" alt="">
-           <br>
-           <label>Footer logo</label>
-           <input type="file" value="" class="form-control" name="footer_logo">
-           <input type="hidden" value="{{ @$logoSetting->footer_logo }}" class="form-control" name="old_footer_logo">
-         </div>
-         <div class="form-group">
            <img src="{{ asset(@$logoSetting->favicon) }}" width="150px" alt="">
            <br>
            <label>Favicon</label>
