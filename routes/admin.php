@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\CodSettingController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CustomerListController;
 use App\Http\Controllers\Backend\FlashSaleController;
@@ -44,6 +45,7 @@ use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorRequestController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
@@ -208,6 +210,7 @@ Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name
 Route::resource('paypal-setting', PaypalSettingController::class);
 Route::put('stripe-setting/{id}', [StripeSettingController::class, 'update'])->name('strip-setting.update');
 Route::put('razorpay-setting/{id}', [RazorpaySettingController::class, 'update'])->name('razorpay-setting.update');
+Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('code-setting.update');
 
 // Footer route
 Route::resource('footer-info', FooterInfoController::class);

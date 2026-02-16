@@ -139,4 +139,7 @@ Route::group([
     // product review route
     Route::get('reviews', [ReviewController::class, 'index'])->name('review.index');
     Route::post('review', [ReviewController::class, 'create'])->name('review.create');
+
+    // Cod route
+    Route::get('cod/payment', [PaymentController::class, 'paymentWithCod'])->name('cod.payment');
 });

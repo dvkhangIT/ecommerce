@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CodeSetting;
 use App\Models\GeneralSetting;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -189,5 +190,23 @@ class PaymentController extends Controller
     public function payWithRazorpay(Request $request)
     {
         dd($request->all());
+    }
+    public function paymentWithCod(Request $request)
+    {
+        $codePaySetting = CodeSetting::first();
+        $setting = GeneralSetting::first();
+        if ($codePaySetting->status == 0) {
+            return redirect()->back();
+        }
+        // Calculate paypal amount depending on currencry rate
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total, 2);
+        // $this->storeOrder('COD', 0, \Str::random(10), $payableAmount, $setting->currencry_name);
+        // $this->clearSession();
+        // return redirect()->route('user.payment.success');
+
+        $this->storeOrder('COD', 1, \Str::random(10), $payableAmount, $setting->currency_name);
+        $this->clearSession();
+        return redirect()->route('user.payment.success');
     }
 }
