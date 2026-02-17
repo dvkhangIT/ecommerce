@@ -34,21 +34,25 @@ class VendorController extends Controller
             })->count();
         $totalProducts = Product::where('vendor_id', Auth::user()->vendor->id)->count();
         $todayEarnings = Order::where('order_status', 'delivered')
+            ->where('payment_status', 1)
             ->whereDate('created_at', Carbon::today())
             ->whereHas('orderProducts', function ($q) {
                 $q->where('vendor_id', Auth::user()->vendor->id);
             })->sum('sub_total');
         $monthEarnings = Order::where('order_status', 'delivered')
+            ->where('payment_status', 1)
             ->whereMonth('created_at', Carbon::now()->month)
             ->whereHas('orderProducts', function ($q) {
                 $q->where('vendor_id', Auth::user()->vendor->id);
             })->sum('sub_total');
         $yearEarnings = Order::where('order_status', 'delivered')
+            ->where('payment_status', 1)
             ->whereYear('created_at', Carbon::now()->year)
             ->whereHas('orderProducts', function ($q) {
                 $q->where('vendor_id', Auth::user()->vendor->id);
             })->sum('sub_total');
         $totalEarnings = Order::where('order_status', 'delivered')
+            ->where('payment_status', 1)
             ->whereHas('orderProducts', function ($q) {
                 $q->where('vendor_id', Auth::user()->vendor->id);
             })->sum('sub_total');
