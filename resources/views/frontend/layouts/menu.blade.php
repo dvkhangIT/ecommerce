@@ -64,9 +64,16 @@
             <li><a class="{{ setActive(['product-tracking.index']) }}"
                 href="{{ route('product-tracking.index') }}">track order</a></li>
             @if (auth()->check())
-              <li><a href="{{ route('user.dashboard') }}">my account</a></li>
+              @if (auth()->user()->role === 'user')
+                <li><a href="{{ route('user.dashboard') }}">my account</a></li>
+              @elseif (auth()->user()->role === 'vendor')
+                <li><a href="{{ route('vendor.dashboard') }}">Vendor Dashboard</a></li>
+              @elseif (auth()->user()->role === 'admin')
+                <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+              @endif
+            @else
+              <li><a href="{{ route('login') }}">login</a></li>
             @endif
-            <li><a href="{{ route('login') }}">login</a></li>
           </ul>
         </div>
       </div>
