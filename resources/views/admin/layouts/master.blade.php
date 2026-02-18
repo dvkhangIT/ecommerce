@@ -96,7 +96,7 @@
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <!-- Page Specific JS File -->
-    <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script> --}}
     <!--toastr-->
     <script src="{{ asset('toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('toastr/custom.js') }}"></script>
