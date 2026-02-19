@@ -173,7 +173,7 @@
                               @if ($i <= $fullRating)
                                 <i class="fas fa-star"></i>
                               @else
-                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
                               @endif
                             @endfor
                             <span>({{ count($product->reviews) }} review)</span>
@@ -242,7 +242,7 @@
                                 @if ($i <= $fullRating)
                                   <i class="fas fa-star"></i>
                                 @else
-                                  <i class="fas fa-star"></i>
+                                  <i class="far fa-star"></i>
                                 @endif
                               @endfor
                               <span>({{ count($product->reviews) }} review)</span>
@@ -375,7 +375,7 @@
                         @if ($i <= $fullRating)
                           <i class="fas fa-star"></i>
                         @else
-                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
                         @endif
                       @endfor
                       <span>({{ count($product->reviews) }} review)</span>

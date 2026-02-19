@@ -36,7 +36,8 @@
         <div class="col-xl-12">
           <div class="wsus__section_header">
             <h3>{{ $category->name }}</h3>
-            <a class="see_btn" href="#">see more <i class="fas fa-caret-right"></i></a>
+            <a class="see_btn" href="{{ route('products.index', ['category' => $category->slug]) }}">see more <i
+                class="fas fa-caret-right"></i></a>
           </div>
         </div>
       </div>
@@ -74,7 +75,7 @@
                     @if ($i <= $fullRating)
                       <i class="fas fa-star"></i>
                     @else
-                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
                     @endif
                   @endfor
                   <span>({{ count($product->reviews) }} review)</span>
@@ -180,7 +181,7 @@
                         @if ($i <= $fullRating)
                           <i class="fas fa-star"></i>
                         @else
-                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
                         @endif
                       @endfor
                       <span>({{ count($product->reviews) }} review)</span>

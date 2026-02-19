@@ -98,7 +98,7 @@
                       @if ($i <= $fullRating)
                         <i class="fas fa-star"></i>
                       @else
-                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
                       @endif
                     @endfor
                     <span>({{ count($product->reviews) }} review)</span>
@@ -217,7 +217,7 @@
                         @if ($i <= $fullRating)
                           <i class="fas fa-star"></i>
                         @else
-                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
                         @endif
                       @endfor
                       <span>({{ count($product->reviews) }} review)</span>
@@ -258,7 +258,7 @@
                       <ul class="wsus__button_area">
                         <li><button type="submit" class="add_cart">add to cart</a></li>
                         <li><a class="buy_now" href="#">buy now</a></li>
-                        <li><a href="#" data-id="{{ $product->id }}" class="add_to_wishlist"><i
+                        <li><a href="javascript:;" data-id="{{ $product->id }}" class="add_to_wishlist"><i
                               class="fal fa-heart"></i></a></li>
                       </ul>
                     </form>

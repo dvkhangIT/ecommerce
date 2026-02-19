@@ -9553,3 +9553,9 @@ input.razorpay-payment-button {
     border: 1px solid #08C;
     background: #fff;
 }
+
+.wsus__hot_deals__single_img img {
+    width: 200px !important;
+    height: 150px !important;
+    object-fit: cover;
+}

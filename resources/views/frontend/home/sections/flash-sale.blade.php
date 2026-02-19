@@ -36,7 +36,6 @@
                 <li><a class="add_to_wishlist" data-id="{{ $product->id }}" href="#"><i
                       class="far fa-heart"></i></a>
                 </li>
-                {{-- <li><a href="#"><i class="far fa-random"></i></a> --}}
               </ul>
               <div class="wsus__product_details">
                 <a class="wsus__category" href="#">{{ $product->category->name }}
@@ -50,7 +49,7 @@
                     @if ($i <= $fullRating)
                       <i class="fas fa-star"></i>
                     @else
-                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
                     @endif
                   @endfor
                   <span>({{ count($product->reviews) }} review)</span>
@@ -160,7 +159,7 @@
                         @if ($i <= $fullRating)
                           <i class="fas fa-star"></i>
                         @else
-                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
                         @endif
                       @endfor
                       <span>({{ count($product->reviews) }} review)</span>
