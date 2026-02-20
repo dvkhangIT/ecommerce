@@ -12,8 +12,7 @@
             <h3><i class="far fa-user" aria-hidden="true"></i> Products</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
-                <form method="POST" action="{{ route('vendor.products.store') }}"
-                  enctype="multipart/form-data">
+                <form method="POST" action="{{ route('vendor.products.store') }}" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group wsus__input">
                     <label>Image</label>
@@ -21,15 +20,13 @@
                   </div>
                   <div class="form-group wsus__input">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name"
-                      value="{{ old('name') }}">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                   </div>
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group wsus__input">
                         <label for="inputState">Category</label>
-                        <select id="inputState" class="form-control main-category"
-                          name="category">
+                        <select id="inputState" class="form-control main-category" name="category">
                           <option value="0">Select</option>
                           @foreach ($categories as $category)
                             <option value="{{ $category->id }}">
@@ -41,8 +38,7 @@
                     <div class="col-md-4">
                       <div class="form-group wsus__input">
                         <label for="inputState">Sub Category</label>
-                        <select id="inputState" class="form-control sub-category"
-                          name="sub_category">
+                        <select id="inputState" class="form-control sub-category" name="sub_category">
                           <option value="0">Select</option>
                         </select>
                       </div>
@@ -50,9 +46,7 @@
                     <div class="col-md-4">
                       <div class="form-group wsus__input">
                         <label for="inputState">Child Category</label>
-                        <select id="inputState"
-                          class="form-control child-category"
-                          name="child_category">
+                        <select id="inputState" class="form-control child-category" name="child_category">
                           <option value="0">Select</option>
                         </select>
                       </div>
@@ -70,83 +64,60 @@
                   </div>
                   <div class="form-group wsus__input">
                     <label>SKU</label>
-                    <input type="text" class="form-control" name="sku"
-                      value="{{ old('sku') }}">
+                    <input type="text" class="form-control" name="sku" value="{{ old('sku') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label>Price</label>
-                    <input type="text" class="form-control" name="price"
-                      value="{{ old('price') }}">
+                    <input type="text" class="form-control" name="price" value="{{ old('price') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label>Offer Price</label>
-                    <input type="text" class="form-control" name="offer_price"
-                      value="{{ old('offer_price') }}">
+                    <input type="text" class="form-control" name="offer_price" value="{{ old('offer_price') }}">
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group wsus__input">
                         <label>Offer Start Date</label>
-                        <input type="text" class="form-control datepicker"
-                          name="offer_start_date"
+                        <input type="text" class="form-control datepicker" name="offer_start_date"
                           value="{{ old('offer_start_date') }}">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group wsus__input">
                         <label>Offer End Date</label>
-                        <input type="text" class="form-control datepicker"
-                          name="offer_end_date"
+                        <input type="text" class="form-control datepicker" name="offer_end_date"
                           value="{{ old('offer_end_date') }}">
                       </div>
                     </div>
                   </div>
                   <div class="form-group wsus__input">
                     <label>Stock Quantity</label>
-                    <input type="text" class="form-control" name="qty"
-                      value="{{ old('qty') }}">
+                    <input type="text" class="form-control" name="qty" value="{{ old('qty') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label>Video Link</label>
-                    <input type="text" class="form-control" name="video_link"
-                      value="{{ old('video_link') }}">
+                    <input type="text" class="form-control" name="video_link" value="{{ old('video_link') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label for="">Short Description</label>
-                    <textarea class="form-control summernote" name="short_description"
-                      id=""></textarea>
+                    <textarea class="form-control summernote" name="short_description" id=""></textarea>
                   </div>
                   <div class="form-group wsus__input">
                     <label for="">Long Description</label>
-                    <textarea class="form-control summernote" name="long_description"
-                      id=""></textarea>
-                  </div>
-                  <div class="form-group wsus__input">
-                    <label for="inputState">Product Type</label>
-                    <select id="inputState" class="form-control"
-                      name="product_type">
-                      <option value="1">Select</option>
-                      <option value="new_arrival">New Arrival</option>
-                      <option value="featured_product">Featured</option>
-                      <option value="top_product">Top Product</option>
-                      <option value="best_product">Best Product</option>
-                    </select>
+                    <textarea class="form-control summernote" name="long_description" id=""></textarea>
                   </div>
                   <div class="form-group wsus__input">
                     <label>Seo Title</label>
-                    <input type="text" class="form-control" name="seo_title"
-                      value="{{ old('seo_title') }}">
+                    <input type="text" class="form-control" name="seo_title" value="{{ old('seo_title') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label>Seo Description</label>
-                    <input type="text" class="form-control"
-                      name="seo_description"
+                    <input type="text" class="form-control" name="seo_description"
                       value="{{ old('seo_description') }}">
                   </div>
                   <div class="form-group wsus__input">
                     <label for="inputState">Status</label>
-                    <select id="inputState" class="form-control"
-                      name="status">
+                    <select id="inputState" class="form-control" name="status">
                       <option value="1">Active</option>
                       <option value="0">Inactive</option>
                     </select>

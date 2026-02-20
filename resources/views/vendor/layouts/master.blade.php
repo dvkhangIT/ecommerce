@@ -26,6 +26,8 @@
     {{-- <link rel="stylesheet" href="{{ asset('frontend/datatables/dataTables.bootstrap5.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
     <!--toastr-->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
@@ -107,8 +109,12 @@
     <script src="{{ asset('toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('toastr/custom.js') }}"></script>
     <script src="{{ asset('frontend/datatables/dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     {{-- <script src="{{ asset('frontend/datatables/dataTables.bootstrap5.min.js') }}"></script> --}}
     <!--main/custom js-->
+    <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script>
       @if ($errors->any())
