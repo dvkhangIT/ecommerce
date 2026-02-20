@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="cl-xl-12">
-        @if ($homepage_section_banner_four->banner_one->status == 1)
-          <a class="w-100" href="{{ $homepage_section_banner_four->banner_one->banner_url }}">
-            <img class="image-gluid w-100" src="{{ asset($homepage_section_banner_four->banner_one->banner_image) }}"
+        @if ($homepage_secion_banner_four->banner_one->status == 1)
+          <a class="w-100" href="{{ $homepage_secion_banner_four->banner_one->banner_url }}">
+            <img class="image-gluid w-100" src="{{ asset($homepage_secion_banner_four->banner_one->banner_image) }}"
               alt="">
           </a>
         @endif

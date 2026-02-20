@@ -12,14 +12,14 @@ class AdvertisementController extends Controller
     use ImageUploadTrait;
     public function index()
     {
-        $homepage_section_banner_one = Advertisement::where('key', 'homepage_section_banner_one')->first();
-        $homepage_section_banner_one = json_decode($homepage_section_banner_one?->value);
-        $homepage_section_banner_two = Advertisement::where('key', 'homepage_section_banner_two')->first();
-        $homepage_section_banner_two = json_decode($homepage_section_banner_two?->value);
-        $homepage_section_banner_three = Advertisement::where('key', 'homepage_section_banner_three')->first();
-        $homepage_section_banner_three = json_decode($homepage_section_banner_three?->value);
-        $homepage_section_banner_four = Advertisement::where('key', 'homepage_section_banner_four')->first();
-        $homepage_section_banner_four = json_decode($homepage_section_banner_four?->value);
+        $homepage_secion_banner_one = Advertisement::where('key', 'homepage_secion_banner_one')->first();
+        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one?->value);
+        $homepage_secion_banner_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
+        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
+        $homepage_secion_banner_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
+        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
+        $homepage_secion_banner_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
+        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
         $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
         $productpage_banner_section = json_decode($productpage_banner_section?->value);
         $cartpage_banner_section = Advertisement::where('key', 'cartpage_banner_section')->first();
@@ -27,10 +27,10 @@ class AdvertisementController extends Controller
         return view(
             'admin.advertisement.index',
             compact(
-                'homepage_section_banner_one',
-                'homepage_section_banner_two',
-                'homepage_section_banner_three',
-                'homepage_section_banner_four',
+                'homepage_secion_banner_one',
+                'homepage_secion_banner_two',
+                'homepage_secion_banner_three',
+                'homepage_secion_banner_four',
                 'productpage_banner_section',
                 'cartpage_banner_section',
             )
@@ -56,7 +56,7 @@ class AdvertisementController extends Controller
         }
         $value = json_encode($value);
         Advertisement::updateOrCreate(
-            ['key' => 'homepage_section_banner_one'],
+            ['key' => 'homepage_secion_banner_one'],
             ['value' => $value]
         );
         toastr()->success('Updated successfully', ' ');
@@ -95,7 +95,7 @@ class AdvertisementController extends Controller
 
         $value = json_encode($value);
         Advertisement::updateOrCreate(
-            ['key' => 'homepage_section_banner_two'],
+            ['key' => 'homepage_secion_banner_two'],
             ['value' => $value]
         );
         toastr()->success('Updated successfully', ' ');
@@ -145,7 +145,7 @@ class AdvertisementController extends Controller
         }
         $value = json_encode($value);
         Advertisement::updateOrCreate(
-            ['key' => 'homepage_section_banner_three'],
+            ['key' => 'homepage_secion_banner_three'],
             ['value' => $value]
         );
         toastr()->success('Updated successfully', ' ');
@@ -171,7 +171,7 @@ class AdvertisementController extends Controller
         }
         $value = json_encode($value);
         Advertisement::updateOrCreate(
-            ['key' => 'homepage_section_banner_four'],
+            ['key' => 'homepage_secion_banner_four'],
             ['value' => $value]
         );
         toastr()->success('Updated successfully', ' ');

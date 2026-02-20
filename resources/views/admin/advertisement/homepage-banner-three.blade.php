@@ -7,70 +7,70 @@
       <div class="form-group">
         <div class="control-label">Status</div>
         <label class="custom-switch mt-2">
-          <input type="checkbox" {{ @$homepage_section_banner_three->banner_one->status == 1 ? 'checked' : '' }}
+          <input type="checkbox" {{ @$homepage_secion_banner_three->banner_one->status == 1 ? 'checked' : '' }}
             name="banner_one_status" class="custom-switch-input">
           <span class="custom-switch-indicator"></span>
         </label>
       </div>
       <div class="form-group">
-        <img src="{{ asset(@$homepage_section_banner_three->banner_one->banner_image) }}" width="150px" alt="">
+        <img src="{{ asset(@$homepage_secion_banner_three->banner_one->banner_image) }}" width="150px" alt="">
       </div>
       <div class="form-group">
         <label>Banner Image</label>
         <input type="file" class="form-control" name="banner_one_image">
         <input type="hidden" name="banner_one_old_image"
-          value="{{ @$homepage_section_banner_three->banner_one->banner_image }}">
+          value="{{ @$homepage_secion_banner_three->banner_one->banner_image }}">
       </div>
       <div class="form-group">
         <label>Banner Url</label>
-        <input type="text" value="{{ @$homepage_section_banner_three->banner_one->banner_url }}" class="form-control"
+        <input type="text" value="{{ @$homepage_secion_banner_three->banner_one->banner_url }}" class="form-control"
           name="banner_one_url">
       </div>
       <h1>Banner Two</h1>
       <div class="form-group">
         <div class="control-label">Status</div>
         <label class="custom-switch mt-2">
-          <input type="checkbox" {{ @$homepage_section_banner_three->banner_two->status == 1 ? 'checked' : '' }}
+          <input type="checkbox" {{ @$homepage_secion_banner_three->banner_two->status == 1 ? 'checked' : '' }}
             name="banner_two_status" class="custom-switch-input">
           <span class="custom-switch-indicator"></span>
         </label>
       </div>
       <div class="form-group">
-        <img src="{{ asset(@$homepage_section_banner_three->banner_two->banner_image) }}" width="150px" alt="">
+        <img src="{{ asset(@$homepage_secion_banner_three->banner_two->banner_image) }}" width="150px" alt="">
       </div>
       <div class="form-group">
         <label>Banner Image</label>
         <input type="file" class="form-control" name="banner_two_image">
         <input type="hidden" name="banner_two_old_image"
-          value="{{ @$homepage_section_banner_three->banner_two->banner_image }}">
+          value="{{ @$homepage_secion_banner_three->banner_two->banner_image }}">
       </div>
       <div class="form-group">
         <label>Banner Url</label>
-        <input type="text" value="{{ @$homepage_section_banner_three->banner_two->banner_url }}" class="form-control"
+        <input type="text" value="{{ @$homepage_secion_banner_three->banner_two->banner_url }}" class="form-control"
           name="banner_two_url">
       </div>
       <h1>Banner Three</h1>
       <div class="form-group">
         <div class="control-label">Status</div>
         <label class="custom-switch mt-2">
-          <input type="checkbox" {{ @$homepage_section_banner_three->banner_three->status == 1 ? 'checked' : '' }}
+          <input type="checkbox" {{ @$homepage_secion_banner_three->banner_three->status == 1 ? 'checked' : '' }}
             name="banner_three_status" class="custom-switch-input">
           <span class="custom-switch-indicator"></span>
         </label>
       </div>
       <div class="form-group">
-        <img src="{{ asset(@$homepage_section_banner_three->banner_three->banner_image) }}" width="150px"
+        <img src="{{ asset(@$homepage_secion_banner_three->banner_three->banner_image) }}" width="150px"
           alt="">
       </div>
       <div class="form-group">
         <label>Banner Image</label>
         <input type="file" class="form-control" name="banner_three_image">
         <input type="hidden" name="banner_three_old_image"
-          value="{{ @$homepage_section_banner_three->banner_three->banner_image }}">
+          value="{{ @$homepage_secion_banner_three->banner_three->banner_image }}">
       </div>
       <div class="form-group">
         <label>Banner Url</label>
-        <input type="text" value="{{ @$homepage_section_banner_three->banner_three->banner_url }}"
+        <input type="text" value="{{ @$homepage_secion_banner_three->banner_three->banner_url }}"
           class="form-control" name="banner_three_url">
       </div>
       <button type="submit" class="btn btn-primary">Update</button>

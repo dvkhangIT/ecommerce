@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-xl-4 col-md-4">
                           <div class="wsus__invoice_single text-md-end">
-                            <h5>Order id: #{{ $order->invoice_id }}</h5>
+                            <h5>Order id: #{{ $order->invocie_id }}</h5>
                             <h6>Order Status:
                               {{ config('order_status.order_status_vendor')[$order->order_status]['status'] }}</h6>
                             <p>Payment Method: {{ $order->payment_method }}</p>

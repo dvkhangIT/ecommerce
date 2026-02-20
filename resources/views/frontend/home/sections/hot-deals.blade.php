@@ -98,13 +98,13 @@
       <section id="wsus__single_banner" class="home_2_single_banner">
         <div class="container">
           <div class="row">
-            @if ($homepage_section_banner_three->banner_one->status == 1)
+            @if ($homepage_secion_banner_three->banner_one->status == 1)
               <div class="col-xl-6 col-lg-6">
                 <div class="wsus__single_banner_content banner_1">
                   <div class="wsus__single_banner_img">
-                    <a href="{{ $homepage_section_banner_three->banner_one->banner_url }}">
+                    <a href="{{ $homepage_secion_banner_three->banner_one->banner_url }}">
                       <img class="image-gluid"
-                        src="{{ asset($homepage_section_banner_three->banner_one->banner_image) }}" alt="">
+                        src="{{ asset($homepage_secion_banner_three->banner_one->banner_image) }}" alt="">
                     </a>
                   </div>
                   <div class="wsus__single_banner_text">
@@ -117,13 +117,13 @@
             @endif
             <div class="col-xl-6 col-lg-6">
               <div class="row">
-                @if ($homepage_section_banner_three->banner_two->status == 1)
+                @if ($homepage_secion_banner_three->banner_two->status == 1)
                   <div class="col-12">
                     <div class="wsus__single_banner_content single_banner_2">
                       <div class="wsus__single_banner_img">
-                        <a href="{{ $homepage_section_banner_three->banner_two->banner_url }}">
+                        <a href="{{ $homepage_secion_banner_three->banner_two->banner_url }}">
                           <img class="image-gluid"
-                            src="{{ asset($homepage_section_banner_three->banner_two->banner_image) }}" alt="">
+                            src="{{ asset($homepage_secion_banner_three->banner_two->banner_image) }}" alt="">
                         </a>
                       </div>
                       <div class="wsus__single_banner_text">
@@ -134,13 +134,13 @@
                     </div>
                   </div>
                 @endif
-                @if ($homepage_section_banner_three->banner_three->status == 1)
+                @if ($homepage_secion_banner_three->banner_three->status == 1)
                   <div class="col-12 mt-lg-4">
                     <div class="wsus__single_banner_content">
                       <div class="wsus__single_banner_img">
-                        <a href="{{ $homepage_section_banner_three->banner_three->banner_url }}">
+                        <a href="{{ $homepage_secion_banner_three->banner_three->banner_url }}">
                           <img class="image-gluid"
-                            src="{{ asset($homepage_section_banner_three->banner_three->banner_image) }}"
+                            src="{{ asset($homepage_secion_banner_three->banner_three->banner_image) }}"
                             alt="">
                         </a>
                       </div>

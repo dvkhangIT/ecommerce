@@ -22,8 +22,8 @@ class TransactionDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('invoice_id', function ($query) {
-                return '#' . $query->order->invoice_id;
+            ->addColumn('invocie_id', function ($query) {
+                return '#' . $query->order->invocie_id;
             })
             ->addColumn('amount_in_base_currency', function ($query) {
                 return $query->amount . ' ' . $query->order->currency_name;
@@ -31,9 +31,9 @@ class TransactionDataTable extends DataTable
             ->addColumn('amount_in_real_currency', function ($query) {
                 return $query->amount . ' ' . $query->amount_real_currency_name;
             })
-            ->filterColumn('invoice_id', function ($query, $keyword) {
+            ->filterColumn('invocie_id', function ($query, $keyword) {
                 $query->whereHas('order', function ($query) use ($keyword) {
-                    $query->where('invoice_id', 'like', "%$keyword%");
+                    $query->where('invocie_id', 'like', "%$keyword%");
                 });
             })
             ->setRowId('id');
@@ -76,7 +76,7 @@ class TransactionDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('invoice_id'),
+            Column::make('invocie_id'),
             Column::make('transaction_id'),
             Column::make('payment_method'),
             Column::make('amount_in_base_currency'),
