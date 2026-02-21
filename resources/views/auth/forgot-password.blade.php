@@ -23,8 +23,7 @@
       <div class="row">
         <div class="col-xl-5 m-auto">
           <div class="wsus__forget_area">
-            <span class="qiestion_icon"><i class="fal fa-question-circle"
-                aria-hidden="true"></i></span>
+            <span class="qiestion_icon"><i class="fal fa-question-circle" aria-hidden="true"></i></span>
             <h4>forget password ?</h4>
             <p>enter the email address to register with <span>e-shop</span></p>
             <div class="wsus__login">
@@ -32,8 +31,7 @@
                 @csrf
                 <div class="wsus__login_input">
                   <i class="fal fa-envelope" aria-hidden="true"></i>
-                  <input type="email" placeholder="Your Email" name="email"
-                    value="{{ old('email') }}">
+                  <input type="email" placeholder="Your Email" name="email" value="{{ old('email') }}">
                 </div>
                 <button class="common_btn" type="submit">send</button>
               </form>
