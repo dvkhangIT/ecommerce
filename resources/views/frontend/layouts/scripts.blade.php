@@ -106,7 +106,7 @@
        let id = $(this).data('id');
        $.ajax({
          type: "GET",
-         url: "{{ route('user.wishlist.store') }}",
+         url: "{{ route('wishlist.store') }}",
          data: {
            id
          },

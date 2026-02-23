@@ -87,6 +87,10 @@ Route::get('product-track', [ProductTrackController::class, 'track'])->name('pro
 Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
 Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
+// add product wishlist
+Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+
+
 Route::group([
     'middleware' => ['auth', 'verified'],
     'prefix' => 'user',
@@ -126,7 +130,6 @@ Route::group([
 
     // Wishlist routes
     Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-    Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
     Route::get('wishlist/remove-product/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
     // vendor request route
