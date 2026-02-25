@@ -2,6 +2,14 @@
 @section('title')
   {{ $settings->site_name }} || Product Details
 @endsection
+@section('metas')
+  <meta name="title" content="{{ $product->seo_title }}">
+  <meta name="description" content="{{ $product->seo_description }}">
+  <meta property="og:title" content="{{ $product->name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:image" content="{{ asset($product->thumb_image) }}">
+@endsection
 @section('content')
   <section id="wsus__breadcrumb">
     <div class="wsus_breadcrumb_overlay">
@@ -141,8 +149,9 @@
                     aria-selected="true">Description</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Vendor
+                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Vendor
                     Info</button>
                 </li>
                 <li class="nav-item" role="presentation">
