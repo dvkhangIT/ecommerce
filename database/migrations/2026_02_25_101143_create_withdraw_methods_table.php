@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('withdraw_methods', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->double('minimum_amount');
+            $table->double('maximum_amount');
+            $table->double('withdraw_charge');
+            $table->text('description');
             $table->timestamps();
         });
     }
