@@ -185,6 +185,15 @@
             </li>
           </ul>
         </li>
+        <li class="dropdown {{ setActive(['admin.withdraw-method.*']) }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+            <span>Withdraw Payment</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ setActive(['admin.withdraw-method.*']) }}">
+              <a class="nav-link" href="{{ route('admin.withdraw-method.index') }}">Withdraw Method</a>
+            </li>
+          </ul>
+        </li>
         <li class="menu-header">SETTING & MORE</li>
         <li
           class="dropdown 
