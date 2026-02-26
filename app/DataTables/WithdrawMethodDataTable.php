@@ -22,7 +22,14 @@ class WithdrawMethodDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'withdrawmethod.action')
+            ->addColumn('action', function ($query) {
+                $editBtn = '<a href="' . route('admin.withdraw-method.edit', $query->id) . '" class="btn btn-primary"><i class="far fa-edit"></i></a>';
+                $deleteBtn = '<a href="' . route('admin.withdraw-method.destroy', $query->id) . '" class="btn btn-danger ml-1 delete-item"><i class="far fa-trash-alt"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->addColumn('withdraw_charge', function ($query) {
+                return $query->withdraw_charge . '%';
+            })
             ->setRowId('id');
     }
 
@@ -62,15 +69,16 @@ class WithdrawMethodDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            Column::make('name'),
+            Column::make('minimum_amount'),
+            Column::make('maximum_amount'),
+            Column::make('withdraw_charge'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(200)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 
