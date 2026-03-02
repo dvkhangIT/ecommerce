@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+s@extends('frontend.layouts.master')
 @section('title')
   {{ $settings->site_name }} || About
 @endsection
