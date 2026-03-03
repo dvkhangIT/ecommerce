@@ -10,19 +10,43 @@
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i> All Withdraw</h3>
-            <div class="create_button">
-              <a href="{{ route('vendor.products.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i>
-                Create Request</a>
-            </div>
-            <div class="wsus__dashboard_profile">
-              <div class="wsus__dash_pro_area">
-                {{ $dataTable->table() }}
+            <div class="wsus__dashboard">
+              <div class="row">
+                <div class="col-6 col-md-4">
+                  <a class="wsus__dashboard_item red" href="{{ route('vendor.orders.index') }}">
+                    <i class="far fa-address-book"></i>
+                    <p>current banlance</p>
+                    <h4 style="color: #ffff">100</h4>
+                  </a>
+                </div>
+                <div class="col-6 col-md-4">
+                  <a class="wsus__dashboard_item red" href="{{ route('vendor.orders.index') }}">
+                    <i class="far fa-address-book"></i>
+                    <p>pending amount</p>
+                    <h4 style="color: #ffff">100</h4>
+                  </a>
+                </div>
+                <div class="col-6 col-md-4">
+                  <a class="wsus__dashboard_item red" href="{{ route('vendor.orders.index') }}">
+                    <i class="far fa-address-book"></i>
+                    <p>total withdraw</p>
+                    <h4 style="color: #ffff">100</h4>
+                  </a>
+                </div>
+              </div>
+              <div class="create_button">
+                <a href="{{ route('vendor.withdraw.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i>
+                  Create Request</a>
+              </div>
+              <div class="wsus__dashboard_profile">
+                <div class="wsus__dash_pro_area">
+                  {{ $dataTable->table() }}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 @endsection
 @push('scripts')
