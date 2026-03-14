@@ -11,13 +11,25 @@
           <div class="dashboard_content mt-2 mt-md-0">
             <h3><i class="far fa-user" aria-hidden="true"></i>Create Withdraw Request</h3>
             <div class="wsus__dashboard_profile">
-              <div class="wsus__dash_pro_area">
+              <div class="wsus__dash_pro_area col-md-6">
                 <form method="POST" action="{{ route('vendor.withdraw.store') }}" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group wsus__input">
-                    <label>Preview</label>
-                    <img style="display: block" width="200px" src="" alt="">
-                    <input type="text" class="form-control">
+                    <label>Method</label>
+                    <select type="text" class="form-control" name="method" id="method">
+                      <option value="">Select</option>
+                      @foreach ($methods as $method)
+                        <option value="{{ $method->id }}">{{ $method->name }}</option>
+                      @endforeach
+                      <select>
+                  </div>
+                  <div class="form-group wsus__input">
+                    <label>Withdraw Amount</label>
+                    <input type="text" class="form-control" name="withdraw_amount">
+                  </div>
+                  <div class="form-group wsus__input">
+                    <label>Account Infomation</label>
+                    <textarea type="text" class="form-control" name="account_info"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Update</button>
                 </form>
@@ -29,3 +41,20 @@
     </div>
   </section>
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('#method').on('change', function(e) {
+        let id = $(this).val();
+        $.ajax({
+          method: 'get',
+          url: "{{ route('vendor.withdraw.show', ':id') }}".replace(':id', id),
+          success: function(response) {},
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      })
+    });
+  </script>
+@endpush

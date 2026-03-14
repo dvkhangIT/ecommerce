@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\VendorWithdrawDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\WithdrawMethod;
 use Illuminate\Http\Request;
 
 class VendorWithdrawController extends Controller
@@ -21,7 +22,8 @@ class VendorWithdrawController extends Controller
      */
     public function create()
     {
-        return view('vendor.withdraw.create');
+        $methods = WithdrawMethod::all();
+        return view('vendor.withdraw.create', compact('methods'));
     }
 
     /**
@@ -37,7 +39,7 @@ class VendorWithdrawController extends Controller
      */
     public function show(string $id)
     {
-        //
+        dd($id);
     }
 
     /**
