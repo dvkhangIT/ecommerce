@@ -26,13 +26,13 @@
                     </div>
                     <div class="form-group wsus__input">
                       <label>Withdraw Amount</label>
-                      <input type="text" class="form-control" name="withdraw_amount">
+                      <input type="text" class="form-control" name="amount">
                     </div>
                     <div class="form-group wsus__input">
                       <label>Account Infomation</label>
                       <textarea type="text" class="form-control" name="account_info"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                   </form>
                 </div>
                 <div class="wsus__dash_pro_area col-md-6 account_info_area ml-2">

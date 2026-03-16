@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\VendorWithdrawDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\WithdrawMethod;
+use App\Models\WithdrawRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class VendorWithdrawController extends Controller
 {
@@ -31,7 +33,25 @@ class VendorWithdrawController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'method' => ['required', 'integer'],
+            'amount' => ['numeric', 'required'],
+            'account_info' => ['required', 'max:2000']
+        ]);
+        $method = WithdrawMethod::findOrFail($request->method);
+        if ($request->amount < $method->minimum_amount || $request->amount > $method->maximum_amount) {
+            throw ValidationException::withMessages(["The amount have to be getter then $method->minimum_amount and less then $method->maximum_amount"]);
+        }
+        $withdraw = new WithdrawRequest();
+        $withdraw->vendor_id = auth()->user()->id;
+        $withdraw->method = $method->name;
+        $withdraw->total_amount = $request->amount;
+        $withdraw->withdraw_amount = $request->amount - ($method->withdraw_charge / 100) * $request->amount;
+        $withdraw->withdraw_charge = ($method->withdraw_charge / 100) * $request->amount;
+        $withdraw->account_info = $request->account_info;
+        $withdraw->save();
+        toastr()->success('Request added successfully!', ' ');
+        return redirect()->route('vendor.withdraw.index');
     }
 
     /**
