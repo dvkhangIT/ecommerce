@@ -62,7 +62,11 @@ class VendorWithdrawController extends Controller
         $methodInfo = WithdrawMethod::findOrFail($id);
         return response($methodInfo);
     }
-
+    public function showRequest(string $id)
+    {
+        $request = WithdrawRequest::where('vendor_id', auth()->user()->id)->findOrFail($id);
+        return view('vendor.withdraw.show', compact('request'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

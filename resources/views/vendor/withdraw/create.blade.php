@@ -32,7 +32,7 @@
                       <label>Account Infomation</label>
                       <textarea type="text" class="form-control" name="account_info"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                   </form>
                 </div>
                 <div class="wsus__dash_pro_area col-md-6 account_info_area ml-2">
