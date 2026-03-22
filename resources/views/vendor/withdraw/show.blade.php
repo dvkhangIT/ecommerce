@@ -13,7 +13,44 @@
             <div class="wsus__dashboard_profile">
               <div class="row">
                 <div class="wsus__dash_pro_area col-md-6">
-
+                  <table class="table table-bordered">
+                    <tr>
+                      <td><b>Withdraw Method</b></td>
+                      <td>{{ $request->method }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Withdraw Charge</b></td>
+                      <td>{{ ($request->withdraw_charge / $request->total_amount) * 100 }}%</td>
+                    </tr>
+                    <tr>
+                      <td><b>Withdraw Charge Amount</b></td>
+                      <td>{{ $request->withdraw_charge }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Total Amount</b></td>
+                      <td>{{ $request->total_amount }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Withdraw Amount</b></td>
+                      <td>{{ $request->withdraw_amount }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Status</b></td>
+                      <td>
+                        @if ($request->status == 'pending')
+                          <span class="badge bg-warning">Pending</span>
+                        @elseif ($request->status == 'paid')
+                          <span class="badge bg-success">Paid</span>
+                        @else
+                          <span class="badge bg-danger">Declined</span>
+                        @endif
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Account Infomation</b></td>
+                      <td>{{ $request->account_info }}</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
