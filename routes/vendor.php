@@ -52,5 +52,5 @@ Route::get('orders/status/{id}', [VendorOrderController::class, 'orderStatus'])-
 Route::get('reviews', [VendorProductReviewController::class, 'index'])->name('reviews.index');
 
 // withdraw route
-Route::get('withdraw/{id}', [VendorWithdrawController::class, 'showRequest'])->name('withdraw-request.show');
+Route::get('withdraw-request/{id}', [VendorWithdrawController::class, 'showRequest'])->name('withdraw-request.show');
 Route::resource('withdraw', VendorWithdrawController::class);

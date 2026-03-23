@@ -55,7 +55,7 @@
           url: "{{ route('vendor.withdraw.show', ':id') }}".replace(':id', id),
           success: function(response) {
             $('.account_info_area').html(`
-            <h3>Payout Range: ${response.minimum_amount} - ${response.maximum_amount}</h3>
+            <h3>Payout Range: {{ $settings->currency_icon }}${response.minimum_amount} - {{ $settings->currency_icon }}${response.maximum_amount}</h3>
             <h3>Withdraw Charge: ${response.withdraw_charge}%</h3>
             <p>${response.description}</p>
         `)

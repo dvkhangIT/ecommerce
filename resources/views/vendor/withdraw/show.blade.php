@@ -24,15 +24,15 @@
                     </tr>
                     <tr>
                       <td><b>Withdraw Charge Amount</b></td>
-                      <td>{{ $request->withdraw_charge }}</td>
+                      <td>{{ $settings->currency_icon }}{{ $request->withdraw_charge }}</td>
                     </tr>
                     <tr>
                       <td><b>Total Amount</b></td>
-                      <td>{{ $request->total_amount }}</td>
+                      <td>{{ $settings->currency_icon }}{{ $request->total_amount }}</td>
                     </tr>
                     <tr>
                       <td><b>Withdraw Amount</b></td>
-                      <td>{{ $request->withdraw_amount }}</td>
+                      <td>{{ $settings->currency_icon }}{{ $request->withdraw_amount }}</td>
                     </tr>
                     <tr>
                       <td><b>Status</b></td>

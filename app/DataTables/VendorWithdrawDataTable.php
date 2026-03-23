@@ -36,6 +36,15 @@ class VendorWithdrawDataTable extends DataTable
                     return "<span class='badge bg-danger'>Declined</span>";
                 }
             })
+            ->addColumn('total_amount', function ($query) {
+                return getCurrencyIcon() . $query->total_amount;
+            })
+            ->addColumn('withdraw_charge', function ($query) {
+                return getCurrencyIcon() . $query->withdraw_charge;
+            })
+            ->addColumn('withdraw_amount', function ($query) {
+                return getCurrencyIcon() . $query->withdraw_amount;
+            })
             ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }

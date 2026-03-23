@@ -2,8 +2,10 @@
 
 // Set sidebar item active
 
+use App\Models\GeneralSetting;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 function setActive(array $route)
 {
@@ -121,4 +123,9 @@ function getFinalPayableAmount()
 function limitText($text, $limit = 20)
 {
     return \Str::limit($text, $limit);
+}
+function getCurrencyIcon()
+{
+    $icon = GeneralSetting::first();
+    return $icon->currency_icon;
 }
