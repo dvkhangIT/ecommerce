@@ -23,7 +23,7 @@
                   <a class="wsus__dashboard_item red" href="{{ route('vendor.orders.index') }}">
                     <i class="far fa-address-book"></i>
                     <p>pending amount</p>
-                    <h4 style="color: #ffff">100</h4>
+                    <h4 style="color: #ffff">{{ $settings->currency_icon }}{{ $pendingAmount }}</h4>
                   </a>
                 </div>
                 <div class="col-6 col-md-4">

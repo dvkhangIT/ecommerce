@@ -25,7 +25,13 @@ class VendorWithdrawController extends Controller
             ->sum(DB::raw('unit_price * qty'));
         $totalWithdraw = WithdrawRequest::where('status', 'paid')->sum('total_amount');
         $currentBallance = $totalEarnings - $totalWithdraw;
-        return $dataTable->render('vendor.withdraw.index', compact('currentBallance', 'totalEarnings', 'totalWithdraw'));
+        $pendingAmount = WithdrawRequest::where('status', 'pending')->sum('total_amount');
+        return $dataTable->render('vendor.withdraw.index', compact(
+            'currentBallance',
+            'totalEarnings',
+            'totalWithdraw',
+            'pendingAmount'
+        ));
     }
 
     /**
