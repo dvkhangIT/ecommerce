@@ -57,6 +57,19 @@ class VendorWithdrawController extends Controller
         if ($request->amount < $method->minimum_amount || $request->amount > $method->maximum_amount) {
             throw ValidationException::withMessages(["The amount have to be getter then $method->minimum_amount and less then $method->maximum_amount"]);
         }
+        $totalEarnings = OrderProduct::where('vendor_id', auth()->user()->id)
+            ->whereHas('order', function ($q) {
+                $q->where('payment_status', 1)->where('order_status', 'delivered');
+            })
+            ->sum(DB::raw('unit_price * qty'));
+        $totalWithdraw = WithdrawRequest::where('status', 'paid')->sum('total_amount');
+        $currentBallance = $totalEarnings - $totalWithdraw;
+        if ($request->amount > $currentBallance) {
+            throw ValidationException::withMessages(['Insufficient Blance']);
+        }
+        if (WithdrawRequest::where(['vendor_id' => auth()->user()->id, 'status' => 'pending'])->exists()) {
+            throw ValidationException::withMessages(['You already have a pending request']);
+        };
         $withdraw = new WithdrawRequest();
         $withdraw->vendor_id = auth()->user()->id;
         $withdraw->method = $method->name;
