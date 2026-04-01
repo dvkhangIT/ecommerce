@@ -18,4 +18,15 @@ class WithdrawController extends Controller
         $request = WithdrawRequest::findOrfail($id);
         return view('admin.withdraw.show', compact('request'));
     }
+    function update(string $id, Request $request)
+    {
+        $request->validate([
+            'status' => ['required', 'in:pending,paid,declined,']
+        ]);
+        $withdraw = WithdrawRequest::findOrfail($id);
+        $withdraw->status = $request->status;
+        $withdraw->save();
+        toastr()->success('Update Successfully', ' ');
+        return redirect()->route('admin.withdraw.index');
+    }
 }

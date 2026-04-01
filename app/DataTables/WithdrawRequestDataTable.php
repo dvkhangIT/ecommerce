@@ -47,6 +47,9 @@ class WithdrawRequestDataTable extends DataTable
             ->addColumn('vendor', function ($query) {
                 return $query->vendor->shop_name;
             })
+            ->addColumn('date', function ($query) {
+                return date('d M Y', strtotime($query->created_at));
+            })
             ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
@@ -94,6 +97,7 @@ class WithdrawRequestDataTable extends DataTable
             Column::make('withdraw_amount'),
             Column::make('withdraw_charge'),
             Column::make('status'),
+            Column::make('date'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

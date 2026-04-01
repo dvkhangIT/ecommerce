@@ -76,13 +76,17 @@
                   <div class="invoice-print">
                     <div class="row mt-4">
                       <div class="col-md-4">
-                        <form action="">
+                        <form method="POST" action="{{ route('admin.withdraw.update', $request->id) }}">
+                          @csrf
+                          @method('put')
                           <div class="form-group">
                             <label for="">Status</label>
                             <select name="status" class="form-control">
-                              <option value="pending">Pending</option>
-                              <option value="paid">Paid</option>
-                              <option value="declined">Declined</option>
+                              <option @selected($request->status == 'pending') value="pending">Pending
+                              </option>
+                              <option @selected($request->status == 'paid') value="paid">Paid</option>
+                              <option @selected($request->status == 'declined') value="declined">Declined
+                              </option>
                             </select>
                           </div>
                           <div class="form-group">

@@ -153,6 +153,7 @@ Route::get('transaction', [TransactionController::class, 'index'])->name('transa
 Route::resource('withdraw-method', WithdrawMethodController::class);
 Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.index');
 Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw.show');
+Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
 /** Setting Route */
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 Route::put('general-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('general-setting-update');
