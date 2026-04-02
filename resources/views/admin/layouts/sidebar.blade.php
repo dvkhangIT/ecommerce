@@ -142,29 +142,6 @@
             </li>
           </ul>
         </li>
-        <li
-          class="dropdown {{ setActive(['admin.slider.*', 'admin.home-page-setting', 'admin.vendor-condition.index', 'admin.about.index', 'admin.terms.index']) }}">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-            <i class="fas fa-cog"></i>
-            <span>Manage Website</span></a>
-          <ul class="dropdown-menu">
-            <li class="{{ setActive(['admin.slider.*']) }}">
-              <a class="nav-link" href="{{ route('admin.slider.index') }}">Slider</a>
-            </li>
-            <li class="{{ setActive(['admin.home-page-setting']) }}">
-              <a class="nav-link" href="{{ route('admin.home-page-setting') }}">Home Page Setting</a>
-            </li>
-            <li class="{{ setActive(['admin.vendor-condition.index']) }}">
-              <a class="nav-link" href="{{ route('admin.vendor-condition.index') }}">Vendor Condition</a>
-            </li>
-            <li class="{{ setActive(['admin.about.index']) }}">
-              <a class="nav-link" href="{{ route('admin.about.index') }}">About Page</a>
-            </li>
-            <li class="{{ setActive(['admin.terms.index']) }}">
-              <a class="nav-link" href="{{ route('admin.terms.index') }}">Terms Page</a>
-            </li>
-          </ul>
-        </li>
         <li class="{{ setActive(['admin.advertisement.*']) }}"><a class="nav-link"
             href="{{ route('admin.advertisement.index') }}">
             <i class="fas fa-ad"></i>
@@ -185,8 +162,8 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown {{ setActive(['admin.withdraw-method.*']) }}">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+        <li class="dropdown {{ setActive(['admin.withdraw-method.*', 'admin.withdraw.*']) }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-wallet"></i>
             <span>Withdraw Payment</span></a>
           <ul class="dropdown-menu">
             <li class="{{ setActive(['admin.withdraw-method.*']) }}">
@@ -194,6 +171,29 @@
             </li>
             <li class="{{ setActive(['admin.withdraw.*']) }}">
               <a class="nav-link" href="{{ route('admin.withdraw.index') }}">Withdraw List</a>
+            </li>
+          </ul>
+        </li>
+        <li
+          class="dropdown {{ setActive(['admin.slider.*', 'admin.home-page-setting', 'admin.vendor-condition.index', 'admin.about.index', 'admin.terms.index']) }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+            <i class="fas fa-cog"></i>
+            <span>Manage Website</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ setActive(['admin.slider.*']) }}">
+              <a class="nav-link" href="{{ route('admin.slider.index') }}">Slider</a>
+            </li>
+            <li class="{{ setActive(['admin.home-page-setting']) }}">
+              <a class="nav-link" href="{{ route('admin.home-page-setting') }}">Home Page Setting</a>
+            </li>
+            <li class="{{ setActive(['admin.vendor-condition.index']) }}">
+              <a class="nav-link" href="{{ route('admin.vendor-condition.index') }}">Vendor Condition</a>
+            </li>
+            <li class="{{ setActive(['admin.about.index']) }}">
+              <a class="nav-link" href="{{ route('admin.about.index') }}">About Page</a>
+            </li>
+            <li class="{{ setActive(['admin.terms.index']) }}">
+              <a class="nav-link" href="{{ route('admin.terms.index') }}">Terms Page</a>
             </li>
           </ul>
         </li>

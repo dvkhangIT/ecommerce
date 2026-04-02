@@ -47,6 +47,11 @@ class WithdrawRequestDataTable extends DataTable
             ->addColumn('vendor', function ($query) {
                 return $query->vendor->shop_name;
             })
+            ->filterColumn('vendor', function ($query, $keyword) {
+                $query->whereHas('vendor', function ($subQuery) use ($keyword) {
+                    $subQuery->where('shop_name', 'like', '%' . $keyword . '%');
+                });
+            })
             ->addColumn('date', function ($query) {
                 return date('d M Y', strtotime($query->created_at));
             })
