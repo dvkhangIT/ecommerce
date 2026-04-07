@@ -22,7 +22,7 @@ class VendorWithdrawController extends Controller
             ->whereHas('order', function ($q) {
                 $q->where('payment_status', 1)->where('order_status', 'delivered');
             })
-            ->sum(DB::raw('unit_price * qty'));
+            ->sum(DB::raw('unit_price * qty + variant_total'));
         $totalWithdraw = WithdrawRequest::where('status', 'paid')->sum('total_amount');
         $currentBallance = $totalEarnings - $totalWithdraw;
         $pendingAmount = WithdrawRequest::where('status', 'pending')->sum('total_amount');
@@ -61,7 +61,7 @@ class VendorWithdrawController extends Controller
             ->whereHas('order', function ($q) {
                 $q->where('payment_status', 1)->where('order_status', 'delivered');
             })
-            ->sum(DB::raw('unit_price * qty'));
+            ->sum(DB::raw('unit_price * qty + variant_total'));
         $totalWithdraw = WithdrawRequest::where('status', 'paid')->sum('total_amount');
         $currentBallance = $totalEarnings - $totalWithdraw;
         if ($request->amount > $currentBallance) {
