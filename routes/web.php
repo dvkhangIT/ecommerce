@@ -90,6 +90,8 @@ Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 // add product wishlist
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
 
+// product route
+Route::get('show-product-modal/{id}', [HomeController::class, 'ShowProductModal'])->name('show-product-modal');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

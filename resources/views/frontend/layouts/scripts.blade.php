@@ -120,38 +120,56 @@
          }
        });
      });
-   });
-
-   // newsletter
-   $('#newsletter').on('submit', function(e) {
-     e.preventDefault();
-     let data = $(this).serialize();
-     $.ajax({
-       type: "POST",
-       url: "{{ route('newsletter-request') }}",
-       data: data,
-       beforeSend: function() {
-         $('.subscribe-btn').text('Loading...');
-       },
-       success: function(response) {
-         if (response.status === 'success') {
-           $('.newsletter_email').val('');
+     // newsletter
+     $('#newsletter').on('submit', function(e) {
+       e.preventDefault();
+       let data = $(this).serialize();
+       $.ajax({
+         type: "POST",
+         url: "{{ route('newsletter-request') }}",
+         data: data,
+         beforeSend: function() {
+           $('.subscribe-btn').text('Loading...');
+         },
+         success: function(response) {
+           if (response.status === 'success') {
+             $('.newsletter_email').val('');
+             $('.subscribe-btn').text('subscribe');
+             toastr.success(response.message);
+           } else if (response.status === 'error') {
+             $('.subscribe-btn').text('subscribe');
+             toastr.error(response.message);
+           }
+         },
+         error: function(response) {
+           let errors = response.responseJSON.errors
+           if (errors) {
+             $.each(errors, function(key, value) {
+               toastr.error(value);
+             });
+           }
            $('.subscribe-btn').text('subscribe');
-           toastr.success(response.message);
-         } else if (response.status === 'error') {
-           $('.subscribe-btn').text('subscribe');
-           toastr.error(response.message);
          }
-       },
-       error: function(response) {
-         let errors = response.responseJSON.errors
-         if (errors) {
-           $.each(errors, function(key, value) {
-             toastr.error(value);
-           });
-         }
-         $('.subscribe-btn').text('subscribe');
-       }
+       });
      });
+     $('.show_product_modal').on('click', function() {
+       let id = $(this).data('id');
+       $.ajax({
+         type: "GET",
+         url: "{{ route('show-product-modal', ':id') }}".replace(":id", id),
+         beforeSend: function() {
+
+         },
+         success: function(response) {
+
+         },
+         error: function(xhr, status, error) {
+
+         },
+         complete: function() {
+
+         },
+       });
+     })
    });
  </script>

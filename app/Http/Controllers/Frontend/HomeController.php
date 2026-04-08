@@ -15,7 +15,10 @@ use App\Models\Product;
 use App\Models\Slider;
 use App\Models\SubCategory;
 use App\Models\Vendor;
+use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpFoundation\Request;
+
+use function Symfony\Component\String\s;
 
 class HomeController extends Controller
 {
@@ -89,5 +92,11 @@ class HomeController extends Controller
                 'vendor',
             )
         );
+    }
+    function ShowProductModal(string $id)
+    {
+        $product = Product::findOrfail($id);
+        $content = view('frontend.layouts.modal', compact('product'))->render();
+        return Response::make($content, 200, ['Content-Type' => 'text/html']);
     }
 }
