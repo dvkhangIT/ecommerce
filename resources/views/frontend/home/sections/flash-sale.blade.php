@@ -14,7 +14,7 @@
       <div class="row flash_sell_slider">
         @foreach ($flashSaleItem as $item)
           @php
-            $product = \App\Models\Product::with('reviews')->find($item->product_id);
+            $product = \App\Models\Product::with(['reviews', 'variants', 'category'])->find($item->product_id);
           @endphp
           <div class="col-xl-3 col-sm-6 col-lg-4">
             <div class="wsus__product_item">
