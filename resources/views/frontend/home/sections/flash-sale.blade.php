@@ -12,10 +12,15 @@
         </div>
       </div>
       <div class="row flash_sell_slider">
-        @foreach ($flashSaleItem as $item)
-          @php
-            $product = \App\Models\Product::with(['reviews', 'variants', 'category'])->find($item->product_id);
-          @endphp
+
+        @php
+          $products = \App\Models\Product::withAvg('reviews', 'rating')
+              ->withCount('reviews')
+              ->with(['productImageGalleries', 'variants', 'category'])
+              ->whereIn('id', $flashSaleItem)
+              ->get();
+        @endphp
+        @foreach ($products as $product)
           <div class="col-xl-3 col-sm-6 col-lg-4">
             <div class="wsus__product_item">
               <span class="wsus__new">{{ productType($product->product_type) }}</span>
