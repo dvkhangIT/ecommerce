@@ -15,26 +15,12 @@
               <img src="{{ asset($product->thumb_image) }}" alt="{{ $product->name }}" class="img-fluid w-100">
             </div>
           </div>
-          @if (count($product->productImageGalleries) == 0)
-            <div class="col-xl-12">
-              <div class="modal_slider_img">
-                <img src="{{ asset($product->thumb_image) }}" alt="{{ $product->name }}" class="img-fluid w-100">
-              </div>
-            </div>
-          @endif
-          @foreach ($product->productImageGalleries as $productImage)
-            <div class="col-xl-12">
-              <div class="modal_slider_img">
-                <img src="{{ asset($productImage->image) }}" alt="{{ $product->name }}" class="img-fluid w-100">
-              </div>
-            </div>
-          @endforeach
         </div>
       </div>
     </div>
     <div class="col-xl-6 col-12 col-sm-12 col-md-12 col-lg-6">
       <div class="wsus__pro_details_text">
-        <a class="title" href="javascript:;">{{ $product->name }}</a>
+        <a class="title" href="javascript:;">{{ limitText($product->name, 50) }}</a>
         <p class="wsus__stock_area"><span class="in_stock">in
             stock</span> (167 item)</p>
         @if (checkDiscount($product))
@@ -60,7 +46,7 @@
           @endfor
           <span>({{ count($product->reviews) }} review)</span>
         </p>
-        <p class="description">{!! $product->short_description !!}</p>
+        <p class="description">{!! limitText($product->short_description, 200) !!}</p>
         <form action="" class="shopping-cart-form">
           <div class="wsus__selectbox">
             <div class="row">
