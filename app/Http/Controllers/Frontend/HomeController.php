@@ -64,10 +64,27 @@ class HomeController extends Controller
     public function getTypeBaseProduct()
     {
         $typeBaseProducts = [];
-        $typeBaseProducts['new_arrival'] = Product::where(['product_type' => 'new_arrival', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
-        $typeBaseProducts['best_product'] = Product::where(['product_type' => 'best_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
-        $typeBaseProducts['top_product'] = Product::where(['product_type' => 'top_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
-        $typeBaseProducts['featured_product'] = Product::where(['product_type' => 'featured_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
+        $typeBaseProducts['new_arrival'] = Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->with(['productImageGalleries', 'variants', 'category'])
+            ->where(['product_type' => 'new_arrival', 'status' => 1, 'is_approved' => 1])
+            ->orderBy('id', 'DESC')->take(8)->get();
+
+        $typeBaseProducts['best_product'] = Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->with(['productImageGalleries', 'variants', 'category'])
+            ->where(['product_type' => 'best_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
+
+        $typeBaseProducts['top_product'] = Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->with(['productImageGalleries', 'variants', 'category'])
+            ->where(['product_type' => 'top_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
+
+        $typeBaseProducts['featured_product'] = Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->with(['productImageGalleries', 'variants', 'category'])
+            ->where(['product_type' => 'featured_product', 'status' => 1, 'is_approved' => 1])->orderBy('id', 'DESC')->take(8)->get();
+
         return $typeBaseProducts;
     }
     public function vendorPage()
