@@ -9,7 +9,7 @@
   @include('frontend.home.sections.brand-slider')
   @include('frontend.home.sections.single-banner')
   @include('frontend.home.sections.hot-deals')
-  {{-- @include('frontend.home.sections.category-product-slider-one') --}}
+  @include('frontend.home.sections.category-product-slider-one')
   {{-- @include('frontend.home.sections.category-product-slider-two') --}}
   {{-- @include('frontend.home.sections.large_banner') --}}
   {{-- @include('frontend.home.sections.weekly-best-item') --}}
