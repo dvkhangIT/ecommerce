@@ -13,5 +13,6 @@
   @include('frontend.home.sections.category-product-slider-two')
   @include('frontend.home.sections.large_banner')
   @include('frontend.home.sections.weekly-best-item')
-  {{-- @include('frontend.home.sections.blogs') --}}
+  @include('frontend.home.sections.services')
+  @include('frontend.home.sections.blogs')
 @endsection
