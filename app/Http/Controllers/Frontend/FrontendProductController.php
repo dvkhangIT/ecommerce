@@ -19,11 +19,14 @@ class FrontendProductController extends Controller
     {
         if ($request->has('category')) {
             $category = Category::where('slug', $request->category)->firstOrFail();
-            $products = Product::where([
-                'status' => 1,
-                'category_id' => $category->id,
-                'is_approved' => 1,
-            ])
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where([
+                    'status' => 1,
+                    'category_id' => $category->id,
+                    'is_approved' => 1,
+                ])
                 ->when($request->has('range'), function ($query) use ($request) {
                     $price = explode(';', $request->range);
                     $from = $price[0];
@@ -33,11 +36,14 @@ class FrontendProductController extends Controller
                 ->paginate(12);
         } elseif ($request->has('subcategory')) {
             $category = SubCategory::where('slug', $request->subcategory)->firstOrFail();
-            $products = Product::where([
-                'status' => 1,
-                'sub_category_id' => $category->id,
-                'is_approved' => 1,
-            ])
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where([
+                    'status' => 1,
+                    'sub_category_id' => $category->id,
+                    'is_approved' => 1,
+                ])
                 ->when($request->has('range'), function ($query) use ($request) {
                     $price = explode(';', $request->range);
                     $from = $price[0];
@@ -47,11 +53,14 @@ class FrontendProductController extends Controller
                 ->paginate(12);
         } elseif ($request->has('childcategory')) {
             $category = ChildCategory::where('slug', $request->childcategory)->firstOrFail();
-            $products = Product::where([
-                'status' => 1,
-                'child_category_id' => $category->id,
-                'is_approved' => 1,
-            ])
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where([
+                    'status' => 1,
+                    'child_category_id' => $category->id,
+                    'is_approved' => 1,
+                ])
                 ->when($request->has('range'), function ($query) use ($request) {
                     $price = explode(';', $request->range);
                     $from = $price[0];
@@ -61,11 +70,14 @@ class FrontendProductController extends Controller
                 ->paginate(12);
         } elseif ($request->has('brand')) {
             $brand = Brand::where('slug', $request->brand)->firstOrFail();
-            $products = Product::where([
-                'status' => 1,
-                'brand_id' => $brand->id,
-                'is_approved' => 1,
-            ])
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where([
+                    'status' => 1,
+                    'brand_id' => $brand->id,
+                    'is_approved' => 1,
+                ])
                 ->when($request->has('range'), function ($query) use ($request) {
                     $price = explode(';', $request->range);
                     $from = $price[0];
@@ -74,16 +86,22 @@ class FrontendProductController extends Controller
                 })
                 ->paginate(12);;
         } elseif ($request->has('search')) {
-            $products = Product::where(['status' => 1, 'is_approved' => 1,])->where(function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->search . '%')
-                    ->orWhere('long_description', 'like', '%' . $request->search . '%')
-                    ->orWhereHas('category', function ($query) use ($request) {
-                        $query->where('name', 'like', '%' . $request->search . '%')
-                            ->orWhere('long_description', 'like', '%' . $request->search . '%');
-                    });
-            })->paginate(12);
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where(['status' => 1, 'is_approved' => 1,])->where(function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . $request->search . '%')
+                        ->orWhere('long_description', 'like', '%' . $request->search . '%')
+                        ->orWhereHas('category', function ($query) use ($request) {
+                            $query->where('name', 'like', '%' . $request->search . '%')
+                                ->orWhere('long_description', 'like', '%' . $request->search . '%');
+                        });
+                })->paginate(12);
         } else {
-            $products = Product::where(['status' => 1, 'is_approved' => 1,])
+            $products = Product::withAvg('reviews', 'rating')
+                ->withCount('reviews')
+                ->with(['variants', 'productImageGalleries', 'category'])
+                ->where(['status' => 1, 'is_approved' => 1,])
                 ->orderBy('id', 'DESC')
                 ->paginate(12);
         }
