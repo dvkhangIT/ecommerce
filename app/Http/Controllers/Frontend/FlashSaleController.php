@@ -11,7 +11,7 @@ class FlashSaleController extends Controller
     public function index()
     {
         $flashSaleDate = FlashSale::first();
-        $flashSaleItems = FlashSaleItem::where('status', 1)->orderby('id', 'ASC')->paginate(20);
+        $flashSaleItems = FlashSaleItem::where('status', 1)->orderby('id', 'ASC')->pluck('product_id')->toArray();
 
         return view('frontend.pages.flash-sale', compact(
             'flashSaleDate',
