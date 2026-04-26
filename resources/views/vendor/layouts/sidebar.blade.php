@@ -11,6 +11,10 @@
           class="fas fa-tachometer"></i>Dashboard</a>
     </li>
     <li>
+      <a class="{{ setActive(['vendor.messages.index']) }}" href="{{ route('vendor.messages.index') }}"><i
+          class="fab fa-facebook-messenger"></i>Message</a>
+    </li>
+    <li>
       <a class="{{ setActive(['home']) }}" href="{{ route('home') }}"><i class="fas fa-home"></i>Go To Home</a>
     </li>
     <li>

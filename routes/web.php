@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\UserMessageController;
 use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\UserVendorRequestController;
 use App\Http\Controllers\Frontend\WishlistController;
@@ -102,6 +103,9 @@ Route::group([
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
     Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
+
+    // Messages route
+    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
 
     // User address route
     Route::resource('address', UserAddressController::class);
