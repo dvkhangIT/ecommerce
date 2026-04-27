@@ -19,6 +19,8 @@
                         href="#email-configuration" role="tab" aria-selected="false">Email Configuration</a>
                       <a class="list-group-item list-group-item-action" id="list-logo-list" data-toggle="list"
                         href="#list-logo" role="tab" aria-selected="false">Logo and Favicon</a>
+                      <a class="list-group-item list-group-item-action" id="list-pusher-list" data-toggle="list"
+                        href="#list-pusher" role="tab" aria-selected="false">Pusher Setting</a>
                     </div>
                   </div>
                   <div class="col-10">
@@ -26,6 +28,7 @@
                       @include('admin.setting.general-setting')
                       @include('admin.setting.email-configuration')
                       @include('admin.setting.logo')
+                      @include('admin.setting.pusher-setting')
                     </div>
                   </div>
                 </div>
