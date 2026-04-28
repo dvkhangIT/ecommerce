@@ -126,10 +126,11 @@
                 <ul class="wsus__button_area">
                   <li><button type="submit" class="add_cart">add to cart</a></li>
                   <li>
-                    <a style="border: 1px solid gray;padding: 7px 11px;border-radius: 100%" href="javascript:;"
-                      data-id="{{ $product->id }}" class="add_to_wishlist">
+                    <a href="javascript:;" data-id="{{ $product->id }}" class="add_to_wishlist">
                       <i class="fal fa-heart"></i></a>
                   </li>
+                  <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i
+                        class="fal fa-comment-alt"></i></a></li>
                 </ul>
               </form>
               <p class="brand_model"><span>brand :</span>
@@ -364,4 +365,22 @@
       </div>
     </div>
   </section>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Message</label>
+            <textarea name="message" class="form-control mt-2"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-4">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
