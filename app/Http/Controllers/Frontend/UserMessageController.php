@@ -12,4 +12,11 @@ class UserMessageController extends Controller
     {
         return view('frontend.dashboard.messenger.index');
     }
+    function sendMessage(Request $request)
+    {
+        $request->validate([
+            'message' => ['required'],
+            'recever_id' => ['required'],
+        ]);
+    }
 }

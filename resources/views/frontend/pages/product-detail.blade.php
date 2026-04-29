@@ -374,13 +374,45 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-            <label for="">Message</label>
-            <textarea name="message" class="form-control mt-2"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary mt-4">Send</button>
+          <form action="" class="message_modal">
+            @csrf
+            <div class="form-group">
+              <label for="">Message</label>
+              <textarea name="message" class="form-control mt-2"></textarea>
+              <input type="hidden" name="recever_id" value="{{ $product->vendor->user_id }}">
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Send</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('.message_modal').on('submit', function(e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        $.ajax({
+          method: 'POST',
+          url: "{{ route('user.send-messages') }}",
+          data: formData,
+          beforeSend: function() {
+
+          },
+          success: function(response) {
+
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr);
+            toastr.error(error);
+          },
+          complete: function() {
+
+          },
+        });
+      })
+    });
+  </script>
+@endpush
