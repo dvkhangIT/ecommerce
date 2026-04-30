@@ -378,10 +378,10 @@
             @csrf
             <div class="form-group">
               <label for="">Message</label>
-              <textarea name="message" class="form-control mt-2"></textarea>
-              <input type="hidden" name="recever_id" value="{{ $product->vendor->user_id }}">
+              <textarea name="message" class="form-control mt-2 message-box"></textarea>
+              <input type="hidden" name="receiver_id" value="{{ $product->vendor->user_id }}">
             </div>
-            <button type="submit" class="btn btn-primary mt-4">Send</button>
+            <button type="submit" class="btn btn-primary mt-4 send-button">Send</button>
           </form>
         </div>
       </div>
@@ -399,14 +399,20 @@
           url: "{{ route('user.send-messages') }}",
           data: formData,
           beforeSend: function() {
-
+            let html = `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                    Loading...`;
+            $('.send-button').html(html);
+            $('.send-button').prop('disable', true);
           },
           success: function(response) {
-
+            toastr.success(response.message);
+            $('.send-button').html('Send');
+            $('.send-button').prop('disable', false);
           },
           error: function(xhr, status, error) {
-            console.log(xhr);
-            toastr.error(error);
+            toastr.error(xhr.responseJSON.message);
+            $('.send-button').html('Send');
+            $('.send-button').prop('disable', false);
           },
           complete: function() {
 

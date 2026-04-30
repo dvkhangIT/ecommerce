@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -16,7 +17,13 @@ class UserMessageController extends Controller
     {
         $request->validate([
             'message' => ['required'],
-            'recever_id' => ['required'],
+            'receiver_id' => ['required'],
         ]);
+        $message = new Chat();
+        $message->sender_id = auth()->user()->id;
+        $message->receiver_id = $request->receiver_id;
+        $message->message = $request->message;
+        $message->save();
+        return response()->json(['status' => 'success', 'message' => 'Message sent successfully']);
     }
 }
