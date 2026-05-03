@@ -32,4 +32,8 @@ class UserMessageController extends Controller
         $message->save();
         return response()->json(['status' => 'success', 'message' => 'Message sent successfully']);
     }
+    function getMessage(Request $request)
+    {
+        dd($request->all());
+    }
 }
