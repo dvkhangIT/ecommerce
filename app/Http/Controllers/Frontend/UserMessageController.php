@@ -34,6 +34,11 @@ class UserMessageController extends Controller
     }
     function getMessage(Request $request)
     {
-        dd($request->all());
+        $senderId = auth()->user()->id;
+        $receiverId = $request->receiver_id;
+        $message = Chat::whereIn('receiver_id', [$senderId, $receiverId])
+            ->whereIn('sender_id', [$senderId, $receiverId])
+            ->orderBy('created_at', 'asc')->get();
+        return response($message);
     }
 }
