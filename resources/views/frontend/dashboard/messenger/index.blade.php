@@ -66,13 +66,14 @@
                               </div>
                             </div> --}}
                             </div>
-
                           </div>
                           <div class="wsus__chat_area_footer" style="margin-top: 50px;">
-                            <form id="customerToSellerMsgForm">
-                              <input type="text" placeholder="Type Message" id="seller_message" autocomplete="off">
-                              <input type="hidden" name="seller_id" id="seller_id" value="5">
-                              <button type="submit"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                            <form id="message_form">
+                              <input type="text" placeholder="Type Message" id="message" name="message"
+                                autocomplete="off" class="message-box">
+                              <input type="hidden" name="receiver_id" id="receiver_id" value="5">
+                              <button type="submit"><i class="fas fa-paper-plane send-button"
+                                  aria-hidden="true"></i></button>
                             </form>
                           </div>
                         </div>
@@ -112,6 +113,7 @@
     $(document).ready(function() {
       $('.chat-user-profile').on('click', function() {
         let receiverId = $(this).data('id');
+        $('#receiver_id').val(receiverId);
         $.ajax({
           method: 'GET',
           url: '{{ route('user.get-messages') }}',
@@ -148,6 +150,50 @@
 
           },
         })
+      })
+
+      $('#message_form').on('submit', function(e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        let messageData = $('.message-box').val();
+        var forSubmitting = false;
+        if (forSubmitting || messageData === "") {
+          return;
+        }
+        // set message inbox
+        let message = `
+            <div class="wsus__chat_single single_chat_2">
+                    <div class="wsus__chat_single_img">
+                    <img
+                        src="${USER.image}"
+                        alt="user" class="img-fluid">
+                    </div>
+                    <div class="wsus__chat_single_text">
+                    <p>${messageData}</p>
+                    <span></span>
+                    </div>
+                </div>`;
+        mainChatInbox.append(message);
+        scrollBottom();
+        $.ajax({
+          method: 'POST',
+          url: "{{ route('user.send-messages') }}",
+          data: formData,
+          beforeSend: function() {
+            $('.send-button').prop('disable', true);
+            forSubmitting = true;
+          },
+          success: function(response) {
+            $('.message-box').val('');
+          },
+          error: function(xhr, status, error) {
+            $('.send-button').prop('disable', false);
+            forSubmitting = false;
+          },
+          complete: function() {
+            forSubmitting = false;
+          },
+        });
       })
     });
   </script>
