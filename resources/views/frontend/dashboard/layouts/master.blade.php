@@ -31,45 +31,26 @@
     @endif
     <!--toastr-->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
+    <script>
+      const USER = {
+        id: "{{ auth()->user()->id }}",
+        name: "{{ auth()->user()->name }}",
+        image: "{{ asset(auth()->user()->image) }}",
+      };
+    </script>
   </head>
 
   <body>
-
-
-    <!--=============================
-    DASHBOARD MENU START
-  ==============================-->
     <div class="wsus__dashboard_menu">
       <div class="wsusd__dashboard_user">
         <img src="{{ asset(Auth::user()->image) }}" alt="img" class="img-fluid">
         <p>{{ Auth::user()->name }}</p>
       </div>
     </div>
-    <!--=============================
-    DASHBOARD MENU END
-  ==============================-->
-
-
-    <!--=============================
-    DASHBOARD START
-  ==============================-->
     @yield('content')
-    <!--=============================
-    DASHBOARD START
-  ==============================-->
-
-
-    <!--============================
-      SCROLL BUTTON START
-    ==============================-->
     <div class="wsus__scroll_btn">
       <i class="fas fa-chevron-up"></i>
     </div>
-    <!--============================
-    SCROLL BUTTON  END
-  ==============================-->
-
-
     <!--jquery library js-->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <!--bootstrap js-->

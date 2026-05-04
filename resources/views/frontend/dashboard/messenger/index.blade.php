@@ -42,7 +42,7 @@
                             <div class="wsus__chat_area_header">
                               <h2>Chat with Daniel Paul</h2>
                             </div>
-                            <div class="wsus_chat_area_body">
+                            <div class="wsus__chat_area_body">
                               {{-- <div class="wsus__chat_single single_chat_2">
                                 <div class="wsus__chat_single_img">
                                   <img
@@ -90,9 +90,26 @@
   </section>
 @endsection
 @push('scripts')
-  <script>
+  <script type="text/javascript">
+    const mainChatInbox = $('.wsus__chat_area_body')
+
+    function formatDateTime(dateTimeString) {
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+      const formatDateTime = new Intl.DateTimeFormat('en-us', options).format(new Date(dateTimeString));
+      return formatDateTime;
+    }
+
+    function scrollBottom() {
+      mainChatInbox.scrollTop(mainChatInbox.prop('scrollHeight'));
+    }
+
     $(document).ready(function() {
-      const mainChatInbox = $('.wsus_chat_area_body')
       $('.chat-user-profile').on('click', function() {
         let receiverId = $(this).data('id');
         $.ajax({
@@ -110,17 +127,19 @@
             <div class="wsus__chat_single single_chat_2">
                     <div class="wsus__chat_single_img">
                     <img
-                        src="http://127.0.0.1:8000/uploads/custom-images/daniel-paul-2022-08-15-01-16-48-4881.png"
+                        src="${USER.image}"
                         alt="user" class="img-fluid">
                     </div>
                     <div class="wsus__chat_single_text">
                     <p>${value.message}</p>
-                    <span>15 August, 2022, 12:58 PM</span>
+                    <span>${formatDateTime(value.created_at)}</span>
                     </div>
                 </div>
                 `
               mainChatInbox.append(message);
             })
+            // scroll to bottom
+            scrollBottom();
           },
           error: function(xhr, status, error) {
 
