@@ -197,6 +197,11 @@
             </li>
           </ul>
         </li>
+        <li class="{{ setActive(['admin.messages.index']) }}"><a class="nav-link"
+            href="{{ route('admin.messages.index') }}">
+            <i class="fas fa-comment"></i>
+            <span>Massages</span></a>
+        </li>
         <li class="menu-header">SETTING & MORE</li>
         <li
           class="dropdown 

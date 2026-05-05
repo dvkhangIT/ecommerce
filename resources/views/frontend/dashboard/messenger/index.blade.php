@@ -115,6 +115,8 @@
         let receiverId = $(this).data('id');
         $('#receiver_id').val(receiverId);
         let chatUserName = $(this).find('h4').text();
+        $('.chat-user-profile').removeClass('active');
+        $(this).addClass('active');
         $.ajax({
           method: 'GET',
           url: '{{ route('user.get-messages') }}',
