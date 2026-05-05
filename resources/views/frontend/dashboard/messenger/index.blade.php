@@ -40,7 +40,7 @@
                         <div id="chat_box">
                           <div class="wsus__chat_area" style="position: relative;height: 79vh;">
                             <div class="wsus__chat_area_header">
-                              <h2>Chat with Daniel Paul</h2>
+                              <h2 id="chat-inbox-title">Chat with Daniel Paul</h2>
                             </div>
                             <div class="wsus__chat_area_body">
                               {{-- <div class="wsus__chat_single single_chat_2">
@@ -114,14 +114,16 @@
       $('.chat-user-profile').on('click', function() {
         let receiverId = $(this).data('id');
         $('#receiver_id').val(receiverId);
+        let chatUserName = $(this).find('h4').text();
         $.ajax({
           method: 'GET',
           url: '{{ route('user.get-messages') }}',
           data: {
             receiver_id: receiverId
           },
-          beforSend: function() {
-
+          beforeSend: function() {
+            mainChatInbox.html('');
+            $('#chat-inbox-title').text(`Chat With ${chatUserName}`);
           },
           success: function(response) {
             $.each(response, function(index, value) {
@@ -146,9 +148,7 @@
           error: function(xhr, status, error) {
 
           },
-          complete: function() {
-
-          },
+          complete: function() {},
         })
       })
 
