@@ -13,4 +13,8 @@ class Chat extends Model
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id')->select(['id', 'name', 'image']);
     }
+    function senderProfile(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sender_id', 'id')->select(['id', 'name', 'image']);
+    }
 }
