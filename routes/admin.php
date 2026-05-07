@@ -159,6 +159,7 @@ Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdr
 // Message route
 Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
 Route::get('get-messages', [MessageController::class, 'getMessage'])->name('get-messages');
+Route::post('send-messages', [MessageController::class, 'sendMessage'])->name('send-messages');
 
 /** Setting Route */
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');

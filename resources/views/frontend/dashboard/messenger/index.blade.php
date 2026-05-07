@@ -71,7 +71,7 @@
                             <form id="message_form">
                               <input type="text" placeholder="Type Message" id="message" name="message"
                                 autocomplete="off" class="message-box">
-                              <input type="hidden" name="receiver_id" id="receiver_id" value="5">
+                              <input type="hidden" name="receiver_id" id="receiver_id" value="">
                               <button type="submit"><i class="fas fa-paper-plane send-button"
                                   aria-hidden="true"></i></button>
                             </form>

@@ -49,17 +49,18 @@
                     <div class="chat-time">11:19</div>
                   </div>
                 </div> --}}
-                <div class="chat-item chat-right" style=""><img src="../dist/img/avatar/avatar-2.png">
+                {{-- <div class="chat-item chat-right" style=""><img src="../dist/img/avatar/avatar-2.png">
                   <div class="chat-details">
                     <div class="chat-text">Wat?</div>
                     <div class="chat-time">11:19</div>
                   </div>
-                </div>
+                </div> --}}
               </div>
               <div class="card-footer chat-form">
-                <form id="chat-form">
-                  <input type="text" class="form-control" placeholder="Type a message">
-                  <button class="btn btn-primary">
+                <form id="message_form">
+                  <input type="text" class="form-control message-box" placeholder="Type a message" name="message">
+                  <input type="hidden" name="receiver_id" id="receiver_id" value="">
+                  <button class="btn btn-primary send-button">
                     <i class="far fa-paper-plane"></i>
                   </button>
                 </form>
@@ -92,8 +93,6 @@
         $('#receiver_id').val(receiverId);
         let chatUserName = $(this).find('h4').text();
         let receiverImage = $(this).find('img').attr('src');
-        $('.chat-user-profile').removeClass('active');
-        $(this).addClass('active');
         $.ajax({
           method: 'GET',
           url: '{{ route('admin.get-messages') }}',
@@ -137,22 +136,19 @@
         }
         // set message inbox
         let message = `
-            <div class="wsus__chat_single single_chat_2">
-                    <div class="wsus__chat_single_img">
-                    <img
-                        src="${USER.image}"
-                        alt="user" class="img-fluid">
-                    </div>
-                    <div class="wsus__chat_single_text">
-                    <p>${messageData}</p>
-                    <span></span>
-                    </div>
-                </div>`;
+                </div>
+                   <div class="chat-item chat-right" style=""><img src="${USER.image}">
+                  <div class="chat-details">
+                    <div class="chat-text">${messageData}</div>
+                    <div class="chat-time"></div>
+                  </div>
+                </div>
+                `
         mainChatInbox.append(message);
-        scrollBottom();
+        // scrollBottom();
         $.ajax({
           method: 'POST',
-          url: "{{ route('user.send-messages') }}",
+          url: "{{ route('admin.send-messages') }}",
           data: formData,
           beforeSend: function() {
             $('.send-button').prop('disable', true);
