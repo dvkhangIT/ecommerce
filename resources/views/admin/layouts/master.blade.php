@@ -31,22 +31,15 @@
     @if ($settings->layout === 'RTL')
       <link rel="stylesheet" href="{{ asset('backend/assets/css/rtl.css') }}">
     @endif
-
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <!--toastr-->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
     <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'UA-94034622-3');
+      const USER = {
+        id: "{{ auth()->user()->id }}",
+        name: "{{ auth()->user()->name }}",
+        image: "{{ asset(auth()->user()->image) }}",
+      };
     </script>
-    <!-- /END GA -->
   </head>
 
   <body>

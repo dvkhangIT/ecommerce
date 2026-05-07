@@ -24,7 +24,7 @@
               <div class="card-body">
                 <ul class="list-unstyled list-unstyled-border">
                   @foreach ($chatUsers as $chatUser)
-                    <li class="media">
+                    <li class="media chat-user-profile" data-id="{{ $chatUser->senderProfile->id }}">
                       <img alt="image" class="mr-3 rounded-circle" width="50"
                         src="{{ asset($chatUser->senderProfile->image) }}">
                       <div class="media-body">
@@ -43,12 +43,12 @@
                 <h4>Chat with Rizal</h4>
               </div>
               <div class="card-body chat-content">
-                <div class="chat-item chat-left" style=""><img src="../dist/img/avatar/avatar-1.png">
+                {{-- <div class="chat-item chat-left" style=""><img src="../dist/img/avatar/avatar-1.png">
                   <div class="chat-details">
                     <div class="chat-text">Hi, dude!</div>
                     <div class="chat-time">11:19</div>
                   </div>
-                </div>
+                </div> --}}
                 <div class="chat-item chat-right" style=""><img src="../dist/img/avatar/avatar-2.png">
                   <div class="chat-details">
                     <div class="chat-text">Wat?</div>
@@ -66,9 +66,110 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
   </section>
 @endsection
+@push('scripts')
+  <script type="text/javascript">
+    const mainChatInbox = $('.chat-content');
+
+    function formatDateTime(dateTimeString) {
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+      const formatDateTime = new Intl.DateTimeFormat('en-us', options).format(new Date(dateTimeString));
+      return formatDateTime;
+    }
+    $(document).ready(function() {
+      $('.chat-user-profile').on('click', function() {
+        let receiverId = $(this).data('id');
+        $('#receiver_id').val(receiverId);
+        let chatUserName = $(this).find('h4').text();
+        let receiverImage = $(this).find('img').attr('src');
+        $('.chat-user-profile').removeClass('active');
+        $(this).addClass('active');
+        $.ajax({
+          method: 'GET',
+          url: '{{ route('admin.get-messages') }}',
+          data: {
+            receiver_id: receiverId
+          },
+          beforeSend: function() {
+            mainChatInbox.html('');
+            $('#chat-inbox-title').text(`Chat With ${chatUserName}`);
+          },
+          success: function(response) {
+            $.each(response, function(index, value) {
+              let message = `
+                </div>
+                   <div class="chat-item chat-left" style=""><img src="${receiverImage}">
+                  <div class="chat-details">
+                    <div class="chat-text">${value.message}</div>
+                    <div class="chat-time">${formatDateTime(value.created_at)}</div>
+                  </div>
+                </div>
+                `
+              mainChatInbox.append(message);
+            })
+            // scroll to bottom
+            // scrollBottom();
+          },
+          error: function(xhr, status, error) {
+
+          },
+          complete: function() {},
+        })
+      })
+
+      $('#message_form').on('submit', function(e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        let messageData = $('.message-box').val();
+        var forSubmitting = false;
+        if (forSubmitting || messageData === "") {
+          return;
+        }
+        // set message inbox
+        let message = `
+            <div class="wsus__chat_single single_chat_2">
+                    <div class="wsus__chat_single_img">
+                    <img
+                        src="${USER.image}"
+                        alt="user" class="img-fluid">
+                    </div>
+                    <div class="wsus__chat_single_text">
+                    <p>${messageData}</p>
+                    <span></span>
+                    </div>
+                </div>`;
+        mainChatInbox.append(message);
+        scrollBottom();
+        $.ajax({
+          method: 'POST',
+          url: "{{ route('user.send-messages') }}",
+          data: formData,
+          beforeSend: function() {
+            $('.send-button').prop('disable', true);
+            forSubmitting = true;
+          },
+          success: function(response) {
+            $('.message-box').val('');
+          },
+          error: function(xhr, status, error) {
+            $('.send-button').prop('disable', false);
+            forSubmitting = false;
+          },
+          complete: function() {
+            forSubmitting = false;
+          },
+        });
+      })
+    });
+  </script>
+@endpush
