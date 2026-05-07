@@ -105,7 +105,18 @@
           },
           success: function(response) {
             $.each(response, function(index, value) {
-              let message = `
+              if (value.sender_id == USER.id) {
+                var message = `
+                </div>
+                   <div class="chat-item chat-right" style=""><img src="${USER.image}">
+                  <div class="chat-details">
+                    <div class="chat-text">${value.message}</div>
+                    <div class="chat-time">${formatDateTime(value.created_at)}</div>
+                  </div>
+                </div>
+                `
+              } else {
+                var message = `
                 </div>
                    <div class="chat-item chat-left" style=""><img src="${receiverImage}">
                   <div class="chat-details">
@@ -114,6 +125,7 @@
                   </div>
                 </div>
                 `
+              }
               mainChatInbox.append(message);
             })
             // scroll to bottom

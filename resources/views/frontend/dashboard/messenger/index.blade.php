@@ -113,8 +113,9 @@
     $(document).ready(function() {
       $('.chat-user-profile').on('click', function() {
         let receiverId = $(this).data('id');
-        $('#receiver_id').val(receiverId);
         let chatUserName = $(this).find('h4').text();
+        let senderImage = $(this).find('img').attr('src');
+        $('#receiver_id').val(receiverId);
         $('.chat-user-profile').removeClass('active');
         $(this).addClass('active');
         $.ajax({
@@ -129,8 +130,9 @@
           },
           success: function(response) {
             $.each(response, function(index, value) {
-              let message = `
-            <div class="wsus__chat_single single_chat_2">
+              if (value.sender_id == USER.id) {
+                var message = `
+            <div class="wsus__chat_single single_chat_1">
                     <div class="wsus__chat_single_img">
                     <img
                         src="${USER.image}"
@@ -142,6 +144,21 @@
                     </div>
                 </div>
                 `
+              } else {
+                var message = `
+            <div class="wsus__chat_single single_chat_2">
+                    <div class="wsus__chat_single_img">
+                    <img
+                        src="${senderImage}"
+                        alt="user" class="img-fluid">
+                    </div>
+                    <div class="wsus__chat_single_text">
+                    <p>${value.message}</p>
+                    <span>${formatDateTime(value.created_at)}</span>
+                    </div>
+                </div>
+                `
+              }
               mainChatInbox.append(message);
             })
             // scroll to bottom
