@@ -12,9 +12,6 @@
       </div>
 
       <div class="section-body">
-        <h2 class="section-title">Chat Boxes</h2>
-        <p class="section-lead">The chat component and is equipped with a JavaScript API, making it easy for you to
-          integrate with Back-end.</p>
         <div class="row align-items-center justify-content-center">
           <div class="col-md-3">
             <div class="card" style="height: 70vh;">
@@ -28,7 +25,8 @@
                       <img alt="image" class="mr-3 rounded-circle" width="50"
                         src="{{ asset($chatUser->senderProfile->image) }}">
                       <div class="media-body">
-                        <div class="mt-0 mb-1 font-weight-bold">{{ $chatUser->senderProfile->name }}</div>
+                        <div class="mt-0 mb-1 font-weight-bold chat-user-name">{{ $chatUser->senderProfile->name }}
+                        </div>
                         <div class="text-success text-small font-600-bold"><i class="fas fa-circle"></i> Online</div>
                       </div>
                     </li>
@@ -40,21 +38,9 @@
           <div class="col-md-9">
             <div class="card chat-box" id="mychatbox" style="height: 70vh;">
               <div class="card-header">
-                <h4>Chat with Rizal</h4>
+                <h4 id="chat-inbox-title">Chat with Rizal</h4>
               </div>
               <div class="card-body chat-content">
-                {{-- <div class="chat-item chat-left" style=""><img src="../dist/img/avatar/avatar-1.png">
-                  <div class="chat-details">
-                    <div class="chat-text">Hi, dude!</div>
-                    <div class="chat-time">11:19</div>
-                  </div>
-                </div> --}}
-                {{-- <div class="chat-item chat-right" style=""><img src="../dist/img/avatar/avatar-2.png">
-                  <div class="chat-details">
-                    <div class="chat-text">Wat?</div>
-                    <div class="chat-time">11:19</div>
-                  </div>
-                </div> --}}
               </div>
               <div class="card-footer chat-form">
                 <form id="message_form">
@@ -87,11 +73,15 @@
       const formatDateTime = new Intl.DateTimeFormat('en-us', options).format(new Date(dateTimeString));
       return formatDateTime;
     }
+
+    function scrollBottom() {
+      mainChatInbox.scrollTop(mainChatInbox.prop('scrollHeight'));
+    }
     $(document).ready(function() {
       $('.chat-user-profile').on('click', function() {
         let receiverId = $(this).data('id');
         $('#receiver_id').val(receiverId);
-        let chatUserName = $(this).find('h4').text();
+        let chatUserName = $(this).find('.chat-user-name').text();
         let receiverImage = $(this).find('img').attr('src');
         $.ajax({
           method: 'GET',
@@ -129,7 +119,7 @@
               mainChatInbox.append(message);
             })
             // scroll to bottom
-            // scrollBottom();
+            scrollBottom();
           },
           error: function(xhr, status, error) {
 
@@ -157,7 +147,7 @@
                 </div>
                 `
         mainChatInbox.append(message);
-        // scrollBottom();
+        scrollBottom();
         $.ajax({
           method: 'POST',
           url: "{{ route('admin.send-messages') }}",
