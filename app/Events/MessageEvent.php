@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageEvent
+class MessageEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
@@ -36,12 +36,12 @@ class MessageEvent
             new PrivateChannel('message.' . $this->receiver_id),
         ];
     }
-    function brodcastWith(): array
+    function broadcastWith(): array
     {
         return [
             'message' => $this->message,
             'receiver_id' => $this->receiver_id,
-            'sender_id' => auth()->user(),
+            'sender_id' => auth()->user()->id,
         ];
     }
 }

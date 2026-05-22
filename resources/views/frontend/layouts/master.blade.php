@@ -29,7 +29,7 @@
     @endif
     <!--toastr-->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
-    @vite(['resources/js/app.js'])
+    {{-- @vite(['resources/js/app.js']) --}}
   </head>
 
   <body>
