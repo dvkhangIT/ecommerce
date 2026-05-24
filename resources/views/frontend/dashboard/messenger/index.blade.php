@@ -132,7 +132,7 @@
             $.each(response, function(index, value) {
               if (value.sender_id == USER.id) {
                 var message = `
-            <div class="wsus__chat_single single_chat_1">
+            <div class="wsus__chat_single single_chat_2">
                     <div class="wsus__chat_single_img">
                     <img
                         src="${USER.image}"
@@ -146,7 +146,7 @@
                 `
               } else {
                 var message = `
-            <div class="wsus__chat_single single_chat_2">
+            <div class="wsus__chat_single single_chat_1">
                     <div class="wsus__chat_single_img">
                     <img
                         src="${senderImage}"
