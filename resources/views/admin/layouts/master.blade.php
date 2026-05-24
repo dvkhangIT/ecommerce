@@ -40,7 +40,7 @@
         image: "{{ asset(auth()->user()->image) }}",
       };
     </script>
-    @vite(['resources/js/app.js', 'resources/js/frontend.js'])
+    @vite(['resources/js/app.js', 'resources/js/admin.js'])
   </head>
 
   <body>

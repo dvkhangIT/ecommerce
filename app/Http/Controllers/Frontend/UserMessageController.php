@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\MessageEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class UserMessageController extends Controller
         $message->receiver_id = $request->receiver_id;
         $message->message = $request->message;
         $message->save();
+        broadcast(new MessageEvent($message->message, $message->receiver_id, $message->created_at));
         return response()->json(['status' => 'success', 'message' => 'Message sent successfully']);
     }
     function getMessage(Request $request)
