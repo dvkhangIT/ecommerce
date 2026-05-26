@@ -10,7 +10,7 @@
             <div class="wsus__dashboard_review">
               <div class="row">
                 <div class="col-xl-4 col-md-5">
-                  <div class="wsus__chatlist d-flex align-items-start">
+                  <div class="wsus__chatlist d-flex align-items-start" style="height: 100%;">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
                       aria-orientation="vertical">
                       <h2>Seller List</h2>
@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="col-xl-8 col-md-7">
-                  <div class="wsus__chat_main_area">
+                  <div class="wsus__chat_main_area" style="height: 100%;">
                     <div class="tab-content" id="v-pills-tabContent">
                       <div class="tab-pane fade show" id="v-pills-home" role="tabpanel"
                         aria-labelledby="v-pills-home-tab">
