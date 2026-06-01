@@ -83,6 +83,7 @@
         $('#receiver_id').val(receiverId);
         let chatUserName = $(this).find('.chat-user-name').text();
         let receiverImage = $(this).find('img').attr('src');
+        mainChatInbox.attr('data-inbox', receiverId);
         $.ajax({
           method: 'GET',
           url: '{{ route('admin.get-messages') }}',
@@ -147,6 +148,7 @@
                 </div>
                 `
         mainChatInbox.append(message);
+        $('.message-box').val('');
         scrollBottom();
         $.ajax({
           method: 'POST',
@@ -157,7 +159,7 @@
             forSubmitting = true;
           },
           success: function(response) {
-            $('.message-box').val('');
+            // $('.message-box').val('');
           },
           error: function(xhr, status, error) {
             $('.send-button').prop('disable', false);

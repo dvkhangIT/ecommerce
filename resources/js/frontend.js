@@ -17,7 +17,8 @@ function scrollBottom() {
 window.Echo.private('message.' + USER.id).listen(
     "MessageEvent", (e) => {
         let mainChatBox = $('.wsus__chat_area_body');
-        var message = `
+        if (mainChatBox.data('inbox') === e.sender_id) {
+            var message = `
             <div class="wsus__chat_single single_chat_1">
                     <div class="wsus__chat_single_img">
                     <img
@@ -28,8 +29,8 @@ window.Echo.private('message.' + USER.id).listen(
                     <p>${e.message}</p>
                     <span${formatDateTime(e.date_time)}</span>
                     </div>
-                </div>
-                `
+                </div>`
+        }
         mainChatBox.append(message);
         scrollBottom();
     }

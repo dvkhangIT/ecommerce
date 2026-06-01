@@ -42,7 +42,7 @@
                             <div class="wsus__chat_area_header">
                               <h2 id="chat-inbox-title">Chat with Daniel Paul</h2>
                             </div>
-                            <div class="wsus__chat_area_body">
+                            <div class="wsus__chat_area_body" data-inbox="">
                               {{-- <div class="wsus__chat_single single_chat_2">
                                 <div class="wsus__chat_single_img">
                                   <img
@@ -115,6 +115,7 @@
         let receiverId = $(this).data('id');
         let chatUserName = $(this).find('h4').text();
         let senderImage = $(this).find('img').attr('src');
+        mainChatInbox.attr('data-inbox', receiverId);
         $('#receiver_id').val(receiverId);
         $('.chat-user-profile').removeClass('active');
         $(this).addClass('active');
@@ -193,6 +194,7 @@
                     </div>
                 </div>`;
         mainChatInbox.append(message);
+        $('.message-box').val('');
         scrollBottom();
         $.ajax({
           method: 'POST',
@@ -203,7 +205,7 @@
             forSubmitting = true;
           },
           success: function(response) {
-            $('.message-box').val('');
+            // $('.message-box').val('');
           },
           error: function(xhr, status, error) {
             $('.send-button').prop('disable', false);
