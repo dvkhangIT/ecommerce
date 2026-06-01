@@ -16,8 +16,8 @@ function scrollBottom() {
 }
 
 window.Echo.private('message.' + USER.id).listen(
-
     "MessageEvent", (e) => {
+        console.log(e);
         let mainChatBox = $('.chat-content');
         var message = `
                 </div>
@@ -30,5 +30,12 @@ window.Echo.private('message.' + USER.id).listen(
                 `
         mainChatBox.append(message);
         scrollBottom();
+        // add notification circle in profile
+        $('.chat-user-profile').each(function () {
+            let profileUserId = $(this).data('id')
+            if (profileUserId == e.sender_id) {
+                $(this).find('img').addClass('msg-notification')
+            }
+        })
     }
 );

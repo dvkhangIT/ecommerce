@@ -84,6 +84,7 @@
         let chatUserName = $(this).find('.chat-user-name').text();
         let receiverImage = $(this).find('img').attr('src');
         mainChatInbox.attr('data-inbox', receiverId);
+        $(this).find('img').removeClass('msg-notification')
         $.ajax({
           method: 'GET',
           url: '{{ route('admin.get-messages') }}',
