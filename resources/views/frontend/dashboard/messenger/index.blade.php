@@ -117,6 +117,7 @@
         let senderImage = $(this).find('img').attr('src');
         mainChatInbox.attr('data-inbox', receiverId);
         $('#receiver_id').val(receiverId);
+        $(this).find('.wsus_chat_list_img').removeClass('msg-notification')
         $('.chat-user-profile').removeClass('active');
         $(this).addClass('active');
         $.ajax({

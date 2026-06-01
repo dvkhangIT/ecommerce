@@ -16,6 +16,7 @@ function scrollBottom() {
 
 window.Echo.private('message.' + USER.id).listen(
     "MessageEvent", (e) => {
+        console.log(e);
         let mainChatBox = $('.wsus__chat_area_body');
         if (mainChatBox.data('inbox') === e.sender_id) {
             var message = `
@@ -33,5 +34,13 @@ window.Echo.private('message.' + USER.id).listen(
         }
         mainChatBox.append(message);
         scrollBottom();
+
+        // add notification circle in profile
+        $('.chat-user-profile').each(function () {
+            let profileUserId = $(this).data('id')
+            if (profileUserId == e.sender_id) {
+                $(this).find('.wsus_chat_list_img').addClass('msg-notification')
+            }
+        })
     }
 );
