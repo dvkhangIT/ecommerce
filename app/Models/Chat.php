@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Chat extends Model
 {
     use HasFactory;
+    protected $fillable = ['see'];
     function receiverProfile(): BelongsTo
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id')->select(['id', 'name', 'image']);

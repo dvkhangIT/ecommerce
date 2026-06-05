@@ -16,10 +16,17 @@
                       <h2>Seller List</h2>
                       <div class="wsus__chatlist_body">
                         @foreach ($chatUsers as $chatUser)
+                          @php
+                            $unseenMessages = \App\Models\Chat::where([
+                                'sender_id' => $chatUser->receiverProfile->id,
+                                'receiver_id' => auth()->user()->id,
+                                'seen' => 0,
+                            ])->exists();
+                          @endphp
                           <button class="nav-link seller chat-user-profile" id="seller-list-6" data-bs-toggle="pill"
                             data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
                             aria-selected="true" data-id="{{ $chatUser->receiverProfile->id }}">
-                            <div class="wsus_chat_list_img">
+                            <div class="wsus_chat_list_img  {{ $unseenMessages ? 'msg-notification' : ' ' }}">
                               <img src="{{ asset($chatUser->receiverProfile->image) }}" alt="user" class="img-fluid">
                               <span class="pending d-none" id="pending-6">0</span>
                             </div>
