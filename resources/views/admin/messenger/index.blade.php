@@ -21,9 +21,16 @@
               <div class="card-body">
                 <ul class="list-unstyled list-unstyled-border">
                   @foreach ($chatUsers as $chatUser)
+                    @php
+                      $unseenMessages = \App\Models\Chat::where([
+                          'sender_id' => $chatUser->senderProfile->id,
+                          'receiver_id' => auth()->user()->id,
+                          'seen' => 0,
+                      ])->exists();
+                    @endphp
                     <li class="media chat-user-profile" data-id="{{ $chatUser->senderProfile->id }}">
-                      <img alt="image" class="mr-3 rounded-circle" width="50"
-                        src="{{ asset($chatUser->senderProfile->image) }}">
+                      <img alt="image" class="mr-3 rounded-circle {{ $unseenMessages ? 'msg-notification' : '' }}"
+                        width="50" src="{{ asset($chatUser->senderProfile->image) }}">
                       <div class="media-body">
                         <div class="mt-0 mb-1 font-weight-bold chat-user-name">{{ $chatUser->senderProfile->name }}
                         </div>

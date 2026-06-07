@@ -40,6 +40,7 @@ class MessageController extends Controller
         $message = Chat::whereIn('receiver_id', [$senderId, $receiverId])
             ->whereIn('sender_id', [$senderId, $receiverId])
             ->orderBy('created_at', 'asc')->get();
+        Chat::where(['receiver_id' => $senderId, 'sender_id' => $receiverId])->update(['seen' => 1]);
         return response($message);
     }
 }
