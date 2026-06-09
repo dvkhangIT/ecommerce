@@ -106,6 +106,8 @@ Route::group([
 
     // Messages route
     Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
+    Route::post('send-messages', [UserMessageController::class, 'sendMessage'])->name('send-messages');
+    Route::get('get-messages', [UserMessageController::class, 'getMessage'])->name('get-messages');
 
     // User address route
     Route::resource('address', UserAddressController::class);
@@ -141,8 +143,6 @@ Route::group([
     // vendor request route
     Route::get('vendor-request', [UserVendorRequestController::class, 'index'])->name('vendor-request.index');
     Route::post('vendor-request', [UserVendorRequestController::class, 'create'])->name('vendor-request.create');
-    Route::post('send-messages', [UserMessageController::class, 'sendMessage'])->name('send-messages');
-    Route::get('get-messages', [UserMessageController::class, 'getMessage'])->name('get-messages');
 
     // blog comment routes
     Route::post('blog-comment', [BlogController::class, 'comment'])->name('blog-comment');

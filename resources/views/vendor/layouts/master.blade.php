@@ -31,6 +31,14 @@
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
     <!--toastr-->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
+    <script>
+      const USER = {
+        id: "{{ auth()->user()->id }}",
+        name: "{{ auth()->user()->name }}",
+        image: "{{ asset(auth()->user()->image) }}",
+      };
+    </script>
+    @vite(['resources/js/app.js', 'resources/js/frontend.js'])
   </head>
 
   <body>
