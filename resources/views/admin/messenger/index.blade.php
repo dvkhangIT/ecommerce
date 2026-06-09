@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="col-md-9">
-            <div class="card chat-box" id="mychatbox" style="height: 70vh;">
+            <div class="card chat-box d-none" id="mychatbox" style="height: 70vh;">
               <div class="card-header">
                 <h4 id="chat-inbox-title">Chat with Rizal</h4>
               </div>
@@ -91,7 +91,8 @@
         let chatUserName = $(this).find('.chat-user-name').text();
         let receiverImage = $(this).find('img').attr('src');
         mainChatInbox.attr('data-inbox', receiverId);
-        $(this).find('img').removeClass('msg-notification')
+        $(this).find('img').removeClass('msg-notification');
+        $('.chat-box').removeClass('d-none');
         $.ajax({
           method: 'GET',
           url: '{{ route('admin.get-messages') }}',
