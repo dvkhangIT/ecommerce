@@ -406,6 +406,9 @@
           },
           success: function(response) {
             toastr.success(response.message);
+            $('.modal-body').append(`
+            <div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click
+            here</a> for go to messenger.</div>`)
             $('.send-button').html('Send');
             $('.send-button').prop('disable', false);
           },
