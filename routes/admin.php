@@ -2,7 +2,7 @@
 
 // Admin route
 
-use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminListController;
